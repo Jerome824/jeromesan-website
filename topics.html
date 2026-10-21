@@ -1,0 +1,648 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Topics · Research Domains · Jeromesan</title>
+  <meta name="description" content="Research topics of Jeromesan: Direct Air Capture (DAC), Life Cycle Assessment (LCA), and Systems Thinking. Overview cards with deep-dive links.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=3">
+  
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFE6;
+      --sc-footer-bg: #F5F2EB;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #635F56;
+      --sc-ink-faint: #989284;
+      --sc-line: #E6E1D5;
+      --sc-accent: #264639;
+      --lakers-purple: #461D6E;
+      --lakers-gold: #FDB927;
+      --sc-font-display: "Newsreader", Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--sc-canvas); color: var(--sc-ink); font-family: var(--sc-font-text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+
+    /* Nav Bar */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 74px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem); z-index: 900; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90); border-bottom: 1px solid var(--sc-line); gap: 1.5rem;
+    }
+    .brand-signature-mark { display: flex; align-items: baseline; gap: 4px; text-decoration: none; color: var(--sc-ink); }
+    .sig-script { font-family: var(--sc-font-sig); font-size: 2.15rem; font-weight: 700; line-height: 1; }
+    .sig-sans { font-family: var(--sc-font-text); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+    .nav-center-menu { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.2rem); list-style: none; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--sc-ink-soft); text-decoration: none; position: relative; padding: 6px 2px; }
+    .nav-link.active, .nav-link:hover { color: var(--sc-ink); }
+    .nav-link.active::after, .nav-link:hover::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--lakers-gold); }
+    .nav-search-wrap { position: relative; display: flex; align-items: center; }
+    .nav-search-input { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 99px; padding: 7px 14px 7px 34px; font-size: 0.82rem; width: 175px; outline: none; }
+    .nav-search-icon { position: absolute; left: 11px; width: 14px; height: 14px; color: var(--sc-ink-faint); }
+    .nav-cta-btn { font-size: 0.82rem; font-weight: 600; color: var(--lakers-purple); text-decoration: none; padding: 7px 18px; background: rgba(70, 29, 110, 0.06); border: 1px solid rgba(70, 29, 110, 0.2); border-radius: 99px; }
+
+    /* Page Header */
+    .page-hero { padding: 150px 0 60px 0; border-bottom: 1px solid var(--sc-line); }
+    .page-kicker { font-family: var(--sc-font-mono); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sc-accent); margin-bottom: 1.2rem; font-weight: 600; }
+    .page-title { font-family: var(--sc-font-display); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; font-weight: 400; margin-bottom: 1.5rem; }
+    .page-lead { font-size: clamp(1.15rem, 1.8vw, 1.35rem); color: var(--sc-ink-soft); font-weight: 300; max-width: 780px; line-height: 1.6; }
+
+    /* Topics Grid Layout with Image Cards */
+    .topics-section { padding: clamp(4rem, 7vw, 6rem) 0; }
+    .topic-card-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; }
+    
+    .topic-rich-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+    }
+    .topic-rich-card:hover {
+      border-color: var(--lakers-purple);
+      box-shadow: 0 12px 36px rgba(70, 29, 110, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Visual Banner Container */
+    .topic-image-col {
+      background: var(--sc-surface-alt);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      border-right: 1px solid var(--sc-line);
+    }
+    .topic-visual-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+    .topic-image-overlay-badge {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--sc-line);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--sc-ink);
+      font-weight: 600;
+    }
+
+    /* Content Area */
+    .topic-content-col {
+      padding: clamp(2rem, 3.5vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .topic-card-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .topic-card-title {
+      font-family: var(--sc-font-display);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--sc-ink);
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+
+    .topic-card-summary {
+      font-size: 0.98rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+
+    /* Bulleted Highlights */
+    .topic-bullets-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      background: var(--sc-canvas);
+      padding: 1.2rem 1.4rem;
+      border-radius: 6px;
+      border: 1px solid var(--sc-line);
+    }
+    .topic-bullets-list li {
+      font-size: 0.9rem;
+      color: #383531;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.55;
+    }
+    .topic-bullets-list li::before {
+      content: "•";
+      color: var(--lakers-purple);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    /* Action Links Bar */
+    .topic-links-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--sc-line);
+    }
+    .topic-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      padding: 6px 14px;
+      background: rgba(70, 29, 110, 0.08);
+      border-radius: 99px;
+      transition: all 0.2s ease;
+    }
+    .topic-btn-primary:hover {
+      background: var(--lakers-purple);
+      color: var(--lakers-gold);
+    }
+    .topic-btn-secondary {
+      font-size: 0.86rem;
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .topic-btn-secondary:hover {
+      color: var(--sc-ink);
+      text-decoration: underline;
+    }
+
+    /* Mel Robbins Footer */
+    .mel-footer { background: var(--sc-footer-bg); border-top: 1px solid var(--sc-line); padding: 5rem 0 2.5rem 0; }
+    .mel-footer-grid { display: grid; grid-template-columns: 1.6fr 1.2fr 1fr 1fr; gap: clamp(2rem, 4vw, 4.5rem); margin-bottom: 4rem; }
+    .mel-footer-bio { margin-top: 1.2rem; font-size: 0.9rem; color: var(--sc-ink-soft); line-height: 1.65; max-width: 320px; }
+    .mel-social-links { display: flex; gap: 16px; margin-top: 2rem; }
+    .mel-social-icon { color: var(--sc-ink); opacity: 0.75; transition: all 0.2s; }
+    .mel-social-icon:hover { opacity: 1; color: var(--lakers-purple); transform: translateY(-2px); }
+    .mel-footer-col-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 1.4rem; }
+    .mel-footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .mel-footer-link { font-size: 0.88rem; color: var(--sc-ink-soft); text-decoration: none; }
+    .mel-footer-link:hover { color: var(--sc-ink); }
+    .mel-footer-bottom-bar { border-top: 1px solid var(--sc-line); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--sc-ink-soft); }
+    .mel-footer-legal-links { display: flex; gap: 1.5rem; }
+    .mel-footer-legal-link { color: var(--sc-ink-soft); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .topic-rich-card { grid-template-columns: 1fr; }
+      .topic-image-col { min-height: 200px; border-right: none; border-bottom: 1px solid var(--sc-line); }
+      .nav-center-menu { display: none; }
+      .mel-footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  
+    /* =========================================================================
+       EDITORIAL FOOTER: Brand on Left, 3 Columns on Right
+       ========================================================================= */
+    .site-footer {
+      background: var(--sc-footer-bg);
+      border-top: 1px solid var(--sc-line);
+      padding: clamp(4rem, 6vw, 5.5rem) 0 2.5rem 0;
+      color: var(--sc-ink);
+    }
+    .footer-main-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+    .footer-brand-side {
+      max-width: 360px;
+    }
+    .footer-bio {
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.65;
+    }
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 1.8rem;
+    }
+    .footer-social-btn {
+      color: var(--sc-ink);
+      opacity: 0.75;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-social-btn:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      color: var(--lakers-purple);
+    }
+    .footer-nav-three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.8rem);
+    }
+    .footer-col-heading {
+      font-family: var(--sc-font-text);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .footer-col-links {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .footer-col-links li {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .footer-text-link {
+      font-family: var(--sc-font-text);
+      font-size: 0.95rem;
+      color: #374151;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: #D1D5DB;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .footer-text-link:hover {
+      color: #111827;
+      text-decoration-color: #111827;
+    }
+    .footer-bottom-strip {
+      border-top: 1px solid var(--sc-line);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+    }
+    .footer-legal-menu {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-legal-menu a {
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-legal-menu a:hover {
+      color: var(--sc-ink);
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .footer-main-row {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .footer-brand-side {
+        max-width: none;
+      }
+    }
+    @media (max-width: 640px) {
+      .footer-nav-three-cols {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">SAN</span>
+      </a>
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="topics.html" class="nav-link active">Topics</a></li>
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Notion Blog">Blog ↗</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+      </ul>
+      <div class="nav-right-tools">
+        <div class="nav-search-wrap">
+          <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="nav-search-input" placeholder="Search topics...">
+        </div>
+        <a href="connect.html" class="nav-cta-btn">Connect</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-kicker">Topic Overview & Hub</div>
+        <h1 class="page-title">Research Topics & Focus Areas</h1>
+        <p class="page-lead">
+          Explore thematic modules detailing atmospheric carbon capture, life cycle sustainability metrics, system dynamics, and cross-disciplinary systems thinking.
+        </p>
+      </div>
+    </section>
+
+    <div class="container topics-section">
+      <div class="topic-card-grid">
+
+        <!-- TOPIC 01: Direct Air Capture -->
+        <article class="topic-rich-card">
+          <div class="topic-image-col" style="background: linear-gradient(135deg, #E6EFEA 0%, #D8E6DE 100%);">
+            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="200" cy="150" r="110" stroke="#264639" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+              <circle cx="200" cy="150" r="70" stroke="#264639" stroke-width="2" opacity="0.5"/>
+              <path d="M120 150 L280 150 M200 70 L200 230" stroke="#264639" stroke-width="1.2" opacity="0.3"/>
+              <circle cx="200" cy="150" r="6" fill="#264639"/>
+              <path d="M140 110 Q200 60 260 110 Q200 160 140 110 Z" fill="#264639" fill-opacity="0.08"/>
+            </svg>
+            <div class="topic-image-overlay-badge">
+              <span>Thermodynamics · 422 ppm Ambient CO₂</span>
+            </div>
+          </div>
+
+          <div class="topic-content-col">
+            <div>
+              <div class="topic-card-kicker">Topic 01 · Planetary Engineering</div>
+              <h2 class="topic-card-title">Direct Air Capture (DAC) Systems</h2>
+              <p class="topic-card-summary">
+                Directly extracting CO₂ from ambient air via chemical sorbents and thermal-fluid cycles. Focuses on reducing parasitic regeneration power and optimizing contactor fluid dynamics under real-world weather conditions.
+              </p>
+
+              <ul class="topic-bullets-list">
+                <li><b>Solid Amine Sorbents:</b> Chemical sorption loops with low-temperature desorption (~100°C).</li>
+                <li><b>Air Contactor Aerodynamics:</b> Minimizing static pressure drops and fan electricity demand.</li>
+                <li><b>Dynamic Modeling:</b> Analyzing how temperature and relative humidity alter capture capacity.</li>
+              </ul>
+            </div>
+
+            <div class="topic-links-row">
+              <a href="projects.html" class="topic-btn-primary">
+                <span>View Related DAC Paper in Projects</span>
+                <span>→</span>
+              </a>
+              <a href="blog.html" class="topic-btn-secondary">Read Discussion in Blog</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TOPIC 02: Life Cycle Assessment -->
+        <article class="topic-rich-card">
+          <div class="topic-image-col" style="background: linear-gradient(135deg, #EAE7F2 0%, #DED8EC 100%);">
+            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="100" y="70" width="200" height="160" rx="8" stroke="#461D6E" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.4"/>
+              <path d="M80 150 H120 M280 150 H320" stroke="#FDB927" stroke-width="2.5"/>
+              <polygon points="120,146 128,150 120,154" fill="#FDB927"/>
+              <polygon points="320,146 328,150 320,154" fill="#FDB927"/>
+              <circle cx="200" cy="150" r="45" stroke="#461D6E" stroke-width="2" opacity="0.6"/>
+              <path d="M185 150 L195 160 L218 140" stroke="#461D6E" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <div class="topic-image-overlay-badge">
+              <span>ISO 14040/44 · Net-Negativity Audits</span>
+            </div>
+          </div>
+
+          <div class="topic-content-col">
+            <div>
+              <div class="topic-card-kicker">Topic 02 · Environmental Accountability</div>
+              <h2 class="topic-card-title">Life Cycle Assessment (LCA) Frameworks</h2>
+              <p class="topic-card-summary">
+                Quantifying full supply-chain footprints for negative emission technologies (NETs). Ensuring that energy inputs and material synthesis do not negate atmospheric carbon removal benefits.
+              </p>
+
+              <ul class="topic-bullets-list">
+                <li><b>Cradle-to-Grave Boundaries:</b> Embodied carbon in steel, concrete, and sorbent manufacturing.</li>
+                <li><b>Upstream Grid Intensity:</b> Sourcing clean power vs displacing fossil generation.</li>
+                <li><b>Sustainability Indicators:</b> Water usage, chemical degradation, and mineral permanence metrics.</li>
+              </ul>
+            </div>
+
+            <div class="topic-links-row">
+              <a href="projects.html" class="topic-btn-primary">
+                <span>View NETs Sustainability Paper</span>
+                <span>→</span>
+              </a>
+              <a href="about.html" class="topic-btn-secondary">Check SimaPro & OpenLCA Skills</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TOPIC 03: Energy System Dynamics -->
+        <article class="topic-rich-card">
+          <div class="topic-image-col" style="background: linear-gradient(135deg, #F4ECE2 0%, #E8DCCF 100%);">
+            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M80 220 Q140 90 200 160 T320 80" stroke="#C0562D" stroke-width="2.5" fill="none"/>
+              <line x1="80" y1="230" x2="320" y2="230" stroke="#635F56" stroke-width="1.2" opacity="0.5"/>
+              <line x1="80" y1="60" x2="80" y2="230" stroke="#635F56" stroke-width="1.2" opacity="0.5"/>
+              <circle cx="200" cy="160" r="5" fill="#C0562D"/>
+              <circle cx="320" cy="80" r="5" fill="#C0562D"/>
+            </svg>
+            <div class="topic-image-overlay-badge">
+              <span>Techno-Economics · TRNSYS & Python</span>
+            </div>
+          </div>
+
+          <div class="topic-content-col">
+            <div>
+              <div class="topic-card-kicker">Topic 03 · Applied Modeling</div>
+              <h2 class="topic-card-title">Techno-Economic & Climate Dynamics</h2>
+              <p class="topic-card-summary">
+                Coupling meteorological time-series datasets to capital cost evaluations (CAPEX/OPEX). Assessing operational flexibility when DAC facilities operate alongside intermittent solar and wind resources.
+              </p>
+
+              <ul class="topic-bullets-list">
+                <li><b>Time-Varying Climate Data:</b> Hourly ambient temperature and humidity impact modeling.</li>
+                <li><b>Levelized Cost Calculation:</b> Computing cost per ton CO₂ across 25-year plant lifetimes.</li>
+                <li><b>Grid Integration:</b> Flexible scheduling to avoid peak electricity pricing tariffs.</li>
+              </ul>
+            </div>
+
+            <div class="topic-links-row">
+              <a href="projects.html" class="topic-btn-primary">
+                <span>View Techno-Economic Research</span>
+                <span>→</span>
+              </a>
+              <a href="connect.html" class="topic-btn-secondary">Collaborate on Modeling</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TOPIC 04: Systems Thinking & Culture -->
+        <article class="topic-rich-card">
+          <div class="topic-image-col" style="background: linear-gradient(135deg, #F0EFE9 0%, #E3E0D6 100%);">
+            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="200,60 290,130 250,230 150,230 110,130" stroke="#1B1917" stroke-width="1.5" fill="none" opacity="0.5"/>
+              <circle cx="200" cy="60" r="4" fill="#FDB927"/>
+              <circle cx="290" cy="130" r="4" fill="#FDB927"/>
+              <circle cx="250" cy="230" r="4" fill="#FDB927"/>
+              <circle cx="150" cy="230" r="4" fill="#FDB927"/>
+              <circle cx="110" cy="130" r="4" fill="#FDB927"/>
+            </svg>
+            <div class="topic-image-overlay-badge">
+              <span>Culture · Footwear · Mamba Spirit</span>
+            </div>
+          </div>
+
+          <div class="topic-content-col">
+            <div>
+              <div class="topic-card-kicker">Topic 04 · Cross-Disciplinary Reflection</div>
+              <h2 class="topic-card-title">Systems Thinking, Design & Culture</h2>
+              <p class="topic-card-summary">
+                How passions outside engineering—such as footwear architecture, the discipline of basketball, analog rock frequencies, and backcountry solitude—inform problem-solving frameworks.
+              </p>
+
+              <ul class="topic-bullets-list">
+                <li><b>Footwear Architecture:</b> Structural polymers, knit tensile physics, and human biomechanics.</li>
+                <li><b>The Mamba Standard:</b> Translating athletic repetition and focus into academic persistence.</li>
+                <li><b>Analog Catharsis:</b> High sensitivity, rock music, and solitary transit on bicycle trails.</li>
+              </ul>
+            </div>
+
+            <div class="topic-links-row">
+              <a href="blog.html" class="topic-btn-primary">
+                <span>Explore Articles in Blog</span>
+                <span>→</span>
+              </a>
+              <a href="about.html" class="topic-btn-secondary">Read Bio & Passions</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Simplified Editorial Footer (Figure 5 Style) -->
+    <!-- ===================================================================
+       FOOTER: Brand on Left, 3 Columns on Right
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-main-row">
+        
+        <!-- Left Side: Brand, Bio, Social Icons -->
+        <div class="footer-brand-side">
+          <a href="index.html" class="brand-signature-mark" title="Jeromesan Homepage">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">SAN</span>
+          </a>
+          <p class="footer-bio">
+            Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="Direct Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Right Side: 3 Columns (Explore, Writing & Notes, Connect) -->
+        <div class="footer-nav-three-cols">
+          
+          <div>
+            <h4 class="footer-col-heading">Explore</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="about.html" class="footer-text-link">About Jeromesan</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="topics.html" class="footer-text-link">Research Domains</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="connect.html" class="footer-text-link">Contact & Inquiries</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Writing & Notes</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Live Notion Blog &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="blog.html" class="footer-text-link">Featured Essays</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="index.html#the-creed" class="footer-text-link">The Mamba Creed</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Connect</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">LinkedIn &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-text-link">YouTube &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-strip">
+        <div>
+          © 2026 Jeromesan. All rights reserved.
+        </div>
+        <div class="footer-legal-menu">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,1543 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jeromesan · Engineering, Mindset & Horizons</title>
+  <meta name="description" content="Personal monograph of Jeromesan: 3rd Power Engineering student researching Direct Air Capture (DAC) and Life Cycle Assessment (LCA). INFJ / HSP.">
+  
+  <!-- Typography: Newsreader (Editorial Serif), Plus Jakarta Sans, JetBrains Mono, and Caveat (Handwritten Signature) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=3">
+  
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFE6;
+      --sc-surface-card: #FAF8F5;
+      --sc-footer-bg: #F5F2EB;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #635F56;
+      --sc-ink-faint: #989284;
+      --sc-line: #E6E1D5;
+      --sc-line-light: #ECE7DC;
+      
+      --sc-accent: #264639;       /* Deep evergreen (Clean energy & DAC) */
+      --sc-accent-fuji: #274D6E;  /* Alpine indigo */
+      
+      /* Lakers & Mamba Palette */
+      --lakers-purple-deep: #2A1042;
+      --lakers-purple: #461D6E;
+      --lakers-purple-light: #5A278C;
+      --lakers-gold: #FDB927;
+      --lakers-gold-bright: #FFC72C;
+      --lakers-gold-soft: #FFE5A3;
+      
+      --sc-font-display: "Newsreader", Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--sc-canvas);
+      color: var(--sc-ink);
+      font-family: var(--sc-font-text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #EBD6CA;
+      color: var(--sc-ink);
+    }
+
+    /* Grain Overlay */
+    .editorial-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Progress indicator */
+    [data-sc-progress] {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--lakers-gold);
+      z-index: 1000;
+      width: 0%;
+      transition: width 0.05s ease-out;
+    }
+
+    /* =========================================================================
+       TOP NAVIGATION BAR
+       - Left: Handwritten Signature Brand Mark -> Jumps to index.html (Home)
+       - Center: Links to SUBPAGES (About, Topics, Blog, Connect)
+       - Right: Search Box + Direct Connect Button
+       ========================================================================= */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem);
+      z-index: 900;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90);
+      border-bottom: 1px solid var(--sc-line);
+      gap: 1.5rem;
+    }
+
+    /* Signature Style Brand Logo (Mel Robbins Inspired) */
+    .brand-signature-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      text-decoration: none;
+      color: var(--sc-ink);
+      transition: opacity 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .brand-signature-mark:hover {
+      opacity: 0.8;
+    }
+
+    .sig-script {
+      font-family: var(--sc-font-sig);
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--sc-ink);
+    }
+
+    .sig-sans {
+      font-family: var(--sc-font-text);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--sc-ink);
+      text-transform: uppercase;
+      position: relative;
+      top: -2px;
+    }
+
+    .nav-center-menu {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.2rem, 2.2vw, 2.5rem);
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      position: relative;
+      padding: 6px 2px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--sc-ink);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--lakers-gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    /* Search Box in Navbar */
+    .nav-search-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-search-input {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 99px;
+      padding: 7px 14px 7px 34px;
+      font-size: 0.82rem;
+      color: var(--sc-ink);
+      font-family: inherit;
+      outline: none;
+      width: 175px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-search-input:focus {
+      width: 230px;
+      border-color: var(--lakers-purple);
+      box-shadow: 0 0 0 3px rgba(70, 29, 110, 0.08);
+    }
+
+    .nav-search-icon {
+      position: absolute;
+      left: 11px;
+      width: 14px;
+      height: 14px;
+      color: var(--sc-ink-faint);
+      pointer-events: none;
+    }
+
+    .nav-cta-btn {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      padding: 7px 18px;
+      background: rgba(70, 29, 110, 0.06);
+      border: 1px solid rgba(70, 29, 110, 0.2);
+      border-radius: 99px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-cta-btn:hover {
+      background: var(--lakers-purple);
+      color: var(--lakers-gold);
+    }
+
+    /* General Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .editorial-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--sc-ink-soft);
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .editorial-kicker::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--lakers-gold);
+    }
+
+    /* =========================================================================
+       ACT 1: HERO
+       ========================================================================= */
+    .hero-section {
+      min-height: 100vh;
+      padding-top: 130px;
+      padding-bottom: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      background: var(--sc-canvas);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.8rem, 5.4vw, 4.8rem);
+      line-height: 1.08;
+      font-weight: 400;
+      color: var(--sc-ink);
+      letter-spacing: -0.025em;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sc-accent);
+      font-weight: 300;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      color: var(--sc-ink-soft);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 540px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 6px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.78rem;
+      color: var(--sc-ink-soft);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .hero-badge b {
+      color: var(--sc-ink);
+      font-weight: 600;
+    }
+
+    /* Lego Visual Frame */
+    .hero-visual-frame {
+      position: relative;
+      background: var(--sc-surface);
+      padding: 16px 16px 36px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--sc-line);
+      box-shadow: 0 16px 38px -12px rgba(40, 36, 30, 0.08), 0 3px 8px rgba(0,0,0,0.02);
+      transform: rotate(0.6deg);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-visual-frame:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      aspect-ratio: 3/2;
+      background: var(--sc-surface-alt);
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-caption {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--sc-font-mono);
+      font-size: 0.72rem;
+      color: var(--sc-ink-faint);
+    }
+
+    .hero-caption span:last-child {
+      color: var(--sc-accent);
+      font-weight: 500;
+    }
+
+    /* =========================================================================
+       ACT 2: THE CREED (LAKERS PURPLE & GOLD + MAMBA SNAKE SCALES)
+       ========================================================================= */
+    .creed-act {
+      position: relative;
+      background: linear-gradient(145deg, #2A1042 0%, #461D6E 55%, #30134C 100%);
+      color: #FFFFFF;
+      padding: clamp(5.5rem, 8vw, 8rem) 0;
+      border-top: 2px solid var(--lakers-gold);
+      border-bottom: 2px solid var(--lakers-gold);
+      overflow: hidden;
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.25);
+    }
+
+    .mamba-scales-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.16;
+      background-size: 38px 65px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='65' viewBox='0 0 38 65'%3E%3Cpath d='M19 0 L38 32.5 L19 65 L0 32.5 Z' fill='none' stroke='%23FDB927' stroke-width='0.9'/%3E%3Cpath d='M19 8 L33 32.5 L19 57 L5 32.5 Z' fill='none' stroke='%23FFFFFF' stroke-width='0.4' stroke-opacity='0.4'/%3E%3Ccircle cx='19' cy='32.5' r='1.5' fill='%23FDB927'/%3E%3C/svg%3E");
+    }
+
+    .mamba-watermark {
+      position: absolute;
+      right: 4%;
+      bottom: -4%;
+      font-family: var(--sc-font-mono);
+      font-weight: 700;
+      font-size: clamp(8rem, 20vw, 18rem);
+      line-height: 1;
+      color: rgba(253, 185, 39, 0.04);
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .creed-stage-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .creed-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.6rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(253, 185, 39, 0.25);
+    }
+
+    .creed-badge-lakers {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--lakers-gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .creed-badge-lakers::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--lakers-gold);
+      box-shadow: 0 0 10px var(--lakers-gold);
+    }
+
+    .creed-mamba-spec {
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--lakers-gold-soft);
+      letter-spacing: 0.08em;
+    }
+
+    .creed-quote-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      position: relative;
+    }
+
+    .creed-quote-box::before {
+      content: "“";
+      position: absolute;
+      top: -45px;
+      left: -40px;
+      font-family: var(--sc-font-display);
+      font-size: 8rem;
+      line-height: 1;
+      color: rgba(253, 185, 39, 0.15);
+      pointer-events: none;
+    }
+
+    .creed-text-line {
+      font-family: var(--sc-font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      line-height: 1.38;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .creed-text-line.emphasis {
+      color: #FFFFFF;
+      font-weight: 400;
+    }
+
+    .creed-text-line.punchline-gold {
+      font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+      font-weight: 600;
+      color: var(--lakers-gold);
+      margin-top: 1.2rem;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      text-shadow: 0 0 24px rgba(253, 185, 39, 0.4), 0 3px 6px rgba(0,0,0,0.5);
+    }
+
+    .creed-text-line.punchline-gold em {
+      font-style: italic;
+      color: #FFFFFF;
+      border-bottom: 2px solid var(--lakers-gold);
+      padding-bottom: 2px;
+    }
+
+    .creed-footer-tribute {
+      margin-top: 3.2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(253, 185, 39, 0.25);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--sc-font-mono);
+      font-size: 0.78rem;
+    }
+
+    .tribute-author {
+      color: var(--lakers-gold);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tribute-subtext {
+      color: var(--lakers-gold-soft);
+      font-weight: 400;
+    }
+
+    /* =========================================================================
+       ACT 3: THE PEAK · TOPICS (Direct Air Capture & Life Cycle Assessment)
+       ========================================================================= */
+    .peak-section {
+      padding: clamp(6rem, 10vw, 9.5rem) 0;
+      background: var(--sc-canvas);
+      position: relative;
+    }
+
+    .peak-header {
+      max-width: 780px;
+      margin-bottom: clamp(3.5rem, 6vw, 5.5rem);
+    }
+
+    .peak-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.4rem;
+      color: var(--sc-ink);
+    }
+
+    .peak-desc {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+      color: var(--sc-ink-soft);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .peak-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+
+    .card-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .engineering-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      padding: clamp(1.8rem, 3vw, 2.6rem);
+      position: relative;
+      box-shadow: 0 8px 24px -8px rgba(35, 30, 20, 0.04);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .engineering-card:hover {
+      border-color: var(--sc-accent);
+      box-shadow: 0 14px 34px -8px rgba(38, 70, 57, 0.08);
+    }
+
+    .card-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--sc-accent);
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-family: var(--sc-font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--sc-ink);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .card-body {
+      font-size: 0.96rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding-top: 1.2rem;
+      border-top: 1px dashed var(--sc-line);
+    }
+
+    .flow-step-item {
+      font-size: 0.8rem;
+    }
+
+    .flow-step-num {
+      font-family: var(--sc-font-mono);
+      font-size: 0.68rem;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .flow-step-name {
+      font-weight: 600;
+      color: var(--sc-ink);
+    }
+
+    /* Telemetry Sidebar */
+    .telemetry-sidebar {
+      background: var(--sc-surface-card);
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      padding: clamp(1.8rem, 3vw, 2.6rem);
+      position: sticky;
+      top: 110px;
+    }
+
+    .telemetry-title {
+      font-family: var(--sc-font-mono);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sc-ink-soft);
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--sc-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .telemetry-live-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+    }
+
+    .stat-row {
+      margin-bottom: 1.8rem;
+    }
+
+    .stat-val {
+      font-family: var(--sc-font-display);
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--sc-ink);
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-val small {
+      font-family: var(--sc-font-mono);
+      font-size: 0.95rem;
+      color: var(--sc-accent);
+      margin-left: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.84rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.4;
+    }
+
+    .stat-formula-pill {
+      margin-top: 1.6rem;
+      padding: 12px 14px;
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 6px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+    }
+
+    .view-subpage-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1.4rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+
+    .view-subpage-btn:hover {
+      gap: 10px;
+    }
+
+    /* =========================================================================
+       ACT 4: BLOG & DIMENSIONS
+       ========================================================================= */
+    .spectrum-section {
+      padding: clamp(6rem, 10vw, 8.5rem) 0;
+      background: var(--sc-surface-alt);
+      border-top: 1px solid var(--sc-line);
+      border-bottom: 1px solid var(--sc-line);
+    }
+
+    .spectrum-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: clamp(3rem, 5vw, 4.5rem);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .spectrum-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .spectrum-sub {
+      font-size: 1rem;
+      color: var(--sc-ink-soft);
+      max-width: 440px;
+    }
+
+    .spectrum-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .spectrum-item {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 6px;
+      padding: 2.2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      min-height: 240px;
+    }
+
+    .spectrum-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--lakers-purple);
+      box-shadow: 0 12px 28px -6px rgba(70, 29, 110, 0.08);
+    }
+
+    .spectrum-icon-tag {
+      font-family: var(--sc-font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .spectrum-item-title {
+      font-family: var(--sc-font-display);
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: var(--sc-ink);
+      line-height: 1.25;
+      margin-bottom: 0.8rem;
+    }
+
+    .spectrum-item-desc {
+      font-size: 0.9rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.6;
+    }
+
+    .spectrum-item-footer {
+      margin-top: 1.8rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--sc-line-light);
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--sc-ink-faint);
+    }
+
+    /* =========================================================================
+       EDITORIAL FOOTER: Brand on Left, 3 Columns on Right
+       ========================================================================= */
+    .site-footer {
+      background: var(--sc-footer-bg);
+      border-top: 1px solid var(--sc-line);
+      padding: clamp(4rem, 6vw, 5.5rem) 0 2.5rem 0;
+      color: var(--sc-ink);
+    }
+
+    .footer-main-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand-side {
+      max-width: 360px;
+    }
+
+    .footer-bio {
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.65;
+    }
+
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 1.8rem;
+    }
+
+    .footer-social-btn {
+      color: var(--sc-ink);
+      opacity: 0.75;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-social-btn:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      color: var(--lakers-purple);
+    }
+
+    /* Right Side 3 Columns */
+    .footer-nav-three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.8rem);
+    }
+
+    .footer-col-heading {
+      font-family: var(--sc-font-text);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-col-links {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .footer-col-links li {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .footer-text-link {
+      font-family: var(--sc-font-text);
+      font-size: 0.95rem;
+      color: #374151;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: #D1D5DB;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-text-link:hover {
+      color: #111827;
+      text-decoration-color: #111827;
+    }
+
+    /* Bottom Copyright & Legal Strip */
+    .footer-bottom-strip {
+      border-top: 1px solid var(--sc-line);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+    }
+
+    .footer-legal-menu {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal-menu a {
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal-menu a:hover {
+      color: var(--sc-ink);
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .nav-center-menu {
+        display: none;
+      }
+      .footer-main-row {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .footer-brand-side {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-nav-three-cols {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .peak-grid {
+        grid-template-columns: 1fr;
+      }
+      .telemetry-sidebar {
+        position: static;
+      }
+      .flow-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Editorial Grain -->
+  <div class="editorial-grain" aria-hidden="true"></div>
+
+  <!-- Progress Bar -->
+  <span data-sc-progress></span>
+
+  <!-- ===================================================================
+       TOP NAVIGATION BAR
+       - Left: Handwritten Signature Brand Mark -> index.html
+       - Center: Subpage Links (About, Topics, Blog, Connect)
+       - Right: Live Search Box + Direct Connect Button
+       =================================================================== -->
+  <header>
+    <nav class="site-nav">
+      <!-- Left: Signature style logo -> Jumps to Home index.html -->
+      <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">SAN</span>
+      </a>
+
+      <!-- Center: SUBPAGE NAV LINKS -->
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="topics.html" class="nav-link">Topics</a></li>
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Notion Blog">Blog ↗</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+      </ul>
+
+      <!-- Right: Search Box + Direct Connect Button -->
+      <div class="nav-right-tools">
+        <div class="nav-search-wrap">
+          <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="siteSearchInput" class="nav-search-input" placeholder="Search (e.g. DAC, Kobe)..." autocomplete="off">
+        </div>
+        <a href="connect.html" class="nav-cta-btn">Connect</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================================================================
+         ACT 1: ABOUT & HERO · The Observer
+         =================================================================== -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-copy">
+            <div class="editorial-kicker">Welcome · Monograph Issue 01</div>
+            <h1 class="hero-title">
+              Engineering the <em>unseen</em> cycles of power and climate.
+            </h1>
+            <p class="hero-lead">
+              Observant by nature, disciplined by purpose. A third-year Power Engineering researcher investigating Direct Air Capture (DAC) systems and Life Cycle Assessment (LCA) boundaries.
+            </p>
+
+            <div class="hero-badges">
+              <span class="hero-badge"><b>Focus:</b> Direct Air Capture</span>
+              <span class="hero-badge"><b>Method:</b> Life Cycle Assessment</span>
+              <span class="hero-badge"><b>Archetype:</b> INFJ / HSP</span>
+            </div>
+
+            <div>
+              <a href="about.html" class="view-subpage-btn">
+                <span>Read Full Biography & Background</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual-col">
+            <figure class="hero-visual-frame" data-sc-tilt="6">
+              <div class="hero-image-wrap">
+                <img src="assets/jeromesan-hero.jpg" alt="Lego explorer cyclist against Mount Fuji" width="1000" height="667" loading="eager">
+              </div>
+              <figcaption class="hero-caption">
+                <span>The Solitary Expedition / Figure 01</span>
+                <span>Lat. 35.36° N · Elev. 3,776m</span>
+              </figcaption>
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ACT 2: THE CREED · LAKERS PURPLE & GOLD + BLACK MAMBA SNAKE SCALES
+         =================================================================== -->
+    <section id="the-creed" class="creed-act">
+      <div class="mamba-scales-overlay" aria-hidden="true"></div>
+      <div class="mamba-watermark" aria-hidden="true">24</div>
+
+      <div class="container">
+        <div class="creed-stage-inner">
+          
+          <div class="creed-header-bar">
+            <div class="creed-badge-lakers">
+              <span>The Mamba Mentality</span>
+              <span>·</span>
+              <span>Lakers Purple & Gold Edition</span>
+            </div>
+            <div class="creed-mamba-spec">
+              <span>8 · 24 LEGACY</span>
+            </div>
+          </div>
+
+          <div class="creed-layout-grid" style="display: grid; grid-template-columns: 1.25fr 0.85fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: center;">
+            <div class="creed-quote-box">
+              <p class="creed-text-line">
+                Those times when you get up early and you work hard.
+              </p>
+              <p class="creed-text-line">
+                Those times you stay up late and you work hard.
+              </p>
+              <p class="creed-text-line emphasis">
+                Those times when you don't feel like working. You're too tired. You don't want to push yourself, but you do it anyway...
+              </p>
+              <p class="creed-text-line punchline-gold">
+                That is actually <em>the dream</em>.
+              </p>
+            </div>
+
+            <!-- Authentic Photo: Be Kobe at Twilight -->
+            <figure style="background: rgba(255,255,255,0.06); border: 1px solid rgba(253, 185, 39, 0.35); border-radius: 8px; padding: 10px 10px 24px 10px; box-shadow: 0 16px 40px rgba(0,0,0,0.4); margin: 0;">
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 4/3;">
+                <img src="assets/kobe-bekobe.jpg" alt="BE KOBE monument at twilight with Akashi Kaikyo Bridge" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+              </div>
+              <figcaption style="margin-top: 10px; font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--lakers-gold-soft); display: flex; justify-content: space-between;">
+                <span>BE KOBE · Akashi Kaikyo Bridge</span>
+                <span>Kobe, Japan</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <footer class="creed-footer-tribute">
+            <div class="tribute-author">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+              </svg>
+              <span>Kobe Bryant (1978 – 2020)</span>
+            </div>
+            <div class="tribute-subtext">
+              Adopted as a quiet daily compass for engineering research & relentless self-discipline.
+            </div>
+          </footer>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ACT 3: THE PEAK · TOPICS PREVIEW
+         =================================================================== -->
+    <section id="research" class="peak-section">
+      <div class="container">
+        
+        <header class="peak-header">
+          <div class="editorial-kicker">Core Investigation · The Peak</div>
+          <h2 class="peak-title">Closing the Global Carbon Loop.</h2>
+          <p class="peak-desc">
+            Direct Air Capture (DAC) and Life Cycle Assessment (LCA) represent the frontier of planetary engineering: pulling carbon from ambient air and calculating net-negative permanence across supply chains.
+          </p>
+        </header>
+
+        <div class="peak-grid">
+          
+          <div class="card-deck">
+            
+            <article class="engineering-card">
+              <div class="card-meta-bar">
+                <span>01 / ATMOSPHERIC THERMODYNAMICS</span>
+                <span>DAC MODULE</span>
+              </div>
+              <h3 class="card-title">Direct Air Capture (DAC)</h3>
+              <p class="card-body">
+                Treating the atmosphere as an open thermodynamic reservoir. Evaluating solid amine-functionalized sorbents and liquid solvent loops to selectively bind ambient CO₂ at trace concentrations (422 ppm).
+              </p>
+
+              <div class="flow-steps">
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 01</span>
+                  <span class="flow-step-name">Adsorption</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Contacting trace CO₂</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 02</span>
+                  <span class="flow-step-name">Desorption</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Thermal swing ~100°C</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 03</span>
+                  <span class="flow-step-name">Permanence</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Basalt mineralization</div>
+                </div>
+              </div>
+
+              <a href="topics.html" class="view-subpage-btn">
+                <span>Explore Full Topics Deep-Dive</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <article class="engineering-card">
+              <div class="card-meta-bar">
+                <span>02 / CRADLE-TO-GRAVE QUANTIFICATION</span>
+                <span>LCA FRAMEWORK</span>
+              </div>
+              <h3 class="card-title">Life Cycle Assessment (LCA)</h3>
+              <p class="card-body">
+                Engineering honesty in climate claims. Performing ISO 14040/44-compliant life cycle modeling to quantify embodied emissions from grid electricity, sorbent degradation, and downstream sequestration.
+              </p>
+
+              <div class="flow-steps">
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 01</span>
+                  <span class="flow-step-name">Scope Definition</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Boundary accounting</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 02</span>
+                  <span class="flow-step-name">Inventory (LCI)</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Material & energy audit</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 03</span>
+                  <span class="flow-step-name">Net Efficacy</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Negative-emission index</div>
+                </div>
+              </div>
+
+              <a href="topics.html" class="view-subpage-btn">
+                <span>View LCA Methodology & Equations</span>
+                <span>→</span>
+              </a>
+            </article>
+
+          </div>
+
+          <aside class="telemetry-sidebar">
+            <div class="telemetry-title">
+              <span>Thermodynamic Baseline</span>
+              <span class="telemetry-live-dot"></span>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val">422<small>ppm</small></div>
+              <div class="stat-label">Current ambient atmospheric CO₂ concentration being captured.</div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val">Year 3<small>Student</small></div>
+              <div class="stat-label">Power Engineering candidate researching thermal/electrical energy trade-offs.</div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val">&gt;90%<small>Net Negativity</small></div>
+              <div class="stat-label">Rigorous LCA target accounting for upstream renewable electricity footprint.</div>
+            </div>
+
+            <div class="stat-formula-pill">
+              <b>System Governing Principle:</b><br>
+              E<sub>net</sub> = CO₂<sub>sequestered</sub> − CO₂<sub>lifecycle_embodied</sub> &gt; 0
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ACT 4: BLOG PREVIEW · Curated Frequencies
+         =================================================================== -->
+    <section id="spectrum" class="spectrum-section">
+      <div class="container">
+        
+        <header class="spectrum-header">
+          <div>
+            <div class="editorial-kicker">Blog & Dispatches</div>
+            <h2 class="spectrum-title">Dimensions Outside the Lab.</h2>
+          </div>
+          <p class="spectrum-sub">
+            High sensitivity meets focused passion. How sport, music, virtual systems, and the open wilderness replenish creative discipline.
+          </p>
+        </header>
+
+        <div class="spectrum-grid">
+          
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>Dimension 01</span>
+                <span>Culture & Form</span>
+              </div>
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-sneaker.jpg" alt="Kobe 9 Elite High-Top Sneakers" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">Sneakers</h3>
+              <p class="spectrum-item-desc">
+                Appreciating the convergence of industrial materials, cushioning physics, and cultural storytelling in footwear architecture.
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Kobe 9 Elite · Flyknit Physics · Heritage</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>Dimension 02</span>
+                <span>Flow & Precision</span>
+              </div>
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-basketball.jpg" alt="Jerome Shooting Basketball" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">Basketball</h3>
+              <p class="spectrum-item-desc">
+                The court as a live laboratory of geometry, instinctive timing, and the unwavering discipline of repetition under pressure.
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Mamba Mindset · Shot Geometry · Focus</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>Dimension 03</span>
+                <span>Raw Catharsis</span>
+              </div>
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-rockbar.jpg" alt="Rock Bar Music Poster Wall" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">Rock Music</h3>
+              <p class="spectrum-item-desc">
+                Analog distortion, heavy percussive drives, and electric energy that provide an intense emotional counterpart to quiet contemplation.
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Analog Frequencies · Distortion · Catharsis</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>Dimension 04</span>
+                <span>Quiet Horizons</span>
+              </div>
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/travel-nara.jpg" alt="Nara Hillside Pavilion and Deer" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">Travel</h3>
+              <p class="spectrum-item-desc">
+                Slow exploration through foreign geographies, observant wandering, and capturing solitary moments between culture and nature.
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Nara, Japan · Solitary Transit</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>Dimension 05</span>
+                <span>Virtual Architecture</span>
+              </div>
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-valorant.jpg" alt="Valorant Tactical Gameplay Art" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">Video Games</h3>
+              <p class="spectrum-item-desc">
+                Immersing into rule-based virtual worlds, complex system simulations, worldbuilding, and high-agency problem solving.
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Valorant · Spatial Decision Dynamics</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>Dimension 06</span>
+                <span>The Frontier</span>
+              </div>
+              <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/travel-bromo.jpg" alt="Mount Bromo Caldera Sunrise" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">Adventure</h3>
+              <p class="spectrum-item-desc">
+                Venturing into unfamiliar terrains with curiosity and respect. The caldera at sunrise, volcanic ridges, and quiet endurance.
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Mount Bromo · Geothermal Solitude</div>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 3rem; text-align: center;">
+          <a href="blog.html" class="view-subpage-btn" style="font-size:1rem;">
+            <span>Browse Full Articles & Cultural Notes in Blog</span>
+            <span>→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       SIMPLIFIED EDITORIAL FOOTER (FIGURE 5 MINIMALIST STYLE)
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-main-row">
+        
+        <!-- Left Side: Brand, Bio, Social Icons -->
+        <div class="footer-brand-side">
+          <a href="index.html" class="brand-signature-mark" title="Jeromesan Homepage">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">SAN</span>
+          </a>
+          <p class="footer-bio">
+            Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="Direct Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Right Side: 3 Columns (Explore, Writing & Notes, Connect) -->
+        <div class="footer-nav-three-cols">
+          
+          <div>
+            <h4 class="footer-col-heading">Explore</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="about.html" class="footer-text-link">About Jeromesan</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="topics.html" class="footer-text-link">Research Domains</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="connect.html" class="footer-text-link">Contact & Inquiries</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Writing & Notes</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Live Notion Blog &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="blog.html" class="footer-text-link">Featured Essays</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="index.html#the-creed" class="footer-text-link">The Mamba Creed</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Connect</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">LinkedIn &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-text-link">YouTube &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-strip">
+        <div>
+          © 2026 Jeromesan. All rights reserved.
+        </div>
+        <div class="footer-legal-menu">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Disclaimer</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="scrollcraft.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mount scrollcraft pointer
+      if (window.ScrollCraft && typeof window.ScrollCraft.mount === 'function') {
+        window.ScrollCraft.mount(document.body, { lerp: 0.16 });
+      }
+
+      // 2. Real-time Progress Bar
+      const progressBar = document.querySelector('[data-sc-progress]');
+      window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        if (total > 0 && progressBar) {
+          const progress = (window.scrollY / total) * 100;
+          progressBar.style.width = progress + '%';
+        }
+      }, { passive: true });
+
+      // 3. Search jump to subpages
+      const searchInput = document.getElementById('siteSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const q = searchInput.value.trim().toLowerCase();
+            if (!q) return;
+
+            if (q.includes('about') || q.includes('bio') || q.includes('infj') || q.includes('hsp')) {
+              window.location.href = 'about.html';
+            } else if (q.includes('dac') || q.includes('lca') || q.includes('carbon') || q.includes('topic') || q.includes('research')) {
+              window.location.href = 'topics.html';
+            } else if (q.includes('blog') || q.includes('sneaker') || q.includes('rock') || q.includes('game') || q.includes('travel')) {
+              window.location.href = 'blog.html';
+            } else if (q.includes('connect') || q.includes('contact') || q.includes('email') || q.includes('linkedin')) {
+              window.location.href = 'connect.html';
+            } else if (q.includes('kobe') || q.includes('mamba') || q.includes('creed') || q.includes('lakers')) {
+              const el = document.getElementById('the-creed');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.location.href = 'topics.html';
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

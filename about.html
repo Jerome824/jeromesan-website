@@ -1,0 +1,581 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About · Jeromesan</title>
+  <meta name="description" content="About Jeromesan: Highly Sensitive Person (HSP), INFJ, and 3rd-year Power Engineering researcher investigating Direct Air Capture and Life Cycle Assessment.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=3">
+  
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFE6;
+      --sc-footer-bg: #F5F2EB;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #635F56;
+      --sc-ink-faint: #989284;
+      --sc-line: #E6E1D5;
+      --sc-accent: #264639;
+      --lakers-purple: #461D6E;
+      --lakers-gold: #FDB927;
+      --sc-font-display: "Newsreader", Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--sc-canvas); color: var(--sc-ink); font-family: var(--sc-font-text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+
+    /* Nav Bar */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 74px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem); z-index: 900; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90); border-bottom: 1px solid var(--sc-line); gap: 1.5rem;
+    }
+    .brand-signature-mark { display: flex; align-items: baseline; gap: 4px; text-decoration: none; color: var(--sc-ink); }
+    .sig-script { font-family: var(--sc-font-sig); font-size: 2.15rem; font-weight: 700; line-height: 1; }
+    .sig-sans { font-family: var(--sc-font-text); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+    .nav-center-menu { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.2rem); list-style: none; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--sc-ink-soft); text-decoration: none; position: relative; padding: 6px 2px; }
+    .nav-link.active, .nav-link:hover { color: var(--sc-ink); }
+    .nav-link.active::after, .nav-link:hover::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--lakers-gold); }
+    .nav-search-wrap { position: relative; display: flex; align-items: center; }
+    .nav-search-input { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 99px; padding: 7px 14px 7px 34px; font-size: 0.82rem; width: 175px; outline: none; }
+    .nav-search-icon { position: absolute; left: 11px; width: 14px; height: 14px; color: var(--sc-ink-faint); }
+    .nav-cta-btn { font-size: 0.82rem; font-weight: 600; color: var(--lakers-purple); text-decoration: none; padding: 7px 18px; background: rgba(70, 29, 110, 0.06); border: 1px solid rgba(70, 29, 110, 0.2); border-radius: 99px; }
+
+    /* Page Header */
+    .page-hero { padding: 150px 0 60px 0; border-bottom: 1px solid var(--sc-line); }
+    .page-kicker { font-family: var(--sc-font-mono); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--lakers-purple); margin-bottom: 1.2rem; font-weight: 600; }
+    .page-title { font-family: var(--sc-font-display); font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1; font-weight: 400; margin-bottom: 1.5rem; }
+    .page-lead { font-size: clamp(1.15rem, 1.8vw, 1.35rem); color: var(--sc-ink-soft); font-weight: 300; max-width: 720px; line-height: 1.6; }
+
+    /* Content Layout */
+    .about-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); padding: clamp(4rem, 7vw, 6rem) 0; }
+    .prose h2 { font-family: var(--sc-font-display); font-size: 2rem; margin: 2.4rem 0 1rem 0; font-weight: 500; color: var(--sc-ink); }
+    .prose h2:first-of-type { margin-top: 0; }
+    .prose p { font-size: 1.05rem; color: #383531; margin-bottom: 1.4rem; line-height: 1.75; }
+
+    /* Skill blocks */
+    .skills-category-card { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 8px; padding: 1.6rem; margin-bottom: 1.4rem; }
+    .skills-cat-title { font-family: var(--sc-font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lakers-purple); font-weight: 600; margin-bottom: 0.6rem; }
+    .skills-cat-items { font-size: 0.95rem; color: var(--sc-ink); font-weight: 500; }
+
+    .interest-tag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1rem; }
+    .interest-tag-pill { background: var(--sc-surface); border: 1px solid var(--sc-line); padding: 12px 14px; border-radius: 6px; font-size: 0.9rem; }
+    .interest-tag-pill b { display: block; font-size: 0.76rem; font-family: var(--sc-font-mono); color: var(--lakers-purple); margin-bottom: 2px; }
+
+    .sidebar-card { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 8px; padding: 2rem; margin-bottom: 2rem; }
+    .sidebar-title { font-family: var(--sc-font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lakers-purple); font-weight: 600; margin-bottom: 1.2rem; }
+    .sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; font-size: 0.92rem; }
+    .sidebar-list b { color: var(--sc-ink); font-weight: 600; }
+
+    /* Mel Robbins Footer */
+    .mel-footer { background: var(--sc-footer-bg); border-top: 1px solid var(--sc-line); padding: 5rem 0 2.5rem 0; }
+    .mel-footer-grid { display: grid; grid-template-columns: 1.6fr 1.2fr 1fr 1fr; gap: clamp(2rem, 4vw, 4.5rem); margin-bottom: 4rem; }
+    .mel-footer-bio { margin-top: 1.2rem; font-size: 0.9rem; color: var(--sc-ink-soft); line-height: 1.65; max-width: 320px; }
+    .mel-social-links { display: flex; gap: 16px; margin-top: 2rem; }
+    .mel-social-icon { color: var(--sc-ink); opacity: 0.75; transition: all 0.2s; }
+    .mel-social-icon:hover { opacity: 1; color: var(--lakers-purple); transform: translateY(-2px); }
+    .mel-footer-col-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 1.4rem; }
+    .mel-footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .mel-footer-link { font-size: 0.88rem; color: var(--sc-ink-soft); text-decoration: none; }
+    .mel-footer-link:hover { color: var(--sc-ink); }
+    .mel-footer-bottom-bar { border-top: 1px solid var(--sc-line); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--sc-ink-soft); }
+    .mel-footer-legal-links { display: flex; gap: 1.5rem; }
+    .mel-footer-legal-link { color: var(--sc-ink-soft); text-decoration: none; }
+
+    /* Hobbies Photo Grid */
+    .hobbies-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.4rem;
+      margin: 1.8rem 0;
+    }
+    .hobby-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .hobby-card:hover {
+      border-color: var(--lakers-purple);
+      box-shadow: 0 8px 24px rgba(70, 29, 110, 0.08);
+      transform: translateY(-2px);
+    }
+    .hobby-img-frame {
+      aspect-ratio: 16/11;
+      width: 100%;
+      overflow: hidden;
+      background: var(--sc-surface-alt);
+    }
+    .hobby-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .hobby-card:hover .hobby-img-frame img {
+      transform: scale(1.03);
+    }
+    .hobby-caption {
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .hobby-badge {
+      font-family: var(--sc-font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .hobby-title {
+      font-family: var(--sc-font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--sc-ink);
+      margin-bottom: 0.45rem;
+      line-height: 1.25;
+    }
+    .hobby-desc {
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    @media (max-width: 860px) {
+      .about-layout { grid-template-columns: 1fr; }
+      .nav-center-menu { display: none; }
+      .interest-tag-grid { grid-template-columns: 1fr; }
+    }
+  
+    /* =========================================================================
+       EDITORIAL FOOTER: Brand on Left, 3 Columns on Right
+       ========================================================================= */
+    .site-footer {
+      background: var(--sc-footer-bg);
+      border-top: 1px solid var(--sc-line);
+      padding: clamp(4rem, 6vw, 5.5rem) 0 2.5rem 0;
+      color: var(--sc-ink);
+    }
+    .footer-main-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+    .footer-brand-side {
+      max-width: 360px;
+    }
+    .footer-bio {
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.65;
+    }
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 1.8rem;
+    }
+    .footer-social-btn {
+      color: var(--sc-ink);
+      opacity: 0.75;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-social-btn:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      color: var(--lakers-purple);
+    }
+    .footer-nav-three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.8rem);
+    }
+    .footer-col-heading {
+      font-family: var(--sc-font-text);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .footer-col-links {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .footer-col-links li {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .footer-text-link {
+      font-family: var(--sc-font-text);
+      font-size: 0.95rem;
+      color: #374151;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: #D1D5DB;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .footer-text-link:hover {
+      color: #111827;
+      text-decoration-color: #111827;
+    }
+    .footer-bottom-strip {
+      border-top: 1px solid var(--sc-line);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+    }
+    .footer-legal-menu {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-legal-menu a {
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-legal-menu a:hover {
+      color: var(--sc-ink);
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .footer-main-row {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .footer-brand-side {
+        max-width: none;
+      }
+    }
+    @media (max-width: 640px) {
+      .footer-nav-three-cols {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">SAN</span>
+      </a>
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="topics.html" class="nav-link">Topics</a></li>
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Notion Blog">Blog ↗</a></li>
+        <li><a href="connect.html" class="nav-link">Connect</a></li>
+      </ul>
+      <div class="nav-right-tools">
+        <div class="nav-search-wrap">
+          <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="nav-search-input" placeholder="Search about...">
+        </div>
+        <a href="connect.html" class="nav-cta-btn">Connect</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-kicker">Personal Dossier · Four Pillars</div>
+        <h1 class="page-title">Identity, Research & Craft</h1>
+        <p class="page-lead">
+          Understanding the mind behind the models: high sensitivity, thermodynamic rigor, technical tooling, and offline passions.
+        </p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="about-layout">
+        
+        <article class="prose">
+          <!-- 1. Introduction to Self & Personality -->
+          <h2>1. Introduction & Personality Profile</h2>
+          <p>
+            I go by <b>Jeromesan</b>. I am fundamentally an introvert who identifies deeply with the <b>Highly Sensitive Person (HSP)</b> and <b>INFJ</b> personality archetypes. In a world characterized by velocity and noise, high sensitivity allows me to notice nuanced patterns, subtle shifts in systemic parameters, and the broader humanitarian consequences of engineered solutions.
+          </p>
+          <p>
+            Being an INFJ in engineering means approaching technical problems not just as numerical puzzles, but as systemic missions. I value deliberate quiet, deep focused blocks of work, and holistic conceptual integrity over superficial speed.
+          </p>
+
+          <!-- Kyoto Sanzen-in Feature Photo -->
+          <figure style="margin: 2rem 0; background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 8px; padding: 12px 12px 28px 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.03);">
+            <div style="border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; max-height: 480px;">
+              <img src="assets/profile-sanzenin.jpg" alt="Jeromesan at Sanzen-in Temple, Kyoto" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+            </div>
+            <figcaption style="margin-top: 10px; font-family: var(--sc-font-mono); font-size: 0.74rem; color: var(--sc-ink-faint); display: flex; justify-content: space-between;">
+              <span>Sanzen-in Temple (三千院), Kyoto · Quiet Contemplation</span>
+              <span>Japan</span>
+            </figcaption>
+          </figure>
+
+          <!-- 2. Research Fields -->
+          <h2>2. Research Domains & Engineering Track</h2>
+          <p>
+            I am currently a 3rd-year <b>Power Engineering</b> student. My investigative focus centers on <b>Direct Air Capture (DAC)</b> technologies and comprehensive <b>Life Cycle Assessment (LCA)</b>.
+          </p>
+          <p>
+            Specifically, I research the dynamic behavior of solid-sorbent DAC systems under fluctuating meteorological boundaries, seeking ways to minimize the specific energy consumption of thermal desorption. Concurrently, I utilize LCA frameworks to calculate the genuine cradle-to-grave net negativity of negative-emission systems, auditing upstream electricity carbon intensity and embodied material footprints.
+          </p>
+
+          <!-- 3. Skills -->
+          <h2>3. Technical Skills & Toolkit</h2>
+          <p style="margin-bottom: 1rem; color:var(--sc-ink-soft);">
+            The software suites, programming languages, and engineering tools I leverage daily for modeling, simulation, and life-cycle verification:
+          </p>
+
+          <div class="skills-category-card">
+            <div class="skills-cat-title">Carbon Auditing & System Modeling</div>
+            <div class="skills-cat-items">SimaPro · OpenLCA · e-Footprint</div>
+          </div>
+
+          <div class="skills-category-card">
+            <div class="skills-cat-title">Programming & Data Visualization</div>
+            <div class="skills-cat-items">Python · MATLAB · QGIS</div>
+          </div>
+
+          <div class="skills-category-card">
+            <div class="skills-cat-title">Engineering & General IT</div>
+            <div class="skills-cat-items">TRNSYS · Autodesk CAD · Creo · Origin · Microsoft Office</div>
+          </div>
+
+          <div class="skills-category-card">
+            <div class="skills-cat-title">Languages</div>
+            <div class="skills-cat-items">Mandarin (Native) · English (IELTS: 6.0)</div>
+          </div>
+
+          <!-- 4. Interests & Passions -->
+          <h2>4. Interests & Passions Outside the Lab</h2>
+          <p>
+            Deep technical focus is recharged through deliberate physical, acoustic, and virtual exploration across six creative disciplines:
+          </p>
+
+          <div class="hobbies-photo-grid">
+            
+            <figure class="hobby-card">
+              <div class="hobby-img-frame">
+                <img src="assets/hobby-sneaker.jpg" alt="Kobe 9 Elite High-Top Sneakers" loading="lazy">
+              </div>
+              <figcaption class="hobby-caption">
+                <span class="hobby-badge">Culture & Form</span>
+                <h4 class="hobby-title">Sneakers</h4>
+                <p class="hobby-desc">Kobe 9 Elite Masterpiece — carbon fiber shank plates, engineered Flyknit tensioning & structural cushioning ergonomics.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+              <div class="hobby-img-frame">
+                <img src="assets/hobby-basketball.jpg" alt="Jerome Shooting Basketball" loading="lazy">
+              </div>
+              <figcaption class="hobby-caption">
+                <span class="hobby-badge">Rhythm & Drive</span>
+                <h4 class="hobby-title">Basketball</h4>
+                <p class="hobby-desc">Court geometry, arc mechanics, and the Mamba discipline of thousands of deliberate repetitions in silence.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+              <div class="hobby-img-frame">
+                <img src="assets/hobby-rockbar.jpg" alt="Underground Rock Bar Poster Wall" loading="lazy">
+              </div>
+              <figcaption class="hobby-caption">
+                <span class="hobby-badge">Sonic Catharsis</span>
+                <h4 class="hobby-title">Rock Music</h4>
+                <p class="hobby-desc">Underground vinyl walls, fuzz distortion pedals & driving basslines that counter analytical fatigue with visceral resonance.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+              <div class="hobby-img-frame">
+                <img src="assets/hobby-valorant.jpg" alt="Valorant Tactical Gameplay Art" loading="lazy">
+              </div>
+              <figcaption class="hobby-caption">
+                <span class="hobby-badge">Virtual Systems</span>
+                <h4 class="hobby-title">Video Games (Valorant)</h4>
+                <p class="hobby-desc">Split-second spatial tactical decisions, utility cooldown coordination, and crosshair placement precision.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+              <div class="hobby-img-frame">
+                <img src="assets/travel-ijen.jpg" alt="Mount Ijen Turquoise Sulfur Crater" loading="lazy">
+              </div>
+              <figcaption class="hobby-caption">
+                <span class="hobby-badge">Adventure & Geology</span>
+                <h4 class="hobby-title">Adventure (Ijen)</h4>
+                <p class="hobby-desc">Turquoise sulfuric crater lakes and midnight climbs across rugged volcanic terrains of East Java.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="hobby-card">
+              <div class="hobby-img-frame">
+                <img src="assets/travel-nara.jpg" alt="Nara Hillside Deer Pavilion" loading="lazy">
+              </div>
+              <figcaption class="hobby-caption">
+                <span class="hobby-badge">Solitary Travel</span>
+                <h4 class="hobby-title">Travel & Stillness (Nara)</h4>
+                <p class="hobby-desc">Quiet pavilions, ancient deer groves & peaceful horizons where high sensitivity reconnects with tranquility.</p>
+              </figcaption>
+            </figure>
+
+          </div>
+
+        </article>
+
+        <!-- Sidebar -->
+        <aside>
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Fast Facts</h3>
+            <ul class="sidebar-list">
+              <li><b>Handle:</b> Jeromesan</li>
+              <li><b>Archetype:</b> INFJ · HSP</li>
+              <li><b>Degree:</b> B.Eng in Power Engineering (3rd Year)</li>
+              <li><b>Field:</b> DAC & LCA System Modeling</li>
+              <li><b>Languages:</b> Mandarin, English (IELTS 6.0)</li>
+              <li><b>Status:</b> Researching NETs Sustainability</li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Explore Research</h3>
+            <p style="font-size:0.9rem; color:var(--sc-ink-soft); margin-bottom:1rem; line-height:1.6;">
+              Review peer-reviewed journal papers and academic awards:
+            </p>
+            <a href="projects.html" style="font-weight:600; color:var(--lakers-purple); text-decoration:none; font-size:0.88rem;">
+              View Published Papers & Projects →
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Simplified Editorial Footer (Figure 5 Style) -->
+    <!-- ===================================================================
+       FOOTER: Brand on Left, 3 Columns on Right
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-main-row">
+        
+        <!-- Left Side: Brand, Bio, Social Icons -->
+        <div class="footer-brand-side">
+          <a href="index.html" class="brand-signature-mark" title="Jeromesan Homepage">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">SAN</span>
+          </a>
+          <p class="footer-bio">
+            Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="Direct Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Right Side: 3 Columns (Explore, Writing & Notes, Connect) -->
+        <div class="footer-nav-three-cols">
+          
+          <div>
+            <h4 class="footer-col-heading">Explore</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="about.html" class="footer-text-link">About Jeromesan</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="topics.html" class="footer-text-link">Research Domains</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="connect.html" class="footer-text-link">Contact & Inquiries</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Writing & Notes</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Live Notion Blog &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="blog.html" class="footer-text-link">Featured Essays</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="index.html#the-creed" class="footer-text-link">The Mamba Creed</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Connect</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">LinkedIn &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-text-link">YouTube &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-strip">
+        <div>
+          © 2026 Jeromesan. All rights reserved.
+        </div>
+        <div class="footer-legal-menu">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
