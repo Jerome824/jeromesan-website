@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -94,11 +94,11 @@
     .mel-footer-legal-links { display: flex; gap: 1.5rem; }
     .mel-footer-legal-link { color: var(--sc-ink-soft); text-decoration: none; }
 
-    /* Hobbies Photo Grid */
+    /* Hobbies Photo Grid: 2 rows x 3 columns */
     .hobbies-photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.4rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
       margin: 1.8rem 0;
     }
     .hobby-card {
@@ -107,7 +107,7 @@
       border-radius: 8px;
       overflow: hidden;
       margin: 0;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.02);
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
@@ -131,42 +131,45 @@
       transition: transform 0.4s ease;
     }
     .hobby-card:hover .hobby-img-frame img {
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
     .hobby-caption {
-      padding: 1.1rem;
+      padding: 0.95rem;
       display: flex;
       flex-direction: column;
       flex: 1;
     }
     .hobby-badge {
       font-family: var(--sc-font-mono);
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--lakers-purple);
       font-weight: 600;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.3rem;
     }
     .hobby-title {
       font-family: var(--sc-font-display);
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 500;
       color: var(--sc-ink);
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.35rem;
       line-height: 1.25;
     }
     .hobby-desc {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: var(--sc-ink-soft);
-      line-height: 1.55;
+      line-height: 1.5;
       margin: 0;
     }
 
     @media (max-width: 860px) {
       .about-layout { grid-template-columns: 1fr; }
       .nav-center-menu { display: none; }
-      .interest-tag-grid { grid-template-columns: 1fr; }
+      .hobbies-photo-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    }
+    @media (max-width: 580px) {
+      .hobbies-photo-grid { grid-template-columns: 1fr; }
     }
   
     /* =========================================================================
@@ -393,7 +396,7 @@
           </div>
 
           <!-- 4. Interests & Passions -->
-          <h2>4. Interests & Passions Outside the Lab</h2>
+          <h2>4. Interests & Passions Outside</h2>
           <p>
             Deep technical focus is recharged through deliberate physical, acoustic, and virtual exploration across six creative disciplines:
           </p>
