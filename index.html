@@ -736,6 +736,11 @@
       margin-bottom: 0.4rem;
     }
 
+    .stat-val.stat-val-text {
+      font-size: 2.15rem;
+      letter-spacing: -0.02em;
+    }
+
     .stat-val small {
       font-family: var(--sc-font-mono);
       font-size: 0.95rem;
@@ -1289,7 +1294,7 @@
                 <div class="flow-step-item">
                   <span class="flow-step-num">STAGE 03</span>
                   <span class="flow-step-name">Efficacy</span>
-                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">70.61% peak CCE in Xining</div>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">Net negative carbon removal</div>
                 </div>
               </div>
 
@@ -1337,29 +1342,33 @@
 
           <aside class="telemetry-sidebar">
             <div class="telemetry-title">
-              <span>Empirical Research Baseline</span>
+              <span>Thermodynamic Baseline</span>
               <span class="telemetry-live-dot"></span>
             </div>
 
             <div class="stat-row">
-              <div class="stat-val">70.61%<small>Peak CCE</small></div>
-              <div class="stat-label">Net carbon capture efficiency in Xining under dry-cold climate and green electricity.</div>
+              <div class="stat-val">422<small>ppm</small></div>
+              <div class="stat-label">Current ambient atmospheric CO₂ concentration being captured.</div>
             </div>
 
             <div class="stat-row">
-              <div class="stat-val">1,042.6<small>$/t CO₂</small></div>
-              <div class="stat-label">Minimum Levelized Cost of DAC (LCOD) with heat pump thermal integration.</div>
+              <div class="stat-val stat-val-text">Dynamic<small>Model</small></div>
+              <div class="stat-label">Physics-based TRNSYS & MATLAB transient simulation of SA-TVSA DAC cycles.</div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val stat-val-text">Dynamic<small>Analysis</small></div>
+              <div class="stat-label">Climate-driven thermodynamic sensitivity across regional temperature and humidity shifts.</div>
             </div>
 
             <div class="stat-row">
               <div class="stat-val">5<small>Dimensions</small></div>
-              <div class="stat-label">Comprehensive E-NETs framework: Thermodynamics, LCA, Emergy, S-LCA, Economics.</div>
+              <div class="stat-label">Comprehensive E-NETs framework: Thermodynamics, LCA, Emergy, S-LCA, and Economics.</div>
             </div>
 
             <div class="stat-formula-pill">
-              <b>Carbon Capture Efficiency (CCE):</b><br>
-              CCE = 1 − E<sub>grid</sub>·E<sub>elec</sub> − E<sub>heat</sub>·Q<sub>heat</sub><br>
-              <span style="font-size:0.72rem; color:var(--sc-ink-faint); display:block; margin-top:4px;">*Negative CCE occurs when regional grid carbon intensity exceeds breakeven threshold.</span>
+              <b>System Governing Principle:</b><br>
+              E<sub>net</sub> = CO₂<sub>sequestered</sub> − CO₂<sub>lifecycle_embodied</sub> &gt; 0
             </div>
           </aside>
 
