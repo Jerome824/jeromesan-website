@@ -48,21 +48,14 @@
       overflow-x: hidden;
     }
 
-    /* Reading Progress Bar */
-    .reading-progress-track {
+    /* Progress indicator */
+    [data-sc-progress] {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
       height: 3px;
-      background: transparent;
+      background: var(--lakers-gold);
       z-index: 1000;
-    }
-
-    .reading-progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--lakers-purple), var(--lakers-gold));
       transition: width 0.1s ease-out;
     }
 
@@ -381,7 +374,7 @@
     }
 
     /* =========================================================================
-       ACT 2: THE MAMBA CREED SECTION
+       ACT 2: THE MAMBA MENTALITY SECTION
        ========================================================================= */
     .creed-section {
       position: relative;
@@ -932,10 +925,8 @@
 </head>
 <body>
 
-  <!-- Reading Progress Track -->
-  <div class="reading-progress-track">
-    <div class="reading-progress-bar" data-sc-progress></div>
-  </div>
+  <!-- Progress Bar -->
+  <span data-sc-progress></span>
 
   <!-- Navigation Bar -->
   <header>
@@ -1075,7 +1066,7 @@
               </div>
               <div class="hero-badge-card">
                 <div class="badge-card-tag">精神信条</div>
-                <div class="badge-card-val">曼巴精神 (Mamba Creed) · 极致纯粹与韧性</div>
+                <div class="badge-card-val">曼巴精神 (Mamba Mentality) · 极致纯粹与自律</div>
               </div>
             </div>
 
@@ -1092,10 +1083,10 @@
 
           <div class="hero-portrait-wrap">
             <div class="hero-portrait-frame">
-              <img src="assets/profile-contact.jpg" alt="刘心宇 (Jerome Lau) 于印尼布罗莫火山" loading="eager">
+              <img src="assets/profile-contact.jpg" alt="刘心宇 (Jerome Lau)" loading="eager">
             </div>
             <div class="hero-portrait-caption">
-              <span>Jerome Lau · 广州 / 旅居印尼</span>
+              <span>Jerome Lau · 广州</span>
               <span>Bromo Caldera · 2,329m</span>
             </div>
           </div>
@@ -1105,7 +1096,7 @@
     </section>
 
     <!-- ===================================================================
-         ACT 2: THE MAMBA CREED · 曼巴信条
+         ACT 2: THE MAMBA MENTALITY · 曼巴精神
          =================================================================== -->
     <section id="the-creed" class="creed-section">
       <img src="assets/mamba-bg.jpg" alt="Mamba Lakers Gold and Purple Wallpaper" class="creed-bg-image">
@@ -1113,7 +1104,7 @@
       
       <div class="container">
         <div class="creed-content">
-          <div class="creed-badge-lakers">The Mamba Creed · 曼巴信条</div>
+          <div class="creed-badge-lakers">The Mamba Mentality · 曼巴精神</div>
           
           <div class="creed-quote-box">
             <div class="creed-quote-cn">
@@ -1442,7 +1433,7 @@
             <ul class="footer-col-links">
               <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Notion 独立博客 &#x2197;</a></li>
               <li><a href="blog.html" class="footer-text-link">精选随笔长文</a></li>
-              <li><a href="#the-creed" class="footer-text-link">曼巴信条 (The Creed)</a></li>
+              <li><a href="#the-creed" class="footer-text-link">曼巴精神 (Mamba Mentality)</a></li>
             </ul>
           </div>
 

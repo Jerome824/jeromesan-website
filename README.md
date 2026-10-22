@@ -5,7 +5,7 @@ Personal website of **Jeromesan** (INFJ · HSP) — 3rd-year Power Engineering S
 ## 🌟 Highlights
 - **Editorial Minimalist Aesthetic**: Light cream palette (`#FAF7F2`) with crisp typography and responsive layouts.
 - **Academic Output**: Publications, CCST 2026 conference presentation, and engineering scholarships.
-- **The Mamba Creed**: Tribute section in Los Angeles Lakers Royal Purple & Gold with custom snake scale texturing.
+- **The Mamba Mentality**: Tribute section in Los Angeles Lakers Royal Purple & Gold with custom snake scale texturing.
 - **Living Blog Integration**: Interconnected with [NotionNext](https://github.com/notionnext-org/NotionNext) powered by Notion.
 - **Lightweight Architecture**: Pure semantic HTML5, modern CSS3, and vanilla JavaScript with zero build dependencies.
 
