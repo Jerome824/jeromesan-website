@@ -307,6 +307,12 @@
       font-weight: 300;
     }
 
+    .hero-highlight-them {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--lakers-purple);
+    }
+
     .hero-lead {
       font-size: clamp(1.05rem, 1.4vw, 1.25rem);
       color: var(--sc-ink-soft);
@@ -405,23 +411,21 @@
 
     .creed-bg-image {
       position: absolute;
-      inset: -20px;
+      inset: -10px;
       background-image: url('assets/kobe-creed-bg.jpg');
       background-size: cover;
-      background-position: center 30%;
-      filter: blur(5px);
-      -webkit-filter: blur(5px);
-      opacity: 0.42;
+      background-position: center center;
+      filter: blur(1.5px);
+      -webkit-filter: blur(1.5px);
+      opacity: 0.82;
       z-index: 1;
       pointer-events: none;
-      transform: scale(1.05);
     }
 
     .creed-bg-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 45% 45%, rgba(70, 29, 110, 0.5) 0%, rgba(22, 8, 38, 0.88) 100%),
-                  linear-gradient(180deg, rgba(25, 9, 43, 0.65) 0%, rgba(25, 9, 43, 0.9) 100%);
+      background: linear-gradient(135deg, rgba(20, 7, 34, 0.58) 0%, rgba(45, 17, 72, 0.35) 45%, rgba(18, 6, 30, 0.65) 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -489,6 +493,13 @@
       flex-direction: column;
       gap: 1.6rem;
       position: relative;
+      background: rgba(18, 6, 32, 0.58);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: clamp(1.8rem, 2.8vw, 2.4rem);
+      border-radius: 12px;
+      border: 1px solid rgba(253, 185, 39, 0.25);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
     }
 
     .creed-quote-box::before {
@@ -1127,7 +1138,7 @@
           <div class="hero-copy">
             <div class="editorial-kicker">welcome, Permission to Be Human.</div>
             <h1 class="hero-title">
-              Engineering climate solutions, observing human nature, and <em>exploring</em> the world.
+              It's a lifelong journey: <span class="hero-highlight-them">let them</span> be them, let me be me.
             </h1>
             <p class="hero-lead">
               Observant by nature, disciplined by purpose. A Power Engineering researcher investigating Direct Air Capture (DAC) and climate solutions, with a deep reverence for human psychology and global exploration.

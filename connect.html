@@ -295,34 +295,47 @@
       margin-top: 0.2rem;
     }
 
-    /* Yellow SEND button matching Image 3 */
+    /* Purple & Gold SEND Button (Lakers Theme) */
     .form-submit-row {
       text-align: center;
       margin-top: 1.8rem;
     }
-    .btn-send-yellow {
-      display: inline-block;
-      min-width: 150px;
-      padding: 14px 32px;
-      background: #FFE500;
-      color: #1B1917;
-      border: 1px solid #E6CF00;
+    .btn-send-lakers {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 170px;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #461D6E 0%, #30134C 100%);
+      color: #FDB927;
+      border: 1.5px solid #FDB927;
       border-radius: 10px;
       font-family: var(--sc-font-text);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(255, 229, 0, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 18px rgba(70, 29, 110, 0.28);
     }
-    .btn-send-yellow:hover {
-      background: #FED700;
+    .btn-send-lakers svg {
+      color: #FDB927;
+      transition: transform 0.25s ease;
+    }
+    .btn-send-lakers:hover {
+      background: linear-gradient(135deg, #572488 0%, #461D6E 100%);
+      color: #FFE500;
+      border-color: #FFE500;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 229, 0, 0.55);
+      box-shadow: 0 8px 24px rgba(70, 29, 110, 0.38), 0 0 16px rgba(253, 185, 39, 0.35);
     }
-    .btn-send-yellow:active {
+    .btn-send-lakers:hover svg {
+      color: #FFE500;
+      transform: translateX(3px) translateY(-1px);
+    }
+    .btn-send-lakers:active {
       transform: translateY(0);
     }
 
@@ -581,9 +594,15 @@
               </div>
             </div>
 
-            <!-- Yellow Submit Button matching Image 3 -->
+            <!-- Purple & Gold Submit Button -->
             <div class="form-submit-row">
-              <button type="submit" class="btn-send-yellow">SEND</button>
+              <button type="submit" class="btn-send-lakers">
+                <span>SEND</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
             </div>
 
             <div id="formSuccessBanner" class="form-success-banner">
