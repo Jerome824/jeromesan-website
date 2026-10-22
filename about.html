@@ -94,82 +94,158 @@
     .mel-footer-legal-links { display: flex; gap: 1.5rem; }
     .mel-footer-legal-link { color: var(--sc-ink-soft); text-decoration: none; }
 
-    /* Hobbies Photo Grid: 2 rows x 3 columns */
-    .hobbies-photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 1.8rem 0;
+    /* Split Section for 4. Interests & Passions (Title on Left, Vertical Stack on Right) */
+    .interests-split-section {
+      padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(4rem, 6vw, 6rem) 0;
+      border-top: 1px solid var(--sc-line);
+      margin-top: 2.5rem;
     }
-    .hobby-card {
+    .interests-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .interests-sticky-wrap {
+      position: sticky;
+      top: 100px;
+    }
+    .interests-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .interests-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3rem);
+      line-height: 1.15;
+      font-weight: 400;
+      color: var(--sc-ink);
+      margin-bottom: 1.2rem;
+    }
+    .interests-lead {
+      font-size: 1.05rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.7;
+      margin-bottom: 1.6rem;
+    }
+    .interests-quote-box {
       background: var(--sc-surface);
-      border: 1px solid var(--sc-line);
-      border-radius: 8px;
-      overflow: hidden;
-      margin: 0;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.02);
-      transition: all 0.3s ease;
+      border-left: 3px solid var(--lakers-gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1rem 1.3rem;
+      border-top: 1px solid var(--sc-line);
+      border-right: 1px solid var(--sc-line);
+      border-bottom: 1px solid var(--sc-line);
+    }
+    .interests-quote-text {
+      font-family: var(--sc-font-display);
+      font-style: italic;
+      font-size: 0.98rem;
+      color: var(--sc-ink);
+      line-height: 1.6;
+      margin: 0 0 0.4rem 0;
+    }
+    .interests-quote-author {
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--sc-ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Right Column: 6 items arranged vertically */
+    .interests-right-col {
       display: flex;
       flex-direction: column;
+      gap: 20px;
     }
-    .hobby-card:hover {
+    .hobby-vcard {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 10px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.02);
+      transition: all 0.25s ease;
+    }
+    .hobby-vcard:hover {
       border-color: var(--lakers-purple);
-      box-shadow: 0 8px 24px rgba(70, 29, 110, 0.08);
+      box-shadow: 0 10px 28px rgba(70, 29, 110, 0.08);
       transform: translateY(-2px);
     }
-    .hobby-img-frame {
-      aspect-ratio: 16/11;
+    .hobby-vcard-media {
       width: 100%;
+      height: 100%;
+      min-height: 150px;
       overflow: hidden;
       background: var(--sc-surface-alt);
     }
-    .hobby-img-frame img {
+    .hobby-vcard-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
     }
-    .hobby-card:hover .hobby-img-frame img {
-      transform: scale(1.04);
+    .hobby-vcard:hover .hobby-vcard-media img {
+      transform: scale(1.05);
     }
-    .hobby-caption {
-      padding: 0.95rem;
+    .hobby-vcard-body {
+      padding: 1.3rem 1.5rem;
       display: flex;
       flex-direction: column;
-      flex: 1;
+      justify-content: center;
+    }
+    .hobby-vcard-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
     }
     .hobby-badge {
       font-family: var(--sc-font-mono);
-      font-size: 0.64rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--lakers-purple);
       font-weight: 600;
-      margin-bottom: 0.3rem;
     }
-    .hobby-title {
+    .hobby-num {
+      font-family: var(--sc-font-mono);
+      font-size: 0.72rem;
+      color: var(--sc-ink-faint);
+    }
+    .hobby-vcard-title {
       font-family: var(--sc-font-display);
-      font-size: 1.15rem;
+      font-size: 1.35rem;
       font-weight: 500;
       color: var(--sc-ink);
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.45rem;
       line-height: 1.25;
     }
-    .hobby-desc {
-      font-size: 0.78rem;
+    .hobby-vcard-desc {
+      font-size: 0.92rem;
       color: var(--sc-ink-soft);
-      line-height: 1.5;
+      line-height: 1.6;
       margin: 0;
     }
 
     @media (max-width: 860px) {
       .about-layout { grid-template-columns: 1fr; }
-      .nav-center-menu { display: none; }
-      .hobbies-photo-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .interests-split-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .interests-sticky-wrap { position: static; }
+      .hobby-vcard { grid-template-columns: 160px 1fr; }
     }
     @media (max-width: 580px) {
-      .hobbies-photo-grid { grid-template-columns: 1fr; }
+      .hobby-vcard { grid-template-columns: 1fr; }
+      .hobby-vcard-media { min-height: 200px; height: 200px; }
     }
   
     /* =========================================================================
@@ -320,9 +396,27 @@
           <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input type="text" class="nav-search-input" placeholder="Search about...">
         </div>
-        <a href="connect.html" class="nav-cta-btn">Connect</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
     </nav>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+          <li><a href="about.html" class="mobile-nav-link active">About</a></li>
+          <li><a href="projects.html" class="mobile-nav-link">Projects</a></li>
+          <li><a href="topics.html" class="mobile-nav-link">Topics</a></li>
+          <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Blog ↗</a></li>
+          <li><a href="connect.html" class="mobile-nav-link">Connect</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <p class="mobile-nav-tagline">“When you think you can't, UCONN.” — Gianna Bryant</p>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -395,82 +489,6 @@
             <div class="skills-cat-items">Mandarin (Native) · English (IELTS: 6.0)</div>
           </div>
 
-          <!-- 4. Interests & Passions -->
-          <h2>4. Interests & Passions Outside</h2>
-          <p>
-            Deep technical focus is recharged through deliberate physical, acoustic, and virtual exploration across six creative disciplines:
-          </p>
-
-          <div class="hobbies-photo-grid">
-            
-            <figure class="hobby-card">
-              <div class="hobby-img-frame">
-                <img src="assets/hobby-sneaker.jpg" alt="Kobe 9 Elite High-Top Sneakers" loading="lazy">
-              </div>
-              <figcaption class="hobby-caption">
-                <span class="hobby-badge">Culture & Form</span>
-                <h4 class="hobby-title">Sneakers</h4>
-                <p class="hobby-desc">Kobe 9 Elite Masterpiece — carbon fiber shank plates, engineered Flyknit tensioning & structural cushioning ergonomics.</p>
-              </figcaption>
-            </figure>
-
-            <figure class="hobby-card">
-              <div class="hobby-img-frame">
-                <img src="assets/hobby-basketball.jpg" alt="Jerome Shooting Basketball" loading="lazy">
-              </div>
-              <figcaption class="hobby-caption">
-                <span class="hobby-badge">Rhythm & Drive</span>
-                <h4 class="hobby-title">Basketball</h4>
-                <p class="hobby-desc">Court geometry, arc mechanics, and the Mamba discipline of thousands of deliberate repetitions in silence.</p>
-              </figcaption>
-            </figure>
-
-            <figure class="hobby-card">
-              <div class="hobby-img-frame">
-                <img src="assets/hobby-rockbar.jpg" alt="Underground Rock Bar Poster Wall" loading="lazy">
-              </div>
-              <figcaption class="hobby-caption">
-                <span class="hobby-badge">Sonic Catharsis</span>
-                <h4 class="hobby-title">Rock Music</h4>
-                <p class="hobby-desc">Underground vinyl walls, fuzz distortion pedals & driving basslines that counter analytical fatigue with visceral resonance.</p>
-              </figcaption>
-            </figure>
-
-            <figure class="hobby-card">
-              <div class="hobby-img-frame">
-                <img src="assets/hobby-valorant.jpg" alt="Valorant Tactical Gameplay Art" loading="lazy">
-              </div>
-              <figcaption class="hobby-caption">
-                <span class="hobby-badge">Virtual Systems</span>
-                <h4 class="hobby-title">Video Games (Valorant)</h4>
-                <p class="hobby-desc">Split-second spatial tactical decisions, utility cooldown coordination, and crosshair placement precision.</p>
-              </figcaption>
-            </figure>
-
-            <figure class="hobby-card">
-              <div class="hobby-img-frame">
-                <img src="assets/travel-ijen.jpg" alt="Mount Ijen Turquoise Sulfur Crater" loading="lazy">
-              </div>
-              <figcaption class="hobby-caption">
-                <span class="hobby-badge">Adventure & Geology</span>
-                <h4 class="hobby-title">Adventure (Ijen)</h4>
-                <p class="hobby-desc">Turquoise sulfuric crater lakes and midnight climbs across rugged volcanic terrains of East Java.</p>
-              </figcaption>
-            </figure>
-
-            <figure class="hobby-card">
-              <div class="hobby-img-frame">
-                <img src="assets/travel-nara.jpg" alt="Nara Hillside Deer Pavilion" loading="lazy">
-              </div>
-              <figcaption class="hobby-caption">
-                <span class="hobby-badge">Solitary Travel</span>
-                <h4 class="hobby-title">Travel & Stillness (Nara)</h4>
-                <p class="hobby-desc">Quiet pavilions, ancient deer groves & peaceful horizons where high sensitivity reconnects with tranquility.</p>
-              </figcaption>
-            </figure>
-
-          </div>
-
         </article>
 
         <!-- Sidebar -->
@@ -499,6 +517,123 @@
         </aside>
 
       </div>
+
+      <!-- 4. Interests & Passions (Title on Left, Content Arranged Vertically on the Right) -->
+      <section class="interests-split-section">
+        <div class="interests-split-grid">
+          
+          <!-- Left Column: Title & Philosophy -->
+          <div class="interests-left-col">
+            <div class="interests-sticky-wrap">
+              <span class="interests-kicker">Pillar 04 · Offline Horizons</span>
+              <h2 class="interests-title">4. Interests & Passions</h2>
+              <p class="interests-lead">
+                Deep technical focus is recharged through deliberate physical, acoustic, and virtual exploration across six creative disciplines.
+              </p>
+              <div class="interests-quote-box">
+                <p class="interests-quote-text">“The mindset carries across the court, the mountain trail, and the late-night workstation.”</p>
+                <span class="interests-quote-author">Jeromesan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: 6 Items Arranged Vertically (竖向排列在页面右侧) -->
+          <div class="interests-right-col">
+            
+            <!-- Card 1: Sneakers -->
+            <article class="hobby-vcard">
+              <div class="hobby-vcard-media">
+                <img src="assets/hobby-sneaker.jpg" alt="Kobe 9 Elite High-Top Sneakers" loading="lazy">
+              </div>
+              <div class="hobby-vcard-body">
+                <div class="hobby-vcard-meta">
+                  <span class="hobby-badge">Culture & Form</span>
+                  <span class="hobby-num">01 / 06</span>
+                </div>
+                <h3 class="hobby-vcard-title">Sneakers</h3>
+                <p class="hobby-vcard-desc">Kobe 9 Elite Masterpiece — carbon fiber shank plates, engineered Flyknit tensioning & structural cushioning ergonomics.</p>
+              </div>
+            </article>
+
+            <!-- Card 2: Basketball -->
+            <article class="hobby-vcard">
+              <div class="hobby-vcard-media">
+                <img src="assets/hobby-basketball.jpg" alt="Jerome Shooting Basketball" loading="lazy">
+              </div>
+              <div class="hobby-vcard-body">
+                <div class="hobby-vcard-meta">
+                  <span class="hobby-badge">Rhythm & Drive</span>
+                  <span class="hobby-num">02 / 06</span>
+                </div>
+                <h3 class="hobby-vcard-title">Basketball</h3>
+                <p class="hobby-vcard-desc">Court geometry, arc mechanics, and the Mamba discipline of thousands of deliberate repetitions in silence.</p>
+              </div>
+            </article>
+
+            <!-- Card 3: Rock Music -->
+            <article class="hobby-vcard">
+              <div class="hobby-vcard-media">
+                <img src="assets/hobby-rockbar.jpg" alt="Underground Rock Bar Poster Wall" loading="lazy">
+              </div>
+              <div class="hobby-vcard-body">
+                <div class="hobby-vcard-meta">
+                  <span class="hobby-badge">Sonic Catharsis</span>
+                  <span class="hobby-num">03 / 06</span>
+                </div>
+                <h3 class="hobby-vcard-title">Rock Music</h3>
+                <p class="hobby-vcard-desc">Underground vinyl walls, fuzz distortion pedals & driving basslines that counter analytical fatigue with visceral resonance.</p>
+              </div>
+            </article>
+
+            <!-- Card 4: Video Games (Valorant) -->
+            <article class="hobby-vcard">
+              <div class="hobby-vcard-media">
+                <img src="assets/hobby-valorant.jpg" alt="Valorant Tactical Gameplay Art" loading="lazy">
+              </div>
+              <div class="hobby-vcard-body">
+                <div class="hobby-vcard-meta">
+                  <span class="hobby-badge">Virtual Systems</span>
+                  <span class="hobby-num">04 / 06</span>
+                </div>
+                <h3 class="hobby-vcard-title">Video Games (Valorant)</h3>
+                <p class="hobby-vcard-desc">Split-second spatial tactical decisions, utility cooldown coordination, and crosshair placement precision under pressure.</p>
+              </div>
+            </article>
+
+            <!-- Card 5: Adventure (Ijen) -->
+            <article class="hobby-vcard">
+              <div class="hobby-vcard-media">
+                <img src="assets/travel-ijen.jpg" alt="Mount Ijen Turquoise Sulfur Crater" loading="lazy">
+              </div>
+              <div class="hobby-vcard-body">
+                <div class="hobby-vcard-meta">
+                  <span class="hobby-badge">Adventure & Geology</span>
+                  <span class="hobby-num">05 / 06</span>
+                </div>
+                <h3 class="hobby-vcard-title">Adventure (Ijen)</h3>
+                <p class="hobby-vcard-desc">Turquoise sulfuric crater lakes and midnight climbs across rugged volcanic terrains of East Java.</p>
+              </div>
+            </article>
+
+            <!-- Card 6: Travel & Stillness (Nara) -->
+            <article class="hobby-vcard">
+              <div class="hobby-vcard-media">
+                <img src="assets/travel-nara.jpg" alt="Nara Hillside Deer Pavilion" loading="lazy">
+              </div>
+              <div class="hobby-vcard-body">
+                <div class="hobby-vcard-meta">
+                  <span class="hobby-badge">Solitary Travel</span>
+                  <span class="hobby-num">06 / 06</span>
+                </div>
+                <h3 class="hobby-vcard-title">Travel & Stillness (Nara)</h3>
+                <p class="hobby-vcard-desc">Quiet pavilions, ancient deer groves & peaceful horizons where high sensitivity reconnects with tranquility.</p>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
     </div>
   </main>
 
@@ -580,5 +715,35 @@
     </div>
   </footer>
 
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('mobileMenuToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (toggleBtn && drawer) {
+        const hamburger = toggleBtn.querySelector('.hamburger-icon');
+        const closeIcon = toggleBtn.querySelector('.close-icon');
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = drawer.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', isOpen);
+          if (isOpen) {
+            hamburger.style.display = 'none';
+            closeIcon.style.display = 'block';
+          } else {
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!drawer.contains(e.target) && !toggleBtn.contains(e.target) && drawer.classList.contains('open')) {
+            drawer.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

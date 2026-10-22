@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -87,29 +87,43 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 2rem;
+      padding: 1.8rem;
       border-right: 1px solid var(--sc-line);
+      min-height: 280px;
     }
-    .topic-visual-svg {
+    .topic-card-photo {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.9;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .topic-rich-card:hover .topic-card-photo {
+      transform: scale(1.05);
+    }
+    .topic-image-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20, 18, 16, 0.75) 0%, rgba(20, 18, 16, 0.2) 50%, rgba(20, 18, 16, 0.05) 100%);
+      pointer-events: none;
     }
     .topic-image-overlay-badge {
       position: relative;
       z-index: 2;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(8px);
-      border: 1px solid var(--sc-line);
-      padding: 8px 14px;
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 7px 13px;
       border-radius: 6px;
       font-family: var(--sc-font-mono);
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: var(--sc-ink);
       font-weight: 600;
+      align-self: flex-start;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
 
     /* Content Area */
@@ -381,18 +395,36 @@
           <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input type="text" class="nav-search-input" placeholder="Search topics...">
         </div>
-        <a href="connect.html" class="nav-cta-btn">Connect</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
     </nav>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+          <li><a href="about.html" class="mobile-nav-link">About</a></li>
+          <li><a href="projects.html" class="mobile-nav-link">Projects</a></li>
+          <li><a href="topics.html" class="mobile-nav-link active">Topics</a></li>
+          <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Blog ↗</a></li>
+          <li><a href="connect.html" class="mobile-nav-link">Connect</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <p class="mobile-nav-tagline">“When you think you can't, UCONN.” — Gianna Bryant</p>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="page-hero">
       <div class="container">
-        <div class="page-kicker">Topic Overview & Hub</div>
-        <h1 class="page-title">Research Topics & Focus Areas</h1>
+        <div class="page-kicker">Reflections & Intellectual Margins</div>
+        <h1 class="page-title">Themes of Thought & Inquiry</h1>
         <p class="page-lead">
-          Explore thematic modules detailing atmospheric carbon capture, life cycle sustainability metrics, system dynamics, and cross-disciplinary systems thinking.
+          A thematic directory of ideas explored through personal writing: systemic observations of the world, psychological self-inquiries (INFJ / HSP), personal growth through discipline, contemporary dialogues, and literature margins.
         </p>
       </div>
     </section>
@@ -400,164 +432,177 @@
     <div class="container topics-section">
       <div class="topic-card-grid">
 
-        <!-- TOPIC 01: Direct Air Capture -->
+        <!-- TOPIC 01: Observations & Systems Inquiries (对世界的观察与思考) -->
         <article class="topic-rich-card">
-          <div class="topic-image-col" style="background: linear-gradient(135deg, #E6EFEA 0%, #D8E6DE 100%);">
-            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="200" cy="150" r="110" stroke="#264639" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
-              <circle cx="200" cy="150" r="70" stroke="#264639" stroke-width="2" opacity="0.5"/>
-              <path d="M120 150 L280 150 M200 70 L200 230" stroke="#264639" stroke-width="1.2" opacity="0.3"/>
-              <circle cx="200" cy="150" r="6" fill="#264639"/>
-              <path d="M140 110 Q200 60 260 110 Q200 160 140 110 Z" fill="#264639" fill-opacity="0.08"/>
-            </svg>
+          <div class="topic-image-col">
+            <img src="assets/travel-bromo.jpg" alt="Mount Bromo Caldera Landscape" class="topic-card-photo" loading="lazy">
+            <div class="topic-image-scrim"></div>
             <div class="topic-image-overlay-badge">
-              <span>Thermodynamics · 422 ppm Ambient CO₂</span>
+              <span>Worldview · Macroscopic Vantage</span>
             </div>
           </div>
 
           <div class="topic-content-col">
             <div>
-              <div class="topic-card-kicker">Topic 01 · Planetary Engineering</div>
-              <h2 class="topic-card-title">Direct Air Capture (DAC) Systems</h2>
+              <div class="topic-card-kicker">Topic 01 · Worldview & Inquiry</div>
+              <h2 class="topic-card-title">Observations & Systems Inquiries</h2>
               <p class="topic-card-summary">
-                Directly extracting CO₂ from ambient air via chemical sorbents and thermal-fluid cycles. Focuses on reducing parasitic regeneration power and optimizing contactor fluid dynamics under real-world weather conditions.
+                Viewing cities, transit routes, climate boundaries, and socio-technical networks not as isolated events, but as living, interconnected thermodynamic flows. Dispatches from solitary travel and analytical stillness.
               </p>
 
               <ul class="topic-bullets-list">
-                <li><b>Solid Amine Sorbents:</b> Chemical sorption loops with low-temperature desorption (~100°C).</li>
-                <li><b>Air Contactor Aerodynamics:</b> Minimizing static pressure drops and fan electricity demand.</li>
-                <li><b>Dynamic Modeling:</b> Analyzing how temperature and relative humidity alter capture capacity.</li>
+                <li><b>Interconnected Flows:</b> Unpacking how energy grids, logistics, and human incentives converge.</li>
+                <li><b>Travel as Calibration:</b> Field observations from the volcanic expanse of Bromo to the quiet alleys of Nara.</li>
+                <li><b>Signal Over Noise:</b> Filtering out temporary social frenzy in favor of durable structural patterns.</li>
               </ul>
             </div>
 
             <div class="topic-links-row">
-              <a href="projects.html" class="topic-btn-primary">
-                <span>View Related DAC Paper in Projects</span>
-                <span>→</span>
+              <a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="topic-btn-primary">
+                <span>Read Essays on Notion Blog</span>
+                <span>↗</span>
               </a>
-              <a href="blog.html" class="topic-btn-secondary">Read Discussion in Blog</a>
+              <a href="blog.html" class="topic-btn-secondary">Browse Curated Notes in Blog</a>
             </div>
           </div>
         </article>
 
-        <!-- TOPIC 02: Life Cycle Assessment -->
+        <!-- TOPIC 02: Psychology, Sensitivity & Self-Inquiry (个人心理学剖析与认知分享) -->
         <article class="topic-rich-card">
-          <div class="topic-image-col" style="background: linear-gradient(135deg, #EAE7F2 0%, #DED8EC 100%);">
-            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="100" y="70" width="200" height="160" rx="8" stroke="#461D6E" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.4"/>
-              <path d="M80 150 H120 M280 150 H320" stroke="#FDB927" stroke-width="2.5"/>
-              <polygon points="120,146 128,150 120,154" fill="#FDB927"/>
-              <polygon points="320,146 328,150 320,154" fill="#FDB927"/>
-              <circle cx="200" cy="150" r="45" stroke="#461D6E" stroke-width="2" opacity="0.6"/>
-              <path d="M185 150 L195 160 L218 140" stroke="#461D6E" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
+          <div class="topic-image-col">
+            <img src="assets/profile-sanzenin.jpg" alt="Sanzen-in Temple Contemplation" class="topic-card-photo" loading="lazy">
+            <div class="topic-image-scrim"></div>
             <div class="topic-image-overlay-badge">
-              <span>ISO 14040/44 · Net-Negativity Audits</span>
+              <span>Psychology · INFJ & High Sensitivity</span>
             </div>
           </div>
 
           <div class="topic-content-col">
             <div>
-              <div class="topic-card-kicker">Topic 02 · Environmental Accountability</div>
-              <h2 class="topic-card-title">Life Cycle Assessment (LCA) Frameworks</h2>
+              <div class="topic-card-kicker">Topic 02 · Cognitive Architecture</div>
+              <h2 class="topic-card-title">Psychology, Sensitivity & Inner Architecture</h2>
               <p class="topic-card-summary">
-                Quantifying full supply-chain footprints for negative emission technologies (NETs). Ensuring that energy inputs and material synthesis do not negate atmospheric carbon removal benefits.
+                Honest, deconstructive inquiries into the introverted cognitive landscape: managing environmental sensory saturation, deep processing, preserving energy reserves, and turning high sensitivity into analytical clarity.
               </p>
 
               <ul class="topic-bullets-list">
-                <li><b>Cradle-to-Grave Boundaries:</b> Embodied carbon in steel, concrete, and sorbent manufacturing.</li>
-                <li><b>Upstream Grid Intensity:</b> Sourcing clean power vs displacing fossil generation.</li>
-                <li><b>Sustainability Indicators:</b> Water usage, chemical degradation, and mineral permanence metrics.</li>
+                <li><b>The HSP Compass:</b> Transforming heightened sensory reception into nuanced systemic insights.</li>
+                <li><b>Recharging & Solitude:</b> The indispensable role of silence and contemplative spaces in mental stamina.</li>
+                <li><b>Empathy with Boundaries:</b> Balancing profound emotional resonance with the intellectual detachment required for engineering.</li>
               </ul>
             </div>
 
             <div class="topic-links-row">
-              <a href="projects.html" class="topic-btn-primary">
-                <span>View NETs Sustainability Paper</span>
-                <span>→</span>
+              <a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="topic-btn-primary">
+                <span>Read Essays on Notion Blog</span>
+                <span>↗</span>
               </a>
-              <a href="about.html" class="topic-btn-secondary">Check SimaPro & OpenLCA Skills</a>
+              <a href="about.html" class="topic-btn-secondary">Explore Personality Profile</a>
             </div>
           </div>
         </article>
 
-        <!-- TOPIC 03: Energy System Dynamics -->
+        <!-- TOPIC 03: Personal Growth & The Mamba Discipline (个人成长记录与心路历程) -->
         <article class="topic-rich-card">
-          <div class="topic-image-col" style="background: linear-gradient(135deg, #F4ECE2 0%, #E8DCCF 100%);">
-            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M80 220 Q140 90 200 160 T320 80" stroke="#C0562D" stroke-width="2.5" fill="none"/>
-              <line x1="80" y1="230" x2="320" y2="230" stroke="#635F56" stroke-width="1.2" opacity="0.5"/>
-              <line x1="80" y1="60" x2="80" y2="230" stroke="#635F56" stroke-width="1.2" opacity="0.5"/>
-              <circle cx="200" cy="160" r="5" fill="#C0562D"/>
-              <circle cx="320" cy="80" r="5" fill="#C0562D"/>
-            </svg>
+          <div class="topic-image-col">
+            <img src="assets/kobe-bekobe.jpg" alt="BE KOBE Monument at Twilight" class="topic-card-photo" loading="lazy">
+            <div class="topic-image-scrim"></div>
             <div class="topic-image-overlay-badge">
-              <span>Techno-Economics · TRNSYS & Python</span>
+              <span>Mindset · The Mamba Compass</span>
             </div>
           </div>
 
           <div class="topic-content-col">
             <div>
-              <div class="topic-card-kicker">Topic 03 · Applied Modeling</div>
-              <h2 class="topic-card-title">Techno-Economic & Climate Dynamics</h2>
+              <div class="topic-card-kicker">Topic 03 · Discipline & Craft</div>
+              <h2 class="topic-card-title">Personal Growth & The Mamba Discipline</h2>
               <p class="topic-card-summary">
-                Coupling meteorological time-series datasets to capital cost evaluations (CAPEX/OPEX). Assessing operational flexibility when DAC facilities operate alongside intermittent solar and wind resources.
+                Documenting personal milestones, overcoming learning plateaus, reframing mental fatigue, and building unshakeable competence through thousands of unglamorous, deliberate repetitions in silence.
               </p>
 
               <ul class="topic-bullets-list">
-                <li><b>Time-Varying Climate Data:</b> Hourly ambient temperature and humidity impact modeling.</li>
-                <li><b>Levelized Cost Calculation:</b> Computing cost per ton CO₂ across 25-year plant lifetimes.</li>
-                <li><b>Grid Integration:</b> Flexible scheduling to avoid peak electricity pricing tariffs.</li>
+                <li><b>The 4:00 AM Ethos:</b> Embracing the early, quiet hours as the authentic ground of personal mastery.</li>
+                <li><b>Endurance & Compounding:</b> Cultivating long-term stamina when immediate external validation is absent.</li>
+                <li><b>Intellectual Honesty:</b> Conducting unflinching audits of personal biases, knowledge gaps, and room for evolution.</li>
               </ul>
             </div>
 
             <div class="topic-links-row">
-              <a href="projects.html" class="topic-btn-primary">
-                <span>View Techno-Economic Research</span>
-                <span>→</span>
+              <a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="topic-btn-primary">
+                <span>Read Essays on Notion Blog</span>
+                <span>↗</span>
               </a>
-              <a href="connect.html" class="topic-btn-secondary">Collaborate on Modeling</a>
+              <a href="index.html#the-creed" class="topic-btn-secondary">Revisit The Mamba Creed</a>
             </div>
           </div>
         </article>
 
-        <!-- TOPIC 04: Systems Thinking & Culture -->
+        <!-- TOPIC 04: Contemporary Dialogues & Cultural Inquiries (对时代与前沿话题的探讨) -->
         <article class="topic-rich-card">
-          <div class="topic-image-col" style="background: linear-gradient(135deg, #F0EFE9 0%, #E3E0D6 100%);">
-            <svg class="topic-visual-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="200,60 290,130 250,230 150,230 110,130" stroke="#1B1917" stroke-width="1.5" fill="none" opacity="0.5"/>
-              <circle cx="200" cy="60" r="4" fill="#FDB927"/>
-              <circle cx="290" cy="130" r="4" fill="#FDB927"/>
-              <circle cx="250" cy="230" r="4" fill="#FDB927"/>
-              <circle cx="150" cy="230" r="4" fill="#FDB927"/>
-              <circle cx="110" cy="130" r="4" fill="#FDB927"/>
-            </svg>
+          <div class="topic-image-col">
+            <img src="assets/hobby-rockbar.jpg" alt="Underground Rock Bar Poster Wall" class="topic-card-photo" loading="lazy">
+            <div class="topic-image-scrim"></div>
             <div class="topic-image-overlay-badge">
-              <span>Culture · Footwear · Mamba Spirit</span>
+              <span>Dialogue · Technology & Culture</span>
             </div>
           </div>
 
           <div class="topic-content-col">
             <div>
-              <div class="topic-card-kicker">Topic 04 · Cross-Disciplinary Reflection</div>
-              <h2 class="topic-card-title">Systems Thinking, Design & Culture</h2>
+              <div class="topic-card-kicker">Topic 04 · Contemporary Discourse</div>
+              <h2 class="topic-card-title">Contemporary Dialogues & Cultural Inquiries</h2>
               <p class="topic-card-summary">
-                How passions outside engineering—such as footwear architecture, the discipline of basketball, analog rock frequencies, and backcountry solitude—inform problem-solving frameworks.
+                Critical commentaries on emergent technology shifts, AI ergonomics, spatial video game tactics (Valorant mechanics), athletic footwear innovation, and underground musical expressions.
               </p>
 
               <ul class="topic-bullets-list">
-                <li><b>Footwear Architecture:</b> Structural polymers, knit tensile physics, and human biomechanics.</li>
-                <li><b>The Mamba Standard:</b> Translating athletic repetition and focus into academic persistence.</li>
-                <li><b>Analog Catharsis:</b> High sensitivity, rock music, and solitary transit on bicycle trails.</li>
+                <li><b>Technological Horizons:</b> Examining how AI systems and automation alter human craft and creative autonomy.</li>
+                <li><b>Tactical Ergonomics:</b> Spatial coordination, utility timing, and decision-making under high-pressure competitive gaming.</li>
+                <li><b>Sonic Catharsis:</b> Underground rock music, vinyl textures, and analog dissonance as antidotes to modern fatigue.</li>
               </ul>
             </div>
 
             <div class="topic-links-row">
-              <a href="blog.html" class="topic-btn-primary">
-                <span>Explore Articles in Blog</span>
-                <span>→</span>
+              <a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="topic-btn-primary">
+                <span>Read Essays on Notion Blog</span>
+                <span>↗</span>
               </a>
-              <a href="about.html" class="topic-btn-secondary">Read Bio & Passions</a>
+              <a href="connect.html" class="topic-btn-secondary">Share Perspectives & Connect</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TOPIC 05: Book Reflections & Intellectual Margins (读书体会与思想札记) -->
+        <article class="topic-rich-card">
+          <div class="topic-image-col">
+            <img src="assets/travel-ijen.jpg" alt="Mount Ijen Turquoise Sulfur Crater" class="topic-card-photo" loading="lazy">
+            <div class="topic-image-scrim"></div>
+            <div class="topic-image-overlay-badge">
+              <span>Literature · Philosophy · Synthesis</span>
+            </div>
+          </div>
+
+          <div class="topic-content-col">
+            <div>
+              <div class="topic-card-kicker">Topic 05 · Intellectual Margins</div>
+              <h2 class="topic-card-title">Book Reflections & Intellectual Margins</h2>
+              <p class="topic-card-summary">
+                Critical margin notes, concept syntheses, and cross-disciplinary takeaways from foundational texts across philosophy, thermodynamics, psychology, history, and narrative literature.
+              </p>
+
+              <ul class="topic-bullets-list">
+                <li><b>First-Principles Distillation:</b> Extracting enduring mental models from seminal scientific and philosophical works.</li>
+                <li><b>Cross-Disciplinary Synapses:</b> Mapping physical thermodynamic laws to human decision-making and cognitive stamina.</li>
+                <li><b>Lived Principles:</b> Translating abstract philosophical treatises into daily protocols of action and quiet endurance.</li>
+              </ul>
+            </div>
+
+            <div class="topic-links-row">
+              <a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="topic-btn-primary">
+                <span>Read Essays on Notion Blog</span>
+                <span>↗</span>
+              </a>
+              <a href="blog.html" class="topic-btn-secondary">Browse Reading Notes in Blog</a>
             </div>
           </div>
         </article>
@@ -644,5 +689,35 @@
     </div>
   </footer>
 
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('mobileMenuToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (toggleBtn && drawer) {
+        const hamburger = toggleBtn.querySelector('.hamburger-icon');
+        const closeIcon = toggleBtn.querySelector('.close-icon');
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = drawer.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', isOpen);
+          if (isOpen) {
+            hamburger.style.display = 'none';
+            closeIcon.style.display = 'block';
+          } else {
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!drawer.contains(e.target) && !toggleBtn.contains(e.target) && drawer.classList.contains('open')) {
+            drawer.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

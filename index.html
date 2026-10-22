@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -508,18 +508,19 @@
     .creed-text-line.punchline-gold {
       font-size: clamp(2.2rem, 4.2vw, 3.6rem);
       font-weight: 600;
-      color: var(--lakers-gold);
+      color: #FFFFFF;
       margin-top: 1.2rem;
       letter-spacing: -0.015em;
       line-height: 1.2;
-      text-shadow: 0 0 24px rgba(253, 185, 39, 0.4), 0 3px 6px rgba(0,0,0,0.5);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0,0,0,0.5);
     }
 
     .creed-text-line.punchline-gold em {
       font-style: italic;
-      color: #FFFFFF;
+      color: var(--lakers-gold);
       border-bottom: 2px solid var(--lakers-gold);
       padding-bottom: 2px;
+      text-shadow: 0 0 24px rgba(253, 185, 39, 0.6);
     }
 
     .creed-footer-tribute {
@@ -528,8 +529,8 @@
       border-top: 1px solid rgba(253, 185, 39, 0.25);
       display: flex;
       justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
       gap: 1rem;
       font-family: var(--sc-font-mono);
       font-size: 0.78rem;
@@ -1034,7 +1035,7 @@
         <li><a href="connect.html" class="nav-link">Connect</a></li>
       </ul>
 
-      <!-- Right: Search Box + Direct Connect Button -->
+      <!-- Right: Search Box + Mobile Menu Toggle -->
       <div class="nav-right-tools">
         <div class="nav-search-wrap">
           <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1043,9 +1044,27 @@
           </svg>
           <input type="text" id="siteSearchInput" class="nav-search-input" placeholder="Search (e.g. DAC, Kobe)..." autocomplete="off">
         </div>
-        <a href="connect.html" class="nav-cta-btn">Connect</a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
     </nav>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+          <li><a href="about.html" class="mobile-nav-link">About</a></li>
+          <li><a href="projects.html" class="mobile-nav-link">Projects</a></li>
+          <li><a href="topics.html" class="mobile-nav-link">Topics</a></li>
+          <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Blog ↗</a></li>
+          <li><a href="connect.html" class="mobile-nav-link">Connect</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <p class="mobile-nav-tagline">“When you think you can't, UCONN.” — Gianna Bryant</p>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -1058,7 +1077,7 @@
         <div class="hero-grid">
           
           <div class="hero-copy">
-            <div class="editorial-kicker">Welcome · Monograph Issue 01</div>
+            <div class="editorial-kicker">welcome, Permission to Be Human.</div>
             <h1 class="hero-title">
               Engineering the <em>unseen</em> cycles of power and climate.
             </h1>
@@ -1067,8 +1086,8 @@
             </p>
 
             <div class="hero-badges">
-              <span class="hero-badge"><b>Focus:</b> Direct Air Capture</span>
-              <span class="hero-badge"><b>Method:</b> Life Cycle Assessment</span>
+              <span class="hero-badge"><b>Focus:</b> Climate Change</span>
+              <span class="hero-badge"><b>Passion:</b> Exploring The World</span>
               <span class="hero-badge"><b>Archetype:</b> INFJ / HSP</span>
             </div>
 
@@ -1109,8 +1128,6 @@
           <div class="creed-header-bar">
             <div class="creed-badge-lakers">
               <span>The Mamba Mentality</span>
-              <span>·</span>
-              <span>Lakers Purple & Gold Edition</span>
             </div>
             <div class="creed-mamba-spec">
               <span>8 · 24 LEGACY</span>
@@ -1154,6 +1171,9 @@
             </div>
             <div class="tribute-subtext">
               Adopted as a quiet daily compass for engineering research & relentless self-discipline.
+            </div>
+            <div class="tribute-quote-gigi" style="width: 100%; margin-top: 1rem; padding-top: 0.9rem; border-top: 1px dashed rgba(253, 185, 39, 0.25); font-family: var(--sc-font-mono); font-size: 0.88rem; color: var(--lakers-gold-bright); letter-spacing: 0.04em; text-align: right;">
+              “When you think you can't, UCONN.” — Gianna Bryant
             </div>
           </footer>
 
@@ -1534,6 +1554,33 @@
             } else {
               window.location.href = 'topics.html';
             }
+          }
+        });
+      }
+      // 4. Mobile Menu Drawer Toggle
+      const toggleBtn = document.getElementById('mobileMenuToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (toggleBtn && drawer) {
+        const hamburger = toggleBtn.querySelector('.hamburger-icon');
+        const closeIcon = toggleBtn.querySelector('.close-icon');
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = drawer.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', isOpen);
+          if (isOpen) {
+            hamburger.style.display = 'none';
+            closeIcon.style.display = 'block';
+          } else {
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!drawer.contains(e.target) && !toggleBtn.contains(e.target) && drawer.classList.contains('open')) {
+            drawer.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
           }
         });
       }
