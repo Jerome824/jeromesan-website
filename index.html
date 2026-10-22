@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Jeromesan · Engineering, Mindset & Horizons</title>
-  <meta name="description" content="Personal monograph of Jeromesan: 3rd Power Engineering student researching Direct Air Capture (DAC) and Life Cycle Assessment (LCA). INFJ / HSP.">
+  <title>Jerome Lau · Engineering, Mindset & Horizons</title>
+  <meta name="description" content="Personal monograph of Jerome Lau: Power Engineering researcher investigating Direct Air Capture (DAC) and Life Cycle Assessment (LCA). INFJ / HSP.">
   
   <!-- Typography: Newsreader (Editorial Serif), Plus Jakarta Sans, JetBrains Mono, and Caveat (Handwritten Signature) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -390,27 +390,40 @@
     }
 
     /* =========================================================================
-       ACT 2: THE CREED (LAKERS PURPLE & GOLD + MAMBA SNAKE SCALES)
+       ACT 2: THE CREED (LAKERS PURPLE & GOLD + KOBE BRYANT BACKGROUND)
        ========================================================================= */
     .creed-act {
       position: relative;
-      background: linear-gradient(145deg, #2A1042 0%, #461D6E 55%, #30134C 100%);
+      background: #19092B;
       color: #FFFFFF;
       padding: clamp(5.5rem, 8vw, 8rem) 0;
       border-top: 2px solid var(--lakers-gold);
       border-bottom: 2px solid var(--lakers-gold);
       overflow: hidden;
-      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.25);
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.4);
     }
 
-    .mamba-scales-overlay {
+    .creed-bg-image {
+      position: absolute;
+      inset: -20px;
+      background-image: url('assets/kobe-creed-bg.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      opacity: 0.42;
+      z-index: 1;
+      pointer-events: none;
+      transform: scale(1.05);
+    }
+
+    .creed-bg-overlay {
       position: absolute;
       inset: 0;
+      background: radial-gradient(circle at 45% 45%, rgba(70, 29, 110, 0.5) 0%, rgba(22, 8, 38, 0.88) 100%),
+                  linear-gradient(180deg, rgba(25, 9, 43, 0.65) 0%, rgba(25, 9, 43, 0.9) 100%);
+      z-index: 2;
       pointer-events: none;
-      z-index: 1;
-      opacity: 0.16;
-      background-size: 38px 65px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='65' viewBox='0 0 38 65'%3E%3Cpath d='M19 0 L38 32.5 L19 65 L0 32.5 Z' fill='none' stroke='%23FDB927' stroke-width='0.9'/%3E%3Cpath d='M19 8 L33 32.5 L19 57 L5 32.5 Z' fill='none' stroke='%23FFFFFF' stroke-width='0.4' stroke-opacity='0.4'/%3E%3Ccircle cx='19' cy='32.5' r='1.5' fill='%23FDB927'/%3E%3C/svg%3E");
     }
 
     .mamba-watermark {
@@ -424,12 +437,12 @@
       color: rgba(253, 185, 39, 0.04);
       user-select: none;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     .creed-stage-inner {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       max-width: 920px;
       margin: 0 auto;
     }
@@ -1023,7 +1036,7 @@
       <!-- Left: Signature style logo -> Jumps to Home index.html -->
       <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
         <span class="sig-script">Jerome</span>
-        <span class="sig-sans">SAN</span>
+        <span class="sig-sans">LAU</span>
       </a>
 
       <!-- Center: SUBPAGE NAV LINKS -->
@@ -1114,10 +1127,10 @@
           <div class="hero-copy">
             <div class="editorial-kicker">welcome, Permission to Be Human.</div>
             <h1 class="hero-title">
-              Engineering the <em>unseen</em> cycles of power and climate.
+              Engineering climate solutions, observing human nature, and <em>exploring</em> the world.
             </h1>
             <p class="hero-lead">
-              Observant by nature, disciplined by purpose. A third-year Power Engineering researcher investigating Direct Air Capture (DAC) systems and Life Cycle Assessment (LCA) boundaries.
+              Observant by nature, disciplined by purpose. A Power Engineering researcher investigating Direct Air Capture (DAC) and climate solutions, with a deep reverence for human psychology and global exploration.
             </p>
 
             <div class="hero-badges">
@@ -1151,10 +1164,11 @@
     </section>
 
     <!-- ===================================================================
-         ACT 2: THE CREED · LAKERS PURPLE & GOLD + BLACK MAMBA SNAKE SCALES
+         ACT 2: THE CREED · LAKERS PURPLE & GOLD + KOBE BRYANT BACKGROUND
          =================================================================== -->
     <section id="the-creed" class="creed-act">
-      <div class="mamba-scales-overlay" aria-hidden="true"></div>
+      <div class="creed-bg-image" aria-hidden="true"></div>
+      <div class="creed-bg-overlay" aria-hidden="true"></div>
       <div class="mamba-watermark" aria-hidden="true">24</div>
 
       <div class="container">
@@ -1480,9 +1494,9 @@
         
         <!-- Left Side: Brand, Bio, Social Icons -->
         <div class="footer-brand-side">
-          <a href="index.html" class="brand-signature-mark" title="Jeromesan Homepage">
+          <a href="index.html" class="brand-signature-mark" title="Jerome Lau Homepage">
             <span class="sig-script">Jerome</span>
-            <span class="sig-sans">SAN</span>
+            <span class="sig-sans">LAU</span>
           </a>
           <p class="footer-bio">
             Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
@@ -1502,7 +1516,7 @@
           <div>
             <h4 class="footer-col-heading">Explore</h4>
             <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
-              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="about.html" class="footer-text-link">About Jeromesan</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="about.html" class="footer-text-link">About Jerome Lau</a></li>
               <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
               <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="topics.html" class="footer-text-link">Research Domains</a></li>
               <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="contact.html" class="footer-text-link">Contact</a></li>
@@ -1536,7 +1550,7 @@
       <!-- Bottom Bar -->
       <div class="footer-bottom-strip">
         <div>
-          © 2026 Jeromesan. All rights reserved.
+          © 2026 Jerome Lau. All rights reserved.
         </div>
         <div class="footer-legal-menu">
           <a href="#">Privacy Policy</a>
