@@ -797,3 +797,114 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
     display: none !important;
   }
 }
+
+/* =========================================================================
+   NAV DROPDOWN (TOPICS HOVER MENU - IMAGE 4 REFERENCE)
+   ========================================================================= */
+.nav-item-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.dropdown-chevron {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5;
+  transition: transform 0.25s ease;
+  vertical-align: middle;
+}
+
+.nav-item-dropdown:hover .dropdown-chevron,
+.nav-item-dropdown:focus-within .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--sc-surface, #FFFFFF);
+  border: 1px solid var(--sc-line, #E6E1D5);
+  border-radius: 12px;
+  padding: 8px 6px;
+  min-width: 260px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+  z-index: 1000;
+}
+
+/* Hover bridge padding so mouse smoothly glides into menu */
+.nav-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.nav-item-dropdown:hover .nav-dropdown-menu,
+.nav-item-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-family: var(--sc-font-text, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--sc-ink, #1B1917);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.dropdown-item-num {
+  font-family: var(--sc-font-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--sc-ink-faint, #989284);
+}
+
+.dropdown-item:hover {
+  background: var(--sc-surface-alt, #F3EFE6);
+  color: var(--lakers-purple, #461D6E);
+  padding-left: 17px;
+}
+
+.dropdown-item:hover .dropdown-item-num {
+  color: var(--lakers-purple, #461D6E);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--sc-line, #E6E1D5);
+  margin: 6px 6px;
+}
+
+.dropdown-item-all {
+  font-weight: 600;
+  color: var(--lakers-purple, #461D6E);
+}
+
+.dropdown-item-all:hover {
+  background: rgba(70, 29, 110, 0.08);
+}

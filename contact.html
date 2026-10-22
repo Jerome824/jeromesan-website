@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact · Jeromesan</title>
+  <meta name="description" content="Get in touch with Jeromesan: Power Engineering student researching Direct Air Capture and Life Cycle Assessment. Reach out for research collaborations or dialogue.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=4">
+  
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFE6;
+      --sc-footer-bg: #F5F2EB;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #635F56;
+      --sc-ink-faint: #989284;
+      --sc-line: #E6E1D5;
+      --lakers-purple: #461D6E;
+      --lakers-gold: #FDB927;
+      --sc-font-display: "Newsreader", Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--sc-canvas); color: var(--sc-ink); font-family: var(--sc-font-text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+
+    /* Nav Bar */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 74px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem); z-index: 900; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90); border-bottom: 1px solid var(--sc-line); gap: 1.5rem;
+    }
+    .brand-signature-mark { display: flex; align-items: baseline; gap: 4px; text-decoration: none; color: var(--sc-ink); }
+    .sig-script { font-family: var(--sc-font-sig); font-size: 2.15rem; font-weight: 700; line-height: 1; }
+    .sig-sans { font-family: var(--sc-font-text); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+    .nav-center-menu { display: flex; align-items: center; gap: clamp(1.2rem, 2.2vw, 2.5rem); list-style: none; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--sc-ink-soft); text-decoration: none; position: relative; padding: 6px 2px; }
+    .nav-link.active, .nav-link:hover { color: var(--sc-ink); }
+    .nav-link.active::after, .nav-link:hover::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--lakers-gold); }
+    .nav-search-wrap { position: relative; display: flex; align-items: center; }
+    .nav-search-input { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 99px; padding: 7px 14px 7px 34px; font-size: 0.82rem; width: 175px; outline: none; }
+    .nav-search-icon { position: absolute; left: 11px; width: 14px; height: 14px; color: var(--sc-ink-faint); }
+
+    /* =========================================================================
+       HERO BLOCK (REFERENCING IMAGE 1 & IMAGE 2)
+       ========================================================================= */
+    .contact-hero-wrap {
+      padding: 130px 0 60px 0;
+    }
+    .contact-hero-card {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 28px;
+      padding: clamp(2rem, 4vw, 3.5rem);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
+    }
+    .contact-photo-frame {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--sc-surface-alt);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.06);
+    }
+    .contact-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .contact-photo-frame:hover img {
+      transform: scale(1.03);
+    }
+    .contact-hero-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-hero-title {
+      font-family: var(--sc-font-text);
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 700;
+      color: var(--sc-ink);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.4rem;
+    }
+    .contact-hero-desc {
+      font-size: clamp(1.02rem, 1.35vw, 1.15rem);
+      color: var(--sc-ink-soft);
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    /* =========================================================================
+       OFFICIAL CONTACT CHANNELS (WITH OFFICIAL BRAND ICONS)
+       ========================================================================= */
+    .channels-section {
+      padding: 4rem 0 2rem 0;
+    }
+    .channels-section-header {
+      margin-bottom: 2rem;
+    }
+    .channels-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .channels-heading {
+      font-family: var(--sc-font-display);
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--sc-ink);
+    }
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .channel-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .channel-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+      border-color: var(--lakers-purple);
+    }
+    .channel-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      background: var(--sc-surface-alt);
+      transition: transform 0.25s ease;
+    }
+    .channel-card:hover .channel-icon-wrap {
+      transform: scale(1.08);
+    }
+    .channel-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--sc-ink);
+      margin-bottom: 0.3rem;
+    }
+    .channel-handle {
+      font-family: var(--sc-font-mono);
+      font-size: 0.76rem;
+      color: var(--lakers-purple);
+      font-weight: 600;
+      word-break: break-all;
+      margin-bottom: 0.5rem;
+    }
+    .channel-desc {
+      font-size: 0.84rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+    }
+
+    /* =========================================================================
+       INTERACTIVE FORM (REFERENCING IMAGE 3)
+       ========================================================================= */
+    .form-section {
+      padding: 3rem 0 6rem 0;
+    }
+    .form-wrapper-box {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 24px;
+      padding: clamp(2.2rem, 5vw, 4rem);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.02);
+    }
+    .form-header-center {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+    .form-main-title {
+      font-family: var(--sc-font-text);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--sc-ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+    .form-main-subtitle {
+      font-size: 1.02rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    
+    .form-grid-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .form-control-input, .form-control-select, .form-control-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: #FFFFFF;
+      border: 1px solid var(--sc-line);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--sc-ink);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .form-control-input::placeholder, .form-control-textarea::placeholder {
+      color: var(--sc-ink-faint);
+    }
+    .form-control-input:focus, .form-control-select:focus, .form-control-textarea:focus {
+      border-color: var(--sc-ink);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+    }
+    .form-control-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%231B1917' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 12px;
+      cursor: pointer;
+    }
+    .form-control-textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    /* Checkboxes styling matching Image 3 */
+    .form-checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    .form-checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--sc-ink);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+    .form-checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--sc-ink);
+      cursor: pointer;
+    }
+    .form-disclaimer {
+      font-size: 0.78rem;
+      color: var(--sc-ink-soft);
+      margin-top: 0.2rem;
+    }
+
+    /* Yellow SEND button matching Image 3 */
+    .form-submit-row {
+      text-align: center;
+      margin-top: 1.8rem;
+    }
+    .btn-send-yellow {
+      display: inline-block;
+      min-width: 150px;
+      padding: 14px 32px;
+      background: #FFE500;
+      color: #1B1917;
+      border: 1px solid #E6CF00;
+      border-radius: 10px;
+      font-family: var(--sc-font-text);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(255, 229, 0, 0.4);
+    }
+    .btn-send-yellow:hover {
+      background: #FED700;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 229, 0, 0.55);
+    }
+    .btn-send-yellow:active {
+      transform: translateY(0);
+    }
+
+    .form-success-banner {
+      display: none;
+      background: #E8F5E9;
+      border: 1px solid #C8E6C9;
+      color: #2E7D32;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .contact-hero-card { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row-2col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">SAN</span>
+      </a>
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        
+        <!-- Topics Dropdown (Image 4 Reference) -->
+        <li class="nav-item-dropdown">
+          <a href="topics.html" class="nav-link nav-dropdown-trigger">
+            <span>Topics</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="topics.html#topic-01" class="dropdown-item">
+              <span>Observations & Systems</span>
+              <span class="dropdown-item-num">01</span>
+            </a>
+            <a href="topics.html#topic-02" class="dropdown-item">
+              <span>Psychology & Inner Architecture</span>
+              <span class="dropdown-item-num">02</span>
+            </a>
+            <a href="topics.html#topic-03" class="dropdown-item">
+              <span>Personal Growth & Discipline</span>
+              <span class="dropdown-item-num">03</span>
+            </a>
+            <a href="topics.html#topic-04" class="dropdown-item">
+              <span>Contemporary Dialogues</span>
+              <span class="dropdown-item-num">04</span>
+            </a>
+            <a href="topics.html#topic-05" class="dropdown-item">
+              <span>Book Reflections & Margins</span>
+              <span class="dropdown-item-num">05</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="topics.html" class="dropdown-item dropdown-item-all">
+              <span>All Topics</span>
+              <span>→</span>
+            </a>
+          </div>
+        </li>
+
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Notion Blog">Blog ↗</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+      <div class="nav-right-tools">
+        <div class="nav-search-wrap">
+          <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="nav-search-input" placeholder="Search...">
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+          <li><a href="about.html" class="mobile-nav-link">About</a></li>
+          <li><a href="projects.html" class="mobile-nav-link">Projects</a></li>
+          <li><a href="topics.html" class="mobile-nav-link">Topics</a></li>
+          <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Blog ↗</a></li>
+          <li><a href="contact.html" class="mobile-nav-link active">Contact</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <p class="mobile-nav-tagline">“When you think you can't, UCONN.” — Gianna Bryant</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+    <!-- HERO SECTION (IMAGE 1 & IMAGE 2 REFERENCE) -->
+    <section class="contact-hero-wrap">
+      <div class="container">
+        <div class="contact-hero-card">
+          
+          <!-- Photo Frame with User's Photo at Bromo -->
+          <div class="contact-photo-frame">
+            <img src="assets/profile-contact.jpg" alt="Jeromesan at Mount Bromo, Indonesia" loading="eager">
+          </div>
+
+          <!-- Contact Title & Welcoming Prose -->
+          <div class="contact-hero-info">
+            <h1 class="contact-hero-title">Contact</h1>
+            <p class="contact-hero-desc">
+              I’d love to hear from you! Whether you have an inquiry about negative-emissions engineering and dynamic DAC modeling, feedback to share on my writing, thoughts on systems thinking and psychology, or simply want to connect over mutual passions in basketball, music, and travel—I’m all ears. While academic research keeps me in deep focus blocks, please know that every message is read with care and deeply appreciated.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFICIAL DIRECT CHANNELS (WITH OFFICIAL LOGOS) -->
+    <section class="channels-section">
+      <div class="container">
+        <div class="channels-section-header">
+          <span class="channels-kicker">Direct Connect · Official Channels</span>
+          <h2 class="channels-heading">Reach Me Across Platforms</h2>
+        </div>
+
+        <div class="channels-grid">
+          
+          <!-- Email (Outlook) -->
+          <a href="mailto:jerome.lau824@outlook.com" class="channel-card">
+            <div class="channel-icon-wrap" style="color: #0078D4;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <h3 class="channel-title">Email</h3>
+            <span class="channel-handle">jerome.lau824@outlook.com</span>
+            <p class="channel-desc">Primary channel for academic inquiries, speaking, and research correspondence.</p>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="channel-card">
+            <div class="channel-icon-wrap" style="color: #0A66C2;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </div>
+            <h3 class="channel-title">LinkedIn</h3>
+            <span class="channel-handle">Xinyu (Jerome) Liu</span>
+            <p class="channel-desc">Professional background, power engineering track, and formal research updates.</p>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="channel-card">
+            <div class="channel-icon-wrap" style="color: #24292F;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </div>
+            <h3 class="channel-title">GitHub</h3>
+            <span class="channel-handle">@Jerome824</span>
+            <p class="channel-desc">Simulation codes, data processing scripts, and open-source project files.</p>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="channel-card">
+            <div class="channel-icon-wrap" style="color: #E1306C;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <h3 class="channel-title">Instagram</h3>
+            <span class="channel-handle">@jerome.2077</span>
+            <p class="channel-desc">Visual journals, mountain expeditions, Kobe sneakers, and candid perspectives.</p>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="channel-card">
+            <div class="channel-icon-wrap" style="color: #FF0000;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+            <h3 class="channel-title">YouTube</h3>
+            <span class="channel-handle">@Losbean-824</span>
+            <p class="channel-desc">Documentary fragments, acoustic guitar sessions, and creative video edits.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE FORM (IMAGE 3 REFERENCE) -->
+    <section class="form-section">
+      <div class="container">
+        <div class="form-wrapper-box">
+          
+          <div class="form-header-center">
+            <h2 class="form-main-title">Have a question?</h2>
+            <p class="form-main-subtitle">
+              For research collaborations, academic inquiries, or thoughtful dialogue, please use this form to get in touch with Jeromesan.
+            </p>
+          </div>
+
+          <form id="contactInquiryForm" class="form-grid-layout" onsubmit="event.preventDefault(); document.getElementById('formSuccessBanner').style.display='block'; this.reset();">
+            
+            <!-- Reason for Contact* -->
+            <div>
+              <select class="form-control-select" required>
+                <option value="" disabled selected>Reason for Contact*</option>
+                <option value="research">Academic Research & Net-Negative Emissions</option>
+                <option value="dac">Direct Air Capture (DAC) & LCA Collaboration</option>
+                <option value="topics">Thoughts on Topics & Essays (INFJ / Mamba / Systems)</option>
+                <option value="general">General Greeting & Intellectual Exchange</option>
+                <option value="other">Other Inquiries</option>
+              </select>
+            </div>
+
+            <!-- First Name* & Last Name -->
+            <div class="form-row-2col">
+              <input type="text" class="form-control-input" placeholder="First Name*" required>
+              <input type="text" class="form-control-input" placeholder="Last Name">
+            </div>
+
+            <!-- Email Address* & Subject* -->
+            <div class="form-row-2col">
+              <input type="email" class="form-control-input" placeholder="Email Address*" required>
+              <input type="text" class="form-control-input" placeholder="Subject*" required>
+            </div>
+
+            <!-- Message* -->
+            <div>
+              <textarea class="form-control-textarea" placeholder="Message*" required></textarea>
+            </div>
+
+            <!-- Checkboxes matching Image 3 -->
+            <div class="form-checkbox-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox">
+                <span>Yes! Please send occasional Important Updates from Jeromesan.</span>
+              </label>
+              <label class="form-checkbox-label">
+                <input type="checkbox">
+                <span>Yes! Also, sign me up for Jerome's reflections & newsletter.</span>
+              </label>
+              <div class="form-disclaimer">
+                You can unsubscribe from these communications at any time.
+              </div>
+            </div>
+
+            <!-- Yellow Submit Button matching Image 3 -->
+            <div class="form-submit-row">
+              <button type="submit" class="btn-send-yellow">SEND</button>
+            </div>
+
+            <div id="formSuccessBanner" class="form-success-banner">
+              ✓ Thank you for reaching out! Your message has been received. Jerome will get back to you shortly.
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main-row">
+        
+        <!-- Left Side: Brand, Bio, Social Icons -->
+        <div class="footer-brand-side">
+          <a href="index.html" class="brand-signature-mark" title="Jeromesan Homepage">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">SAN</span>
+          </a>
+          <p class="footer-bio">
+            Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="Direct Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Right Side: 3 Columns -->
+        <div class="footer-nav-three-cols">
+          <div>
+            <h4 class="footer-col-heading">Explore</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="about.html" class="footer-text-link">About Jeromesan</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="topics.html" class="footer-text-link">Themes & Topics</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="contact.html" class="footer-text-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Writing & Notes</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Live Notion Blog &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="blog.html" class="footer-text-link">Featured Essays</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="index.html#the-creed" class="footer-text-link">The Mamba Creed</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">Connect</h4>
+            <ul class="footer-col-links" style="list-style: none !important; padding: 0 !important; margin: 0 !important;">
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">LinkedIn &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-text-link">YouTube &#x2197;</a></li>
+              <li style="list-style: none !important; margin-bottom: 0.85rem;"><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-strip">
+        <div>
+          © 2026 Jeromesan. All rights reserved.
+        </div>
+        <div class="footer-legal-menu">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('mobileMenuToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (toggleBtn && drawer) {
+        const hamburger = toggleBtn.querySelector('.hamburger-icon');
+        const closeIcon = toggleBtn.querySelector('.close-icon');
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = drawer.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', isOpen);
+          if (isOpen) {
+            hamburger.style.display = 'none';
+            closeIcon.style.display = 'block';
+          } else {
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!drawer.contains(e.target) && !toggleBtn.contains(e.target) && drawer.classList.contains('open')) {
+            drawer.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
