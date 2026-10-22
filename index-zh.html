@@ -1,0 +1,1554 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jerome Lau (刘心宇) · 个人学术主页</title>
+  <meta name="description" content="刘心宇 (Jerome Lau) 的个人主页。深耕直接空气碳捕集 (DAC) 动态系统建模与工程负排放技术 (E-NETs) 多尺度综合评价，探索复杂系统、认知心理与探索世界。">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=3">
+
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFE6;
+      --sc-footer-bg: #F5F2EB;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #635F56;
+      --sc-ink-faint: #989284;
+      --sc-line: #E6E1D5;
+      --sc-line-light: #F0EBE0;
+      --sc-accent: #264639;
+      --lakers-purple: #461D6E;
+      --lakers-gold: #FDB927;
+      --lakers-gold-soft: #FFE082;
+      --sc-font-display: "Newsreader", "Noto Serif SC", "Songti SC", SimSun, Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--sc-canvas);
+      color: var(--sc-ink);
+      font-family: var(--sc-font-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Reading Progress Bar */
+    .reading-progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      z-index: 1000;
+    }
+
+    .reading-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--lakers-purple), var(--lakers-gold));
+      transition: width 0.1s ease-out;
+    }
+
+    /* Fixed Navigation Bar */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem);
+      z-index: 900;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90);
+      border-bottom: 1px solid var(--sc-line);
+      gap: 1.5rem;
+    }
+
+    .brand-signature-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--sc-ink);
+    }
+
+    .sig-script {
+      font-family: var(--sc-font-sig);
+      font-size: 2.15rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .sig-sans {
+      font-family: var(--sc-font-text);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sc-ink);
+    }
+
+    .sig-cn-tag {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--lakers-purple);
+      margin-left: 2px;
+      font-family: var(--sc-font-text);
+    }
+
+    .nav-center-menu {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2vw, 2.2rem);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      position: relative;
+      padding: 6px 2px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      color: var(--sc-ink);
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--lakers-gold);
+    }
+
+    .nav-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-search-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-search-input {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 99px;
+      padding: 7px 14px 7px 34px;
+      font-size: 0.82rem;
+      color: var(--sc-ink);
+      width: 180px;
+      outline: none;
+      transition: all 0.2s ease;
+      font-family: var(--sc-font-text);
+    }
+
+    .nav-search-input:focus {
+      border-color: var(--lakers-purple);
+      width: 220px;
+      box-shadow: 0 0 0 3px rgba(70, 29, 110, 0.08);
+    }
+
+    .nav-search-icon {
+      position: absolute;
+      left: 11px;
+      width: 14px;
+      height: 14px;
+      color: var(--sc-ink-faint);
+      pointer-events: none;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .editorial-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--sc-ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    /* =========================================================================
+       ACT 1: HERO SECTION
+       ========================================================================= */
+    .hero-section {
+      padding-top: 155px;
+      padding-bottom: clamp(4rem, 8vw, 7rem);
+      border-bottom: 1px solid var(--sc-line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+      line-height: 1.25;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--sc-ink);
+    }
+
+    .hero-highlight-them {
+      font-style: italic;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .hero-highlight-me {
+      color: var(--sc-ink);
+      font-weight: 700;
+    }
+
+    .hero-subquote {
+      font-family: var(--sc-font-mono);
+      font-size: 0.95rem;
+      color: var(--sc-ink-faint);
+      margin-top: -0.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      color: var(--sc-ink-soft);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badges-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badge-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      transition: all 0.2s ease;
+    }
+
+    .hero-badge-card:hover {
+      border-color: var(--lakers-purple);
+      box-shadow: 0 4px 12px rgba(70, 29, 110, 0.06);
+    }
+
+    .badge-card-tag {
+      font-family: var(--sc-font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .badge-card-val {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--sc-ink);
+      line-height: 1.4;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--lakers-purple);
+      padding: 12px 24px;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(70, 29, 110, 0.25);
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(70, 29, 110, 0.35);
+      background: #351455;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--sc-ink);
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      padding: 12px 22px;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: var(--sc-ink);
+      background: var(--sc-surface-alt);
+    }
+
+    /* Hero Portrait Card */
+    .hero-portrait-wrap {
+      position: relative;
+    }
+
+    .hero-portrait-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      position: relative;
+      border: 1px solid var(--sc-line);
+    }
+
+    .hero-portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-portrait-caption {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      color: var(--sc-ink-soft);
+    }
+
+    /* =========================================================================
+       ACT 2: THE MAMBA CREED SECTION
+       ========================================================================= */
+    .creed-section {
+      position: relative;
+      background: #1A0D26;
+      color: #FFFFFF;
+      padding: clamp(5rem, 8vw, 7.5rem) 0;
+      overflow: hidden;
+    }
+
+    .creed-bg-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: blur(1.5px);
+      transform: scale(1.02);
+      opacity: 0.65;
+    }
+
+    .creed-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(70, 29, 110, 0.82) 0%, rgba(20, 8, 32, 0.88) 100%);
+      pointer-events: none;
+    }
+
+    .creed-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .creed-badge-lakers {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--lakers-gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+
+    .creed-badge-lakers::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--lakers-gold);
+      box-shadow: 0 0 10px var(--lakers-gold);
+    }
+
+    .creed-quote-box {
+      background: rgba(18, 6, 32, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: clamp(2rem, 4vw, 3rem);
+      border-radius: 14px;
+      border: 1px solid rgba(253, 185, 39, 0.28);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+      margin-bottom: 2rem;
+    }
+
+    .creed-quote-cn {
+      font-family: var(--sc-font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.4;
+      color: #FFFFFF;
+      margin-bottom: 1rem;
+    }
+
+    .creed-quote-en {
+      font-family: var(--sc-font-display);
+      font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+      line-height: 1.4;
+      color: var(--lakers-gold-soft);
+      font-style: italic;
+    }
+
+    .creed-highlight-that {
+      color: var(--lakers-gold);
+      font-weight: 600;
+    }
+
+    .creed-highlight-dream {
+      color: #C084FC;
+      font-weight: 600;
+    }
+
+    .creed-author-tag {
+      font-family: var(--sc-font-mono);
+      font-size: 0.85rem;
+      color: var(--lakers-gold);
+      letter-spacing: 0.1em;
+      margin-top: 1.2rem;
+    }
+
+    .creed-gigi-dedication {
+      font-family: var(--sc-font-mono);
+      font-size: 0.88rem;
+      color: var(--lakers-gold-soft);
+      letter-spacing: 0.05em;
+      margin-top: 1.5rem;
+      opacity: 0.95;
+    }
+
+    /* =========================================================================
+       ACT 3: THE PEAK · CLOSING THE GLOBAL EMISSION GAP
+       ========================================================================= */
+    .peak-section {
+      padding: clamp(5rem, 8vw, 7.5rem) 0;
+      background: var(--sc-canvas);
+      border-bottom: 1px solid var(--sc-line);
+    }
+
+    .peak-header {
+      margin-bottom: 3.5rem;
+      max-width: 840px;
+    }
+
+    .peak-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      line-height: 1.2;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: var(--sc-ink);
+    }
+
+    .peak-desc {
+      font-size: 1.05rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .peak-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+
+    .card-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .engineering-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: clamp(1.8rem, 3vw, 2.5rem);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .engineering-card:hover {
+      border-color: var(--lakers-purple);
+      box-shadow: 0 12px 36px rgba(70, 29, 110, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .card-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: var(--sc-font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--sc-ink);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .card-body {
+      font-size: 0.95rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      background: var(--sc-surface-alt);
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--sc-line);
+      margin-bottom: 1.5rem;
+    }
+
+    .flow-step-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flow-step-num {
+      font-family: var(--sc-font-mono);
+      font-size: 0.68rem;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .flow-step-name {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--sc-ink);
+    }
+
+    .view-subpage-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+
+    .view-subpage-btn:hover {
+      gap: 12px;
+      color: #2E104E;
+    }
+
+    /* Telemetry Sidebar */
+    .telemetry-sidebar {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: clamp(1.8rem, 3vw, 2.2rem);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      position: sticky;
+      top: 95px;
+    }
+
+    .telemetry-title {
+      font-family: var(--sc-font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--lakers-purple);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--sc-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .telemetry-live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    .stat-row {
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-val {
+      font-family: var(--sc-font-display);
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--sc-ink);
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-val.stat-val-text {
+      font-size: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .stat-val small {
+      font-family: var(--sc-font-mono);
+      font-size: 0.9rem;
+      color: var(--sc-accent);
+      margin-left: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.84rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+    }
+
+    .stat-formula-pill {
+      margin-top: 1.5rem;
+      padding: 12px 14px;
+      background: var(--sc-surface-alt);
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.6;
+    }
+
+    /* =========================================================================
+       ACT 4: SPECTRUM · DIMENSIONS OUTSIDE THE LAB
+       ========================================================================= */
+    .spectrum-section {
+      padding: clamp(5rem, 8vw, 7.5rem) 0;
+      background: var(--sc-surface);
+      border-bottom: 1px solid var(--sc-line);
+    }
+
+    .spectrum-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .spectrum-title {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--sc-ink);
+    }
+
+    .spectrum-sub {
+      font-size: 1rem;
+      color: var(--sc-ink-soft);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .spectrum-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 2.5vw, 2.5rem);
+    }
+
+    .spectrum-item {
+      background: var(--sc-canvas);
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .spectrum-item:hover {
+      border-color: var(--lakers-purple);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(70, 29, 110, 0.06);
+    }
+
+    .spectrum-icon-tag {
+      font-family: var(--sc-font-mono);
+      font-size: 0.7rem;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .spectrum-item-title {
+      font-family: var(--sc-font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--sc-ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .spectrum-item-desc {
+      font-size: 0.88rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.65;
+    }
+
+    .spectrum-item-footer {
+      margin-top: 1.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--sc-line);
+      font-family: var(--sc-font-mono);
+      font-size: 0.72rem;
+      color: var(--sc-ink-faint);
+    }
+
+    /* =========================================================================
+       EDITORIAL FOOTER
+       ========================================================================= */
+    .site-footer {
+      background: var(--sc-footer-bg);
+      border-top: 1px solid var(--sc-line);
+      padding: clamp(4rem, 6vw, 5.5rem) 0 2.5rem 0;
+      color: var(--sc-ink);
+    }
+
+    .footer-main-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand-side {
+      max-width: 360px;
+    }
+
+    .footer-bio {
+      margin-top: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.7;
+    }
+
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 1.8rem;
+    }
+
+    .footer-social-btn {
+      color: var(--sc-ink);
+      opacity: 0.75;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-social-btn:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      color: var(--lakers-purple);
+    }
+
+    .footer-nav-three-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.8rem);
+    }
+
+    .footer-col-heading {
+      font-family: var(--sc-font-text);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col-links {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .footer-text-link {
+      font-family: var(--sc-font-text);
+      font-size: 0.92rem;
+      color: #374151;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: #D1D5DB;
+      transition: all 0.2s ease;
+    }
+
+    .footer-text-link:hover {
+      color: var(--lakers-purple);
+      text-decoration-color: var(--lakers-purple);
+    }
+
+    .footer-bottom-strip {
+      border-top: 1px solid var(--sc-line);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+    }
+
+    .footer-legal-menu {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal-menu a {
+      color: var(--sc-ink-soft);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal-menu a:hover {
+      color: var(--sc-ink);
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .nav-center-menu { display: none; }
+      .footer-main-row { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-brand-side { max-width: none; }
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .peak-grid { grid-template-columns: 1fr; }
+      .spectrum-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .spectrum-grid { grid-template-columns: 1fr; }
+      .footer-nav-three-cols { grid-template-columns: 1fr; gap: 2.2rem; }
+      .hero-badges-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Track -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-bar" data-sc-progress></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="site-nav">
+      <!-- Left: Signature Logo -->
+      <a href="index-zh.html" class="brand-signature-mark" title="返回中文首页">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">LAU</span>
+        <span class="sig-cn-tag">刘心宇</span>
+      </a>
+
+      <!-- Center: Chinese Menu Links -->
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link">关于我</a></li>
+        <li><a href="projects.html" class="nav-link">学术成果</a></li>
+        
+        <!-- Topics Dropdown (Image 4 Reference) -->
+        <li class="nav-item-dropdown">
+          <a href="topics.html" class="nav-link nav-dropdown-trigger">
+            <span>深度专栏</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="topics.html#topic-01" class="dropdown-item">
+              <span>01 / 观察与系统认知 (Observations & Systems)</span>
+              <span class="dropdown-item-num">01</span>
+            </a>
+            <a href="topics.html#topic-02" class="dropdown-item">
+              <span>02 / 心理学与内在构架 (Psychology & Mind)</span>
+              <span class="dropdown-item-num">02</span>
+            </a>
+            <a href="topics.html#topic-03" class="dropdown-item">
+              <span>03 / 个人成长与自律修行 (Discipline & Growth)</span>
+              <span class="dropdown-item-num">03</span>
+            </a>
+            <a href="topics.html#topic-04" class="dropdown-item">
+              <span>04 / 当代话题与思辨 (Dialogues)</span>
+              <span class="dropdown-item-num">04</span>
+            </a>
+            <a href="topics.html#topic-05" class="dropdown-item">
+              <span>05 / 读书心得与札记 (Book Reflections)</span>
+              <span class="dropdown-item-num">05</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="topics.html" class="dropdown-item dropdown-item-all">
+              <span>浏览全部主题专栏</span>
+              <span>→</span>
+            </a>
+          </div>
+        </li>
+
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="访问 Notion 独立博客">博客 ↗</a></li>
+        <li><a href="contact.html" class="nav-link">联系我</a></li>
+      </ul>
+
+      <!-- Right: Language Switch + Search + Mobile Toggle -->
+      <div class="nav-right-tools">
+        <!-- Language Switcher Pill (Switch to English) -->
+        <a href="index.html" class="nav-lang-btn" title="Switch to English version">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>EN</span>
+        </a>
+
+        <div class="nav-search-wrap">
+          <svg class="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="siteSearchInput" class="nav-search-input" placeholder="搜索 (如 DAC, 科比, 成果)..." autocomplete="off">
+        </div>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="切换导航菜单" aria-expanded="false">
+          <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links">
+          <li><a href="index-zh.html" class="mobile-nav-link active">首页</a></li>
+          <li><a href="about.html" class="mobile-nav-link">关于我</a></li>
+          <li><a href="projects.html" class="mobile-nav-link">学术成果</a></li>
+          <li><a href="topics.html" class="mobile-nav-link">深度专栏</a></li>
+          <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">博客 ↗</a></li>
+          <li><a href="contact.html" class="mobile-nav-link">联系我</a></li>
+        </ul>
+        <div class="mobile-lang-row">
+          <span style="font-size:0.85rem; color:var(--sc-ink-soft);">语言 / Language:</span>
+          <a href="index.html" class="mobile-lang-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Switch to English</span>
+          </a>
+        </div>
+        <div class="mobile-nav-footer">
+          <p class="mobile-nav-tagline">“当你觉得你做不到的时候，想想康大。” —— 吉安娜·布莱恩特</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================================================================
+         ACT 1: HERO · 探索者与观察者
+         =================================================================== -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-copy">
+            <div class="editorial-kicker">欢迎 · 允许我们做真实的自己 (Permission to Be Human)</div>
+            <h1 class="hero-title">
+              漫漫长途：<span class="hero-highlight-them">任彼由彼</span>，<span class="hero-highlight-me">由我由心</span>。
+            </h1>
+            <div class="hero-subquote">
+              “It's a lifelong journey: let them be them, let me be me.”
+            </div>
+            <p class="hero-lead">
+              见微知著，守正不怠。动力工程与工程热物理研究者，深耕直接空气碳捕集（DAC）动态系统建模与全生命周期评估（LCA），兼怀对人类认知心理剖析的深度共情与对广阔未知世界的持久求索。
+            </p>
+
+            <div class="hero-badges-grid">
+              <div class="hero-badge-card">
+                <div class="badge-card-tag">学术归宿</div>
+                <div class="badge-card-val">广东工业大学 · 动力工程及工程热物理</div>
+              </div>
+              <div class="hero-badge-card">
+                <div class="badge-card-tag">认知原型</div>
+                <div class="badge-card-val">INFJ 提倡者 · 深刻的内省与宏观洞察</div>
+              </div>
+              <div class="hero-badge-card">
+                <div class="badge-card-tag">研究聚焦</div>
+                <div class="badge-card-val">气象驱动 DAC 动态模拟 · 负排放可持续性</div>
+              </div>
+              <div class="hero-badge-card">
+                <div class="badge-card-tag">精神信条</div>
+                <div class="badge-card-val">曼巴精神 (Mamba Creed) · 极致纯粹与韧性</div>
+              </div>
+            </div>
+
+            <div class="hero-cta-group">
+              <a href="projects.html" class="btn-hero-primary">
+                <span>浏览学术成果与已发论文</span>
+                <span>→</span>
+              </a>
+              <a href="topics.html" class="btn-hero-secondary">
+                <span>进入深度专栏</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-portrait-wrap">
+            <div class="hero-portrait-frame">
+              <img src="assets/profile-contact.jpg" alt="刘心宇 (Jerome Lau) 于印尼布罗莫火山" loading="eager">
+            </div>
+            <div class="hero-portrait-caption">
+              <span>Jerome Lau · 广州 / 旅居印尼</span>
+              <span>Bromo Caldera · 2,329m</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ACT 2: THE MAMBA CREED · 曼巴信条
+         =================================================================== -->
+    <section id="the-creed" class="creed-section">
+      <img src="assets/mamba-bg.jpg" alt="Mamba Lakers Gold and Purple Wallpaper" class="creed-bg-image">
+      <div class="creed-overlay"></div>
+      
+      <div class="container">
+        <div class="creed-content">
+          <div class="creed-badge-lakers">The Mamba Creed · 曼巴信条</div>
+          
+          <div class="creed-quote-box">
+            <div class="creed-quote-cn">
+              “真正的梦想并非那个终点，而是那段全力以赴的旅程。”
+            </div>
+            <div class="creed-quote-en">
+              “<span class="creed-highlight-that">That is actually</span> <span class="creed-highlight-dream">the dream</span>. It's not the destination, it's the journey.”
+            </div>
+            <div class="creed-author-tag">
+              —— 科比·布莱恩特 (Kobe Bryant · 1978–2020)
+            </div>
+          </div>
+
+          <div class="creed-gigi-dedication">
+            “When you think you can't, UCONN.” —— Gianna Bryant (“当你觉得你做不到的时候，想想康大。”)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ACT 3: THE PEAK · 弥合全球碳排放鸿沟
+         =================================================================== -->
+    <section id="research" class="peak-section">
+      <div class="container">
+        
+        <header class="peak-header">
+          <div class="editorial-kicker">核心科研探索 · The Peak</div>
+          <h2 class="peak-title">弥合全球碳排放鸿沟 (Closing the Global Emission Gap)</h2>
+          <p class="peak-desc">
+            以真实环境热力学为基石，建立多尺度多维度可持续性综合评价。突破传统静态假设，将工程负排放技术（E-NETs）与直接空气碳捕集（DAC）置于时变动态气象波动、全生命周期碳真实性以及多目标综合权衡之中。
+          </p>
+        </header>
+
+        <div class="peak-grid">
+          
+          <div class="card-deck">
+            
+            <!-- Card 1: DAC Dynamic Modeling -->
+            <article class="engineering-card">
+              <div class="card-meta-bar">
+                <span>01 / DAC 动态系统建模</span>
+                <span>SA-TVSA 循环</span>
+              </div>
+              <h3 class="card-title">时变气候驱动的直接空气碳捕集 (DAC)</h3>
+              <p class="card-body">
+                基于 TRNSYS 与 MATLAB 构建热泵供能的蒸汽辅助真空变温吸附（SA-TVSA）DAC 动态系统模型。系统评估环境温湿度波动、水-碳共吸附机制以及典型气候区（西宁、成都、兰州、贵阳）的技术经济表现，验证按实际工况选址的必要性。
+              </p>
+
+              <div class="flow-steps">
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 01</span>
+                  <span class="flow-step-name">吸附 (Adsorption)</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">稀薄 CO₂ 与水汽共吸附</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 02</span>
+                  <span class="flow-step-name">解吸 (Desorption)</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">SA-TVSA 热摆脱附 ~100°C</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 03</span>
+                  <span class="flow-step-name">净负效能 (Efficacy)</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">干冷与低碳电网协同</div>
+                </div>
+              </div>
+
+              <a href="project-paper-dac-dynamic.html" class="view-subpage-btn">
+                <span>查看 DAC 动态模型中英文摘要与系统流程图</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- Card 2: E-NETs Multi-Scale Sustainability -->
+            <article class="engineering-card">
+              <div class="card-meta-bar">
+                <span>02 / 多尺度可持续性评价</span>
+                <span>5 维度评价矩阵</span>
+              </div>
+              <h3 class="card-title">工程负排放技术（E-NETs）多尺度综合评价</h3>
+              <p class="card-body">
+                发表于《环境工程学报》。系统梳理 DACCS、BECCS 与生物炭等工程负排放技术在热力学、环境学、生态学、社会学与经济学 5 个维度的可持续性评价方法及指标体系，建立适配微观、中观与宏观多尺度特征的综合评价新范式。
+              </p>
+
+              <div class="flow-steps">
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 01</span>
+                  <span class="flow-step-name">热力学与 LCA</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">可用能分析与全链条碳核算</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 02</span>
+                  <span class="flow-step-name">生态能值 (EME)</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">生物圈做功与太阳能值统一量化</div>
+                </div>
+                <div class="flow-step-item">
+                  <span class="flow-step-num">STAGE 03</span>
+                  <span class="flow-step-name">社会 LCA 与经济</span>
+                  <div style="font-size:0.75rem; color:var(--sc-ink-faint); margin-top:2px;">公众接受度与碳减排平价成本</div>
+                </div>
+              </div>
+
+              <a href="project-paper-nets-sustainability.html" class="view-subpage-btn">
+                <span>查看多尺度评价中英文摘要与核心特征图</span>
+                <span>→</span>
+              </a>
+            </article>
+
+          </div>
+
+          <!-- Telemetry Sidebar -->
+          <aside class="telemetry-sidebar">
+            <div class="telemetry-title">
+              <span>热力学基准看板</span>
+              <span class="telemetry-live-dot" title="实时监测基准"></span>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val">422<small>ppm</small></div>
+              <div class="stat-label">当前所捕集的大气环境实际 CO₂ 背景浓度基准。</div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val stat-val-text">Dynamic<small>Model</small></div>
+              <div class="stat-label">基于物理机理的 SA-TVSA 瞬态热湿耦合循环数值仿真。</div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val stat-val-text">Dynamic<small>Analysis</small></div>
+              <div class="stat-label">真实气象参数全天剧烈波动下的非稳态热力学响应分析。</div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-val">5<small>Dimensions</small></div>
+              <div class="stat-label">涵盖热力学、环境学、生态学、社会学与经济学的综合评价体系。</div>
+            </div>
+
+            <div class="stat-formula-pill">
+              <b>系统核心物理准则：</b><br>
+              E<sub>net</sub> = CO₂<sub>封存量</sub> − CO₂<sub>全生命周期隐含排放</sub> &gt; 0
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         ACT 4: 实验室外的多维世界 · 专栏与思考
+         =================================================================== -->
+    <section id="spectrum" class="spectrum-section">
+      <div class="container">
+        
+        <header class="spectrum-header">
+          <div>
+            <div class="editorial-kicker">博客与随笔探索 · Blog & Dispatches</div>
+            <h2 class="spectrum-title">实验室外的多维世界</h2>
+          </div>
+          <p class="spectrum-sub">
+            高度敏锐的感知力，搭配纯粹专注的执行力。运动实战、音乐激荡、虚拟世界与荒野探索如何滋养严谨的研究自律。
+          </p>
+        </header>
+
+        <div class="spectrum-grid">
+          
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>维度 01</span>
+                <span>结构与工业美学</span>
+              </div>
+              <div style="border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-sneaker.jpg" alt="Kobe 9 Elite High-Top 篮球鞋" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">球鞋文化 (Sneakers)</h3>
+              <p class="spectrum-item-desc">
+                探索工业编织材料、缓震力学物理学与经典叙事在运动鞋几何构架中的极致碰撞。
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Kobe 9 Elite · Flyknit 力学 · 经典传承</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>维度 02</span>
+                <span>心流与空间几何</span>
+              </div>
+              <div style="border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-basketball.jpg" alt="刘心宇投篮抓拍" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">篮球运动 (Basketball)</h3>
+              <p class="spectrum-item-desc">
+                球场是高压下肌肉记忆、出手角度微积分与不懈重复打磨意志的实体实验室。
+              </p>
+            </div>
+            <div class="spectrum-item-footer">曼巴心力 · 出手抛物线 · 专注沉浸</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>维度 03</span>
+                <span>纯粹宣泄与张力</span>
+              </div>
+              <div style="border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-rockbar.jpg" alt="摇滚酒吧海报墙" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">摇滚音乐 (Rock Music)</h3>
+              <p class="spectrum-item-desc">
+                模拟信号失真、厚重的重低音鼓点与电声力量，为深邃冷静的理性思辨注入饱满的情绪张力。
+              </p>
+            </div>
+            <div class="spectrum-item-footer">模拟频段 · 乐器失真 · 情感共鸣</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>维度 04</span>
+                <span>沉静漫步与观察</span>
+              </div>
+              <div style="border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/travel-nara.jpg" alt="日本奈良山间小道与小鹿" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">环球旅居 (Travel)</h3>
+              <p class="spectrum-item-desc">
+                在异国地理与陌生文化中从容行走，作为安静的旁观者，捕捉自然意象与人文秩序的交界处。
+              </p>
+            </div>
+            <div class="spectrum-item-footer">日本奈良 · 独行穿梭 · 观察沉思</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>维度 05</span>
+                <span>规则系统与决策</span>
+              </div>
+              <div style="border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/hobby-valorant.jpg" alt="无畏契约策略竞技艺术图" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">策略竞技 (Gaming)</h3>
+              <p class="spectrum-item-desc">
+                沉浸于精密规则构筑的虚拟世界，体验高信息密度的瞬间博弈、空间决策与宏观团队协同。
+              </p>
+            </div>
+            <div class="spectrum-item-footer">Valorant · 空间动态博弈 · 协同执行</div>
+          </div>
+
+          <div class="spectrum-item">
+            <div>
+              <div class="spectrum-icon-tag">
+                <span>维度 06</span>
+                <span>旷野与火山边缘</span>
+              </div>
+              <div style="border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; margin-bottom: 1.2rem;">
+                <img src="assets/travel-bromo.jpg" alt="布罗莫火山日出群峰" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              </div>
+              <h3 class="spectrum-item-title">荒野探险 (Adventure)</h3>
+              <p class="spectrum-item-desc">
+                以敬畏之心步入地球原始地貌。破晓时分火山口边缘的苍茫晨雾、地热硫磺气息与坚忍的行走。
+              </p>
+            </div>
+            <div class="spectrum-item-footer">布罗莫火山 · 地热宁静 · 敬畏自然</div>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 3.5rem; text-align: center;">
+          <a href="blog.html" class="view-subpage-btn" style="font-size:1rem;">
+            <span>在博客中阅读全部文章与生活札记</span>
+            <span>→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       EDITORIAL FOOTER
+       =================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-main-row">
+        
+        <!-- Left Side: Brand, Bio, Social Icons -->
+        <div class="footer-brand-side">
+          <a href="index-zh.html" class="brand-signature-mark" title="刘心宇个人主页">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">LAU</span>
+            <span class="sig-cn-tag">刘心宇</span>
+          </a>
+          <p class="footer-bio">
+            动力工程研究者，深耕直接空气碳捕集（DAC）与全生命周期评估（LCA）。天生敏锐，笃定于行。
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="https://www.reddit.com/user/No_Plum_8594/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Reddit"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="直发邮件"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Right Side: 3 Columns -->
+        <div class="footer-nav-three-cols">
+          
+          <div>
+            <h4 class="footer-col-heading">导航探索</h4>
+            <ul class="footer-col-links">
+              <li><a href="about.html" class="footer-text-link">关于刘心宇 (About)</a></li>
+              <li><a href="projects.html" class="footer-text-link">科研论文与项目 (Projects)</a></li>
+              <li><a href="topics.html" class="footer-text-link">深度思考专栏 (Topics)</a></li>
+              <li><a href="contact.html" class="footer-text-link">联系与交流 (Contact)</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">写作与专栏</h4>
+            <ul class="footer-col-links">
+              <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Notion 独立博客 &#x2197;</a></li>
+              <li><a href="blog.html" class="footer-text-link">精选随笔长文</a></li>
+              <li><a href="#the-creed" class="footer-text-link">曼巴信条 (The Creed)</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-heading">联系与社交</h4>
+            <ul class="footer-col-links">
+              <li><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub 开发者 &#x2197;</a></li>
+              <li><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">领英 LinkedIn &#x2197;</a></li>
+              <li><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram &#x2197;</a></li>
+              <li><a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-text-link">YouTube 频道 &#x2197;</a></li>
+              <li><a href="https://www.reddit.com/user/No_Plum_8594/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Reddit 社区 &#x2197;</a></li>
+              <li><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-strip">
+        <div>
+          © 2026 Jerome Lau (刘心宇). 保留所有权利。
+        </div>
+        <div class="footer-legal-menu">
+          <a href="#">隐私说明</a>
+          <a href="#">使用条款</a>
+          <a href="#">网站地图</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="scrollcraft.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Mount scrollcraft pointer
+      if (window.ScrollCraft && typeof window.ScrollCraft.mount === 'function') {
+        window.ScrollCraft.mount(document.body, { lerp: 0.16 });
+      }
+
+      // 2. Real-time Progress Bar
+      const progressBar = document.querySelector('[data-sc-progress]');
+      window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        if (total > 0 && progressBar) {
+          const progress = (window.scrollY / total) * 100;
+          progressBar.style.width = progress + '%';
+        }
+      }, { passive: true });
+
+      // 3. Search jump to subpages (support both Chinese and English keywords)
+      const searchInput = document.getElementById('siteSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const q = searchInput.value.trim().toLowerCase();
+            if (!q) return;
+
+            if (q.includes('about') || q.includes('关于') || q.includes('简历') || q.includes('infj') || q.includes('刘心宇')) {
+              window.location.href = 'about.html';
+            } else if (q.includes('dac') || q.includes('lca') || q.includes('碳') || q.includes('负排放') || q.includes('专栏') || q.includes('topic') || q.includes('论文') || q.includes('项目') || q.includes('project')) {
+              window.location.href = 'projects.html';
+            } else if (q.includes('blog') || q.includes('博客') || q.includes('球鞋') || q.includes('音乐') || q.includes('摇滚') || q.includes('游戏') || q.includes('旅行') || q.includes('布罗莫')) {
+              window.location.href = 'blog.html';
+            } else if (q.includes('connect') || q.includes('contact') || q.includes('联系') || q.includes('邮箱') || q.includes('email') || q.includes('微信')) {
+              window.location.href = 'contact.html';
+            } else if (q.includes('kobe') || q.includes('mamba') || q.includes('科比') || q.includes('曼巴') || q.includes('湖人') || q.includes('康大')) {
+              const el = document.getElementById('the-creed');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.location.href = 'topics.html';
+            }
+          }
+        });
+      }
+
+      // 4. Mobile Menu Drawer Toggle
+      const toggleBtn = document.getElementById('mobileMenuToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (toggleBtn && drawer) {
+        const hamburger = toggleBtn.querySelector('.hamburger-icon');
+        const closeIcon = toggleBtn.querySelector('.close-icon');
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isOpen = drawer.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', isOpen);
+          if (isOpen) {
+            hamburger.style.display = 'none';
+            closeIcon.style.display = 'block';
+          } else {
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!drawer.contains(e.target) && !toggleBtn.contains(e.target) && drawer.classList.contains('open')) {
+            drawer.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            hamburger.style.display = 'block';
+            closeIcon.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
