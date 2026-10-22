@@ -92,6 +92,45 @@
     .paper-doi a { color: var(--lakers-purple); text-decoration: none; font-weight: 600; }
     .paper-doi a:hover { text-decoration: underline; }
 
+    .paper-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.4rem;
+      padding: 10px 20px;
+      background: rgba(70, 29, 110, 0.06);
+      border: 1.5px solid rgba(70, 29, 110, 0.3);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .paper-action-btn:hover {
+      background: var(--lakers-purple);
+      color: #FFFFFF;
+      transform: translateX(4px);
+      box-shadow: 0 4px 14px rgba(70, 29, 110, 0.25);
+    }
+    .paper-thumb-preview {
+      margin-top: 1.2rem;
+      background: var(--sc-surface-alt);
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      overflow: hidden;
+      max-height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .paper-thumb-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 180px;
+    }
+
     /* Conference & Award Cards */
     .timeline-card {
       background: var(--sc-surface);
@@ -360,14 +399,28 @@
             <span class="paper-type-badge">Journal Article · 2026</span>
             <span class="paper-journal-tag">环境工程学报 (Chinese Journal of Environmental Engineering)</span>
           </div>
-          <h3 class="paper-cn-title">工程负排放技术可持续性评价的方法与指标：研究现状与发展趋势</h3>
+          <h3 class="paper-cn-title">
+            <a href="project-paper-nets-sustainability.html" style="color: inherit; text-decoration: none;">工程负排放技术可持续性评价的方法与指标：研究现状与发展趋势</a>
+          </h3>
           <p class="paper-en-title">Methods and indicators for sustainability assessment of engineered negative emission technologies: Current status and future trends</p>
+          <div style="font-size:0.86rem; color:var(--lakers-purple); font-weight:600; margin-bottom:0.8rem;">
+            刘心宇 (第一作者), 陈颖, 邓帅, 徐俊, 乔苑婷, 曾雪兰, 王永真, 何松, 王珺瑶 (通信作者)
+          </div>
           <div class="paper-doi">
             DOI: <a href="https://doi.org/10.12030/j.cjee.202606022" target="_blank" rel="noopener noreferrer">10.12030/j.cjee.202606022</a>
           </div>
-          <p style="font-size:0.95rem; color:var(--sc-ink-soft); line-height:1.7;">
-            Systematically synthesizes the life cycle assessment (LCA) frameworks and multi-criteria sustainability metrics for engineered negative emission technologies (NETs), establishing methodological guidelines for net-negative carbon verification.
+          <p style="font-size:0.95rem; color:var(--sc-ink-soft); line-height:1.7; margin-bottom: 1rem;">
+            系统梳理工程负排放技术（E-NETs，包含 DACCS、BECCS 与生物炭）在热力学、环境学、生态学、社会学与经济学 5 个维度的可持续性评价方法及指标体系，突破传统单一维度范式，建立适配微观、中观与宏观多尺度特征的综合评价新框架。
           </p>
+          <div class="paper-thumb-preview">
+            <img src="assets/paper2-multiscale.png" alt="图 2 工程负排放技术可持续性研究的多尺度特征" loading="lazy">
+          </div>
+          <div>
+            <a href="project-paper-nets-sustainability.html" class="paper-action-btn">
+              <span>查看中英文摘要与多尺度评价图 (View Abstract & Methodology)</span>
+              <span>→</span>
+            </a>
+          </div>
         </article>
 
         <!-- Paper 2 -->
@@ -376,11 +429,28 @@
             <span class="paper-type-badge">Journal Article · 2026</span>
             <span class="paper-journal-tag">洁净煤技术 (Clean Coal Technology)</span>
           </div>
-          <h3 class="paper-cn-title">时变气候数据驱动下直接空气碳捕集系统动态建模及技术经济性分析</h3>
+          <h3 class="paper-cn-title">
+            <a href="project-paper-dac-dynamic.html" style="color: inherit; text-decoration: none;">时变气候数据驱动下直接空气碳捕集系统动态建模及技术经济性分析</a>
+          </h3>
           <p class="paper-en-title">Dynamic modeling and techno-economic analysis of direct air carbon capture systems driven by time-varying climate data</p>
-          <p style="font-size:0.95rem; color:var(--sc-ink-soft); line-height:1.7;">
-            Develops a dynamic mathematical model of solid-sorbent Direct Air Capture (DAC) coupled with meteorological variations (humidity and ambient temperature), evaluating levelized cost of CO₂ removal under fluctuating environmental conditions.
+          <div style="font-size:0.86rem; color:var(--lakers-purple); font-weight:600; margin-bottom:0.8rem;">
+            刘心宇 (第一作者), 王珺瑶 (通信作者), 邓帅, 李双俊, 何松, 郑雅文, 陈颖, 田志鹏, 雷励斌
+          </div>
+          <div class="paper-doi">
+            TRNSYS · MATLAB 协同仿真 · 动态气象驱动
+          </div>
+          <p style="font-size:0.95rem; color:var(--sc-ink-soft); line-height:1.7; margin-bottom: 1rem;">
+            构建考虑气象波动的蒸汽辅助真空变温吸附（SA-TVSA）DAC 动态系统模型，选取西宁、成都、兰州和贵阳四个典型气候区进行案例评估。揭示干冷与低碳能源结构的协同机制：西宁达成最低 1,042.6 $/t CO₂ 捕集成本与 70.61% 碳捕集效率；而高湿高碳电网区域碳捕集效率转负，明确了按实际工况选址的必要性。
           </p>
+          <div class="paper-thumb-preview">
+            <img src="assets/paper1-method.png" alt="图 2 热泵供能的DAC系统流程图" loading="lazy">
+          </div>
+          <div>
+            <a href="project-paper-dac-dynamic.html" class="paper-action-btn">
+              <span>查看中英文摘要与动态系统流程图 (View Abstract & Methodology)</span>
+              <span>→</span>
+            </a>
+          </div>
         </article>
       </section>
 

@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>工程负排放技术可持续性评价的方法与指标：研究现状与发展趋势 · Jerome Lau</title>
+  <meta name="description" content="论文成果：工程负排放技术可持续性评价的方法与指标：研究现状与发展趋势。发表于《环境工程学报》，DOI: 10.12030/j.cjee.202606022。作者：刘心宇，陈颖，邓帅，王珺瑶等。系统构建热力学、环境学、生态学、社会学与经济学五维度多尺度可持续性评价框架。">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=3">
+  
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFEA;
+      --sc-line: #E8E3DA;
+      --sc-line-heavy: #C8C2B7;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #57534E;
+      --sc-ink-faint: #A8A29E;
+      --lakers-purple: #461D6E;
+      --lakers-gold: #FDB927;
+      --lakers-gold-deep: #B45309;
+      --sc-font-display: "Newsreader", Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+    
+    body {
+      background: var(--sc-canvas);
+      color: var(--sc-ink);
+      font-family: var(--sc-font-text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem); z-index: 900; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90); border-bottom: 1px solid var(--sc-line); gap: 1.5rem;
+    }
+    .brand-signature-mark { display: flex; align-items: baseline; gap: 4px; text-decoration: none; color: var(--sc-ink); }
+    .sig-script { font-family: var(--sc-font-sig); font-size: 2.15rem; font-weight: 700; line-height: 1; }
+    .sig-sans { font-family: var(--sc-font-text); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+    .nav-center-menu { display: flex; align-items: center; gap: clamp(1.2rem, 2.2vw, 2.5rem); list-style: none; margin: 0; padding: 0; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--sc-ink-soft); text-decoration: none; position: relative; padding: 6px 2px; }
+    .nav-link.active, .nav-link:hover { color: var(--sc-ink); }
+    .nav-link.active::after, .nav-link:hover::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--lakers-gold); }
+    .nav-right-tools { display: flex; align-items: center; gap: 14px; }
+    .nav-search-wrap { position: relative; display: flex; align-items: center; }
+    .nav-search-input { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 99px; padding: 7px 14px 7px 34px; font-size: 0.82rem; width: 175px; outline: none; }
+    .nav-search-icon { position: absolute; left: 11px; width: 14px; height: 14px; color: var(--sc-ink-faint); }
+
+    /* Breadcrumbs */
+    .breadcrumb-strip {
+      padding-top: 105px;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--sc-line);
+      background: rgba(250, 247, 242, 0.5);
+    }
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.82rem;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.2s;
+    }
+    .breadcrumb-link:hover {
+      gap: 10px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* Paper Hero */
+    .paper-hero {
+      padding: 2.5rem 0 3.5rem 0;
+      border-bottom: 1px solid var(--sc-line);
+    }
+    .paper-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 1.4rem;
+    }
+    .badge-journal {
+      background: rgba(70, 29, 110, 0.08);
+      color: var(--lakers-purple);
+      border: 1px solid rgba(70, 29, 110, 0.2);
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .badge-doi {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 99px;
+      text-decoration: none;
+    }
+    .badge-doi:hover {
+      text-decoration: underline;
+    }
+    .paper-main-title-cn {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--sc-ink);
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.01em;
+    }
+    .paper-main-title-en {
+      font-family: var(--sc-font-text);
+      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      font-weight: 400;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+      margin: 0 0 2rem 0;
+      font-style: italic;
+    }
+
+    /* Authors & Meta */
+    .authors-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+    .authors-list {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+    .author-highlight {
+      font-weight: 700;
+      color: var(--lakers-purple);
+      border-bottom: 1.5px solid var(--lakers-gold);
+      padding-bottom: 1px;
+    }
+    .affiliations-list {
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.6;
+      border-top: 1px dashed var(--sc-line);
+      padding-top: 0.8rem;
+      margin-top: 0.8rem;
+    }
+    .funding-line {
+      font-family: var(--sc-font-mono);
+      font-size: 0.76rem;
+      color: var(--sc-ink-faint);
+      margin-top: 0.6rem;
+    }
+
+    /* Dual Abstract Section */
+    .abstracts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .abstract-box {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+    .abstract-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--sc-line);
+    }
+    .abstract-tag {
+      font-family: var(--sc-font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lakers-purple);
+    }
+    .abstract-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--sc-ink);
+      text-align: justify;
+      flex-grow: 1;
+    }
+    .keywords-row {
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--sc-line);
+      font-size: 0.84rem;
+      color: var(--sc-ink-soft);
+    }
+    .keywords-row b {
+      color: var(--sc-ink);
+    }
+
+    /* Methodology & Diagram Section */
+    .methodology-section {
+      margin: 4rem 0;
+    }
+    .section-title-wrap {
+      margin-bottom: 1.8rem;
+    }
+    .section-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--lakers-purple);
+      font-weight: 700;
+    }
+    .section-heading {
+      font-family: var(--sc-font-display);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--sc-ink);
+      margin: 0.4rem 0 0 0;
+    }
+
+    .figure-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sc-line);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.03);
+      margin-bottom: 2.5rem;
+    }
+    .figure-image-wrap {
+      width: 100%;
+      background: #FAF9F6;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      border: 1px solid var(--sc-line);
+    }
+    .figure-image-wrap img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .figure-caption-bar {
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-family: var(--sc-font-mono);
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+      border-top: 1px solid var(--sc-line);
+      padding-top: 1rem;
+    }
+    .figure-caption-title {
+      font-weight: 700;
+      color: var(--sc-ink);
+    }
+
+    /* 5-Dimensional Matrix Grid */
+    .dimensions-5-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 2rem 0;
+    }
+    .dim-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+      padding: 1.4rem;
+      transition: all 0.2s ease;
+    }
+    .dim-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border-color: var(--lakers-purple);
+    }
+    .dim-num {
+      font-family: var(--sc-font-mono);
+      font-size: 0.72rem;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .dim-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--sc-ink);
+      margin-bottom: 8px;
+    }
+    .dim-metrics {
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      color: var(--lakers-gold-deep);
+      background: var(--sc-surface-alt);
+      padding: 6px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .dim-desc {
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+    }
+
+    /* Citation Box */
+    .citation-section {
+      background: var(--sc-surface-alt);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: 2rem;
+      margin: 3.5rem 0;
+    }
+    .citation-title {
+      font-family: var(--sc-font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lakers-purple);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+    .citation-box {
+      font-family: var(--sc-font-mono);
+      font-size: 0.8rem;
+      color: var(--sc-ink);
+      background: #FFFFFF;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--sc-line);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 860px) {
+      .abstracts-grid { grid-template-columns: 1fr; }
+      .nav-center-menu { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">LAU</span>
+      </a>
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        <li class="nav-item-dropdown">
+          <a href="topics.html" class="nav-link nav-dropdown-trigger">
+            <span>Topics</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="topics.html#topic-01" class="dropdown-item"><span>Observations & Systems</span><span class="dropdown-item-num">01</span></a>
+            <a href="topics.html#topic-02" class="dropdown-item"><span>Psychology & Inner Architecture</span><span class="dropdown-item-num">02</span></a>
+            <a href="topics.html#topic-03" class="dropdown-item"><span>Personal Growth & Discipline</span><span class="dropdown-item-num">03</span></a>
+            <a href="topics.html#topic-04" class="dropdown-item"><span>Contemporary Dialogues</span><span class="dropdown-item-num">04</span></a>
+            <a href="topics.html#topic-05" class="dropdown-item"><span>Book Reflections & Margins</span><span class="dropdown-item-num">05</span></a>
+            <div class="dropdown-divider"></div>
+            <a href="topics.html" class="dropdown-item dropdown-item-all"><span>All Topics</span><span>→</span></a>
+          </div>
+        </li>
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Notion Blog">Blog ↗</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-right-tools">
+        <a href="projects.html" class="breadcrumb-link">← All Research Output</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb bar -->
+  <div class="breadcrumb-strip">
+    <div class="container">
+      <a href="projects.html" class="breadcrumb-link">← Back to Research & Projects Directory</a>
+    </div>
+  </div>
+
+  <main>
+    
+    <!-- Paper Hero -->
+    <article class="paper-hero">
+      <div class="container">
+        
+        <div class="paper-badge-row">
+          <span class="badge-journal">Journal Article · 环境工程学报 (Chinese J. of Environmental Engineering)</span>
+          <a href="https://doi.org/10.12030/j.cjee.202606022" target="_blank" rel="noopener noreferrer" class="badge-doi">DOI: 10.12030/j.cjee.202606022 ↗</a>
+          <span class="badge-journal">E-NETs Multi-Scale Framework</span>
+        </div>
+
+        <h1 class="paper-main-title-cn">
+          工程负排放技术可持续性评价的方法与指标：研究现状与发展趋势
+        </h1>
+        <p class="paper-main-title-en">
+          Methods and indicators for sustainability assessment of engineered negative emission technologies: Current status and future trends
+        </p>
+
+        <!-- Authors Card -->
+        <div class="authors-card">
+          <div class="authors-list">
+            <span class="author-highlight">刘心宇</span><sup>1,2</sup> (First Author), 
+            陈颖<sup>1,2</sup>, 邓帅<sup>3</sup>, 徐俊<sup>4</sup>, 乔苑婷<sup>5</sup>, 曾雪兰<sup>4</sup>, 王永真<sup>6,7</sup>, 何松<sup>8</sup>, 
+            王珺瑶<sup>1,2,4,*</sup> (Corresponding Author)
+          </div>
+          <div class="affiliations-list">
+            1. 广东工业大学材料与能源学院，广州 510006<br>
+            2. 广东省功能凝聚态物质重点实验室，广州 510006<br>
+            3. 天津大学先进内燃动力全国重点实验室，天津 300350<br>
+            4. 广东工业大学碳中和与绿色发展协同创新研究院，广州 510006<br>
+            5. 英国斯旺西大学化学工程学院 (Swansea University), 英国斯旺西 SA1 8EN<br>
+            6. 北京理工大学机械与车辆学院，北京 100081<br>
+            7. 北京理工大学碳中和系统工程北京实验室，北京 100081<br>
+            8. 北京理工大学（珠海）能源交通学域，珠海 519000
+          </div>
+          <div class="funding-line">
+            <b>基金资助：</b>京津冀环境综合治理国家科技重大专项 (No. 2026ZD1211400)；广东省自然科学基金资助项目 (No. 2023A1515240056, No. 2024A1515012661)
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <div class="container">
+      
+      <!-- Dual Bilingual Abstract Cards -->
+      <section class="abstracts-grid">
+        
+        <!-- Chinese Abstract -->
+        <div class="abstract-box">
+          <div class="abstract-box-header">
+            <span class="abstract-tag">中文摘要 · Abstract</span>
+            <span style="font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-faint);">中图分类号: X701</span>
+          </div>
+          <div class="abstract-body">
+            全球剩余碳预算持续缩减背景下，负排放技术（negative emission technologies, NETs）已成为实现净零碳排放路径中不可或缺的关键手段。其中，直接空气碳捕集与封存、生物质能碳捕集与封存以及生物炭等工程负排放技术（engineered-NETs, E-NETs）已具备规模化部署的潜力。然而，E-NETs作为资源、资本与技术密集型产业，其实际部署在能源转化、资源环境约束以及经济成本、社会影响等方面仍面临高度不确定性。
+            <br><br>
+            E-NETs兼具工业属性与实现碳移除的生态属性，传统基于单一维度的评价范式已难以适配其多属性、多尺度、多要素的可持续性评估需求。为此，本研究系统梳理了E-NETs在热力学、环境学、生态学、社会学与经济学5个维度的可持续性评价方法及指标体系，并对未来发展趋势进行了展望。针对E-NETs可持续性的评估，仍需突破传统静态、单一维度、单一尺度的评估框架，并充分考虑区域地理空间异质性及社会可接受性等关键要素。
+          </div>
+          <div class="keywords-row">
+            <b>关键词：</b>负排放技术；碳移除；碳捕集；生物炭；可持续性；综合评价
+          </div>
+        </div>
+
+        <!-- English Abstract -->
+        <div class="abstract-box">
+          <div class="abstract-box-header">
+            <span class="abstract-tag">English Abstract</span>
+            <span style="font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-faint);">Review & Framework</span>
+          </div>
+          <div class="abstract-body">
+            Against the backdrop of the continuously shrinking global remaining carbon budget, negative emission technologies (NETs) have emerged as an indispensable and critical means for achieving net-zero pathways. Among these, engineered NETs (E-NETs)—such as direct air carbon capture and storage (DACCS), bioenergy with carbon capture and storage (BECCS), and biochar—have demonstrated significant potential for large-scale deployment. However, as resource-, capital-, and technology-intensive industries, the actual implementation of E-NETs remains subject to high uncertainties regarding energy conversion, resource and environmental constraints, economic costs, and social impacts.
+            <br><br>
+            E-NETs possess a dual nature, combining industrial attributes with the ecological function of carbon removal. Consequently, traditional evaluation paradigms based on a single dimension are no longer adequate for the multi-attribute, multi-scale, and multi-factor sustainability assessment requirements of these technologies. To address this, this study systematically reviewed the sustainability evaluation methods and indicator systems for E-NETs across five dimensions: thermodynamics, environmental science, ecology, sociology, and economics, while offering an outlook on future development trends. The study concluded that assessing E-NETs sustainability required moving beyond traditional static, single-dimensional, and single-scale frameworks to fully incorporate key factors such as regional geospatial heterogeneity and social acceptance.
+          </div>
+          <div class="keywords-row">
+            <b>Keywords:</b> Negative emission technologies; carbon removal; carbon capture; biochar; sustainability; comprehensive evaluation
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Key Methodology & Figure 2 -->
+      <section class="methodology-section">
+        <div class="section-title-wrap">
+          <span class="section-kicker">Multi-Scale Assessment Hierarchy · Core Framework</span>
+          <h2 class="section-heading">工程负排放技术可持续性研究的多尺度与多维度特征</h2>
+        </div>
+
+        <div class="figure-card">
+          <div class="figure-image-wrap">
+            <img src="assets/paper2-multiscale.png" alt="图 2 工程负排放技术可持续性研究的多尺度特征 / Fig. 2 Multi-scale characteristics of sustainability research on engineered negative emission technologies" width="1028" height="443">
+          </div>
+          <div class="figure-caption-bar">
+            <span class="figure-caption-title">图 2 工程负排放技术可持续性研究的多尺度特征 (Fig. 2 Multi-scale characteristics of sustainability research on engineered negative emission technologies)</span>
+            <span>Micro / Meso / Macro Scales Coupling with 5 Disciplinary Dimensions</span>
+          </div>
+        </div>
+
+        <!-- 5 Dimensional Matrix Breakdown -->
+        <h3 style="font-family: var(--sc-font-text); font-size: 1.15rem; font-weight: 700; color: var(--sc-ink); margin-top: 2rem;">
+          五大维度可持续性评价方法与核心指标体系 (Table 2 Synthesis)
+        </h3>
+        
+        <div class="dimensions-5-grid">
+          
+          <div class="dim-card">
+            <div class="dim-num">DIMENSION 01</div>
+            <div class="dim-title">热力学维度 (Thermodynamics)</div>
+            <div class="dim-metrics">SED · SEDex · Wmin · Eff2nd · EROI</div>
+            <div class="dim-desc">以热力学第一与第二定律为基石，通过最小分离功界定物理极限，量化不可逆㶲损与有用能消耗，为过程能效优化提供理论极限。</div>
+          </div>
+
+          <div class="dim-card">
+            <div class="dim-num">DIMENSION 02</div>
+            <div class="dim-title">环境学维度 (Environment / LCA)</div>
+            <div class="dim-metrics">CRE · CCE · GWP · WC · LU · CROI</div>
+            <div class="dim-desc">基于 ISO 14040/44 生命周期全链条核算，追溯上游能源获取与设备制造，扣除全生命周期碳排放后量化真正净负碳移除与水土资源代价。</div>
+          </div>
+
+          <div class="dim-card">
+            <div class="dim-num">DIMENSION 03</div>
+            <div class="dim-title">生态学维度 (Ecology / Emergy)</div>
+            <div class="dim-metrics">Tr · EYR · ELR · ESI · 生态足迹</div>
+            <div class="dim-desc">突破能质壁垒，将自然环境输入、物质流与货币流统一转换为“太阳能值”，从宏观生物圈尺度量化环境负载率与系统综合生态可持续性。</div>
+          </div>
+
+          <div class="dim-card">
+            <div class="dim-num">DIMENSION 04</div>
+            <div class="dim-title">社会学维度 (Sociology / S-LCA)</div>
+            <div class="dim-metrics">Social Hotspots · 知识溢出 · 人力资本</div>
+            <div class="dim-desc">评估大型工程设施的社会许可（SLO），权衡地方就业增长与邻避效应（NIMBY），量化道德风险及在缓解全球气候不平等中的公平贡献。</div>
+          </div>
+
+          <div class="dim-card">
+            <div class="dim-num">DIMENSION 05</div>
+            <div class="dim-title">经济学维度 (Economics)</div>
+            <div class="dim-metrics">CAPEX · OPEX · LCOD · NPV · CRV · CPR</div>
+            <div class="dim-desc">平准化每吨净移除 CO₂ 成本，引入气候修复价值（CRV）与永久移除成本（CPR），结合长期地质封存防泄漏监测，为真实碳市场定价护航。</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Trilemma & Future Trends -->
+      <section class="section-block" style="background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 14px; padding: 2.2rem; margin: 3rem 0;">
+        <h3 style="font-family: var(--sc-font-text); font-size: 1.15rem; font-weight: 700; color: var(--sc-ink); margin-top: 0;">
+          工程负排放技术的三难制约 (The Trilemma) 与联合国可持续发展目标 (SDGs)
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--sc-ink-soft); line-height: 1.8;">
+          E-NETs 的规模化部署无法单纯依赖工程技术的单点突破，而必须在<b>“技术有效（高效碳移除）”</b>、<b>“环境可持续（资源消耗与生态负荷）”</b>与<b>“社会可承受（经济成本与社会许可）”</b>构成的三难制约中探寻动态平衡。
+          单一维度的极致追求往往以牺牲其他维度为代价：例如盲目推高碳捕集率会大幅增加能耗与材料投入，导致成本失控与社会接受度下降。研究表明，热力学与生态学指标高度契合联合国 SDG 7（清洁能源）、SDG 12（负责任消费和生产）与 SDG 13（气候行动）；而社会与经济学指标则协同支撑 SDG 8（体面工作）与 SDG 17（全球伙伴关系）。
+        </p>
+      </section>
+
+      <!-- BibTeX Citation -->
+      <section class="citation-section">
+        <div class="citation-title">Citation / 引用格式 (BibTeX)</div>
+        <div class="citation-box">@article{liu2026nets_sustainability,
+  title={工程负排放技术可持续性评价的方法与指标：研究现状与发展趋势},
+  author={刘心宇 and 陈颖 and 邓帅 and 徐俊 and 乔苑婷 and 曾雪兰 and 王永真 and 何松 and 王珺瑶},
+  journal={环境工程学报 (Chinese Journal of Environmental Engineering)},
+  volume={XX},
+  number={X},
+  pages={1--16},
+  year={2026},
+  doi={10.12030/j.cjee.202606022},
+  note={First Author: LIU Xinyu; Corresponding Author: WANG Junyao}
+}</div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main-row">
+        <div class="footer-brand-side">
+          <a href="index.html" class="brand-signature-mark" title="Jerome Lau Homepage">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">LAU</span>
+          </a>
+          <p class="footer-bio">
+            Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="https://www.reddit.com/user/No_Plum_8594/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Reddit"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="Direct Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-nav-three-cols">
+          <div>
+            <h4 class="footer-col-heading">Explore</h4>
+            <ul class="footer-col-links">
+              <li><a href="about.html" class="footer-text-link">About Jerome Lau</a></li>
+              <li><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
+              <li><a href="topics.html" class="footer-text-link">Themes & Topics</a></li>
+              <li><a href="contact.html" class="footer-text-link">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-heading">Writing & Notes</h4>
+            <ul class="footer-col-links">
+              <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Live Notion Blog ↗</a></li>
+              <li><a href="blog.html" class="footer-text-link">Featured Essays</a></li>
+              <li><a href="index.html#the-creed" class="footer-text-link">The Mamba Creed</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-heading">Connect</h4>
+            <ul class="footer-col-links">
+              <li><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">LinkedIn ↗</a></li>
+              <li><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram ↗</a></li>
+              <li><a href="https://www.reddit.com/user/No_Plum_8594/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Reddit ↗</a></li>
+              <li><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-strip">
+        <div>© 2026 Jerome Lau. All rights reserved.</div>
+        <div class="footer-legal-menu">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

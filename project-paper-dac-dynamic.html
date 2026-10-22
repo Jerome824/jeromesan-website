@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>时变气候数据驱动下直接空气碳捕集系统动态建模及技术经济性分析 · Jerome Lau</title>
+  <meta name="description" content="论文成果：时变气候数据驱动下直接空气碳捕集系统动态建模及技术经济性分析。作者：刘心宇，王珺瑶等。研究基于TRNSYS与MATLAB的SA-TVSA动态系统及西宁、成都、兰州、贵阳四地案例。">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="scrollcraft.css?v=3">
+  
+  <style>
+    :root {
+      --sc-canvas: #FAF7F2;
+      --sc-surface: #FFFFFF;
+      --sc-surface-alt: #F3EFEA;
+      --sc-line: #E8E3DA;
+      --sc-line-heavy: #C8C2B7;
+      --sc-ink: #1B1917;
+      --sc-ink-soft: #57534E;
+      --sc-ink-faint: #A8A29E;
+      --lakers-purple: #461D6E;
+      --lakers-gold: #FDB927;
+      --lakers-gold-deep: #B45309;
+      --sc-font-display: "Newsreader", Georgia, serif;
+      --sc-font-text: "Plus Jakarta Sans", sans-serif;
+      --sc-font-mono: "JetBrains Mono", monospace;
+      --sc-font-sig: "Caveat", cursive;
+    }
+    
+    body {
+      background: var(--sc-canvas);
+      color: var(--sc-ink);
+      font-family: var(--sc-font-text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.2rem, 3.5vw, 3.5rem); z-index: 900; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: rgba(250, 247, 242, 0.90); border-bottom: 1px solid var(--sc-line); gap: 1.5rem;
+    }
+    .brand-signature-mark { display: flex; align-items: baseline; gap: 4px; text-decoration: none; color: var(--sc-ink); }
+    .sig-script { font-family: var(--sc-font-sig); font-size: 2.15rem; font-weight: 700; line-height: 1; }
+    .sig-sans { font-family: var(--sc-font-text); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+    .nav-center-menu { display: flex; align-items: center; gap: clamp(1.2rem, 2.2vw, 2.5rem); list-style: none; margin: 0; padding: 0; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--sc-ink-soft); text-decoration: none; position: relative; padding: 6px 2px; }
+    .nav-link.active, .nav-link:hover { color: var(--sc-ink); }
+    .nav-link.active::after, .nav-link:hover::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--lakers-gold); }
+    .nav-right-tools { display: flex; align-items: center; gap: 14px; }
+    .nav-search-wrap { position: relative; display: flex; align-items: center; }
+    .nav-search-input { background: var(--sc-surface); border: 1px solid var(--sc-line); border-radius: 99px; padding: 7px 14px 7px 34px; font-size: 0.82rem; width: 175px; outline: none; }
+    .nav-search-icon { position: absolute; left: 11px; width: 14px; height: 14px; color: var(--sc-ink-faint); }
+
+    /* Breadcrumbs */
+    .breadcrumb-strip {
+      padding-top: 105px;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--sc-line);
+      background: rgba(250, 247, 242, 0.5);
+    }
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sc-font-mono);
+      font-size: 0.82rem;
+      color: var(--lakers-purple);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.2s;
+    }
+    .breadcrumb-link:hover {
+      gap: 10px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* Paper Hero */
+    .paper-hero {
+      padding: 2.5rem 0 3.5rem 0;
+      border-bottom: 1px solid var(--sc-line);
+    }
+    .paper-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 1.4rem;
+    }
+    .badge-journal {
+      background: rgba(70, 29, 110, 0.08);
+      color: var(--lakers-purple);
+      border: 1px solid rgba(70, 29, 110, 0.2);
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .badge-status {
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+      font-family: var(--sc-font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 99px;
+    }
+    .paper-main-title-cn {
+      font-family: var(--sc-font-display);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--sc-ink);
+      margin: 0 0 1rem 0;
+      letter-spacing: -0.01em;
+    }
+    .paper-main-title-en {
+      font-family: var(--sc-font-text);
+      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      font-weight: 400;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+      margin: 0 0 2rem 0;
+      font-style: italic;
+    }
+
+    /* Authors & Meta */
+    .authors-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+    }
+    .authors-list {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+    .author-highlight {
+      font-weight: 700;
+      color: var(--lakers-purple);
+      border-bottom: 1.5px solid var(--lakers-gold);
+      padding-bottom: 1px;
+    }
+    .affiliations-list {
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.6;
+      border-top: 1px dashed var(--sc-line);
+      padding-top: 0.8rem;
+      margin-top: 0.8rem;
+    }
+    .funding-line {
+      font-family: var(--sc-font-mono);
+      font-size: 0.76rem;
+      color: var(--sc-ink-faint);
+      margin-top: 0.6rem;
+    }
+
+    /* Dual Abstract Section */
+    .abstracts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .abstract-box {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+    .abstract-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--sc-line);
+    }
+    .abstract-tag {
+      font-family: var(--sc-font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lakers-purple);
+    }
+    .abstract-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--sc-ink);
+      text-align: justify;
+      flex-grow: 1;
+    }
+    .keywords-row {
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--sc-line);
+      font-size: 0.84rem;
+      color: var(--sc-ink-soft);
+    }
+    .keywords-row b {
+      color: var(--sc-ink);
+    }
+
+    /* Methodology & Diagram Section */
+    .methodology-section {
+      margin: 4rem 0;
+    }
+    .section-title-wrap {
+      margin-bottom: 1.8rem;
+    }
+    .section-kicker {
+      font-family: var(--sc-font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--lakers-purple);
+      font-weight: 700;
+    }
+    .section-heading {
+      font-family: var(--sc-font-display);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--sc-ink);
+      margin: 0.4rem 0 0 0;
+    }
+
+    .figure-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sc-line);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.03);
+      margin-bottom: 2.5rem;
+    }
+    .figure-image-wrap {
+      width: 100%;
+      background: #FAF9F6;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      border: 1px solid var(--sc-line);
+    }
+    .figure-image-wrap img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    .figure-caption-bar {
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-family: var(--sc-font-mono);
+      font-size: 0.82rem;
+      color: var(--sc-ink-soft);
+      border-top: 1px solid var(--sc-line);
+      padding-top: 1rem;
+    }
+    .figure-caption-title {
+      font-weight: 700;
+      color: var(--sc-ink);
+    }
+
+    /* Process Flow 5 Steps */
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 1.8rem;
+    }
+    .step-card {
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 10px;
+      padding: 1.2rem;
+      border-top: 3px solid var(--lakers-purple);
+    }
+    .step-num {
+      font-family: var(--sc-font-mono);
+      font-size: 0.72rem;
+      color: var(--lakers-purple);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .step-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--sc-ink);
+      margin-bottom: 6px;
+    }
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--sc-ink-soft);
+      line-height: 1.5;
+    }
+
+    /* Key Findings Table */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 2.5rem 0;
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    .data-table th, .data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--sc-line);
+    }
+    .data-table th {
+      background: var(--sc-surface-alt);
+      font-family: var(--sc-font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--sc-ink);
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    .highlight-cell {
+      font-weight: 700;
+      color: var(--lakers-purple);
+    }
+
+    /* Citation Box */
+    .citation-section {
+      background: var(--sc-surface-alt);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      padding: 2rem;
+      margin: 3.5rem 0;
+    }
+    .citation-title {
+      font-family: var(--sc-font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lakers-purple);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+    .citation-box {
+      font-family: var(--sc-font-mono);
+      font-size: 0.8rem;
+      color: var(--sc-ink);
+      background: #FFFFFF;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--sc-line);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 860px) {
+      .abstracts-grid { grid-template-columns: 1fr; }
+      .nav-center-menu { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <nav class="site-nav">
+      <a href="index.html" class="brand-signature-mark" title="Return to Homepage">
+        <span class="sig-script">Jerome</span>
+        <span class="sig-sans">LAU</span>
+      </a>
+      <ul class="nav-center-menu">
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        <li class="nav-item-dropdown">
+          <a href="topics.html" class="nav-link nav-dropdown-trigger">
+            <span>Topics</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="topics.html#topic-01" class="dropdown-item"><span>Observations & Systems</span><span class="dropdown-item-num">01</span></a>
+            <a href="topics.html#topic-02" class="dropdown-item"><span>Psychology & Inner Architecture</span><span class="dropdown-item-num">02</span></a>
+            <a href="topics.html#topic-03" class="dropdown-item"><span>Personal Growth & Discipline</span><span class="dropdown-item-num">03</span></a>
+            <a href="topics.html#topic-04" class="dropdown-item"><span>Contemporary Dialogues</span><span class="dropdown-item-num">04</span></a>
+            <a href="topics.html#topic-05" class="dropdown-item"><span>Book Reflections & Margins</span><span class="dropdown-item-num">05</span></a>
+            <div class="dropdown-divider"></div>
+            <a href="topics.html" class="dropdown-item dropdown-item-all"><span>All Topics</span><span>→</span></a>
+          </div>
+        </li>
+        <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-link" title="Open Notion Blog">Blog ↗</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-right-tools">
+        <a href="projects.html" class="breadcrumb-link">← All Research Output</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb bar -->
+  <div class="breadcrumb-strip">
+    <div class="container">
+      <a href="projects.html" class="breadcrumb-link">← Back to Research & Projects Directory</a>
+    </div>
+  </div>
+
+  <main>
+    
+    <!-- Paper Hero -->
+    <article class="paper-hero">
+      <div class="container">
+        
+        <div class="paper-badge-row">
+          <span class="badge-journal">Journal Article · 洁净煤技术 (Clean Coal Technology)</span>
+          <span class="badge-status">Peer Reviewed · Published</span>
+          <span class="badge-journal">TRNSYS / MATLAB Dynamic Simulation</span>
+        </div>
+
+        <h1 class="paper-main-title-cn">
+          时变气候数据驱动下直接空气碳捕集系统动态建模及技术经济性分析
+        </h1>
+        <p class="paper-main-title-en">
+          Dynamic modeling and techno-economic analysis of direct air carbon capture systems driven by time-varying climate data
+        </p>
+
+        <!-- Authors Card -->
+        <div class="authors-card">
+          <div class="authors-list">
+            <span class="author-highlight">刘心宇</span><sup>1,2</sup> (First Author), 
+            王珺瑶<sup>1,2,3,*</sup> (Corresponding Author), 
+            邓帅<sup>4</sup>, 李双俊<sup>5</sup>, 何松<sup>6</sup>, 郑雅文<sup>1</sup>, 陈颖<sup>1,2</sup>, 田志鹏<sup>1,2</sup>, 雷励斌<sup>1,2</sup>
+          </div>
+          <div class="affiliations-list">
+            1. 广东工业大学材料与能源学院，广州 510006<br>
+            2. 广东省功能凝聚态物质重点实验室，广州 510006<br>
+            3. 广东工业大学碳中和与绿色发展协同创新研究院，广州 510006<br>
+            4. 天津大学先进内燃动力全国重点实验室，天津 300350<br>
+            5. 高丽大学，韩国 首尔 136-701<br>
+            6. 北京理工大学（珠海）能源交通学域，珠海 519000
+          </div>
+          <div class="funding-line">
+            <b>基金资助：</b>国家自然科学基金青年基金 (No. 72104257)；广东省自然科学基金面上项目 (No. 2023A1515240056, No. 2024A1515012661)；京津冀环境综合治理国家科技重大专项 (No. 2026ZD1211400)
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <div class="container">
+      
+      <!-- Dual Bilingual Abstract Cards -->
+      <section class="abstracts-grid">
+        
+        <!-- Chinese Abstract -->
+        <div class="abstract-box">
+          <div class="abstract-box-header">
+            <span class="abstract-tag">中文摘要 · Abstract</span>
+            <span style="font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-faint);">中图分类号: X701</span>
+          </div>
+          <div class="abstract-body">
+            直接空气碳捕集（DAC）技术具有选址灵活、可模块化部署等优势，已成为实现净零排放目标的关键负排放技术。其中，基于固体吸附法的DAC技术因其解吸温度低、易与低品位热源耦合等特点，具有大规模应用前景。然而，既有研究多局限于稳态运行假设，未能充分考虑实际运行中大气温度、湿度动态变化对DAC性能的显著影响，难以反应其在动态工况下的表现。
+            <br><br>
+            基于此，本研究构建了考虑气象参数波动的蒸汽辅助真空变温吸附DAC动态系统，并选取西宁、成都、兰州和贵阳等四个典型气象区进行案例分析。结果表明，DAC的能效水平、碳捕集效率以及经济性均依赖气候与能源清洁度的协同，即在干冷且采用低碳能源结构的区域，系统才能兼顾净碳移除与技术经济可行性。评估显示，在低温干燥地区，如西宁的气象条件有利于提升产率和热力学效率，达成最低1042.6 $/t CO₂的捕集成本及70.61%的碳捕集效率。但在湿度和电网碳强度较高的区域如兰州，由于高热能需求与碳排放增加，导致成本攀升至近2400 $/t CO₂而碳捕集效率降至负值，无法实现负排放。因此，DAC技术的规模化部署与选址应该基于实际工况进行评估，以确保其技术经济可行性与负排放目标的实现。
+          </div>
+          <div class="keywords-row">
+            <b>关键词：</b>直接空气碳捕集；负排放技术；气象影响；动态模拟；技术经济评估
+          </div>
+        </div>
+
+        <!-- English Abstract -->
+        <div class="abstract-box">
+          <div class="abstract-box-header">
+            <span class="abstract-tag">English Abstract</span>
+            <span style="font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-faint);">SA-TVSA System</span>
+          </div>
+          <div class="abstract-body">
+            Direct air capture (DAC) technology, with advantages such as flexible siting and modular deployment, has emerged as a key negative emission technology for achieving net-zero emission targets. Among various approaches, solid sorbent-based DAC technology holds promise for large-scale application due to its low desorption temperature and ease of integration with low-grade heat sources. However, existing studies are mostly confined to steady-state operating assumptions and fail to adequately account for the significant impacts of dynamic variations in ambient temperature and humidity on DAC performance under real-world conditions, thus making it difficult to reflect system behavior under dynamic operating scenarios.
+            <br><br>
+            To address this gap, this study develops a dynamic model of a steam-assisted vacuum temperature swing adsorption (SA-TVSA) DAC system that incorporates fluctuating meteorological parameters, and conducts case studies across four typical climatic regions: Xining, Chengdu, Lanzhou, and Guiyang. The results indicate that the energy efficiency, carbon capture efficiency, and economic viability of DAC all depend on the synergy between climate conditions and energy cleanliness that means in regions with cold, dry climates and a low-carbon energy mix can the system simultaneously achieve net carbon removal and techno-economic feasibility. The assessment shows that in low-temperature, arid regions such as Xining, favorable meteorological conditions enhance productivity and thermodynamic efficiency, achieving a minimum capture cost of 1,042.6 USD/t CO₂ and a carbon capture efficiency of 70.61%. However, in regions with high humidity and high grid carbon intensity, such as Lanzhou, increased thermal energy demand and carbon emissions drive the cost up to nearly 2,400 USD/t CO₂, while carbon capture efficiency drops to negative values, rendering net negative emissions unattainable. Therefore, the large-scale deployment and siting of DAC technology should be evaluated based on actual operating conditions to ensure both techno-economic feasibility and the realization of negative emission goals.
+          </div>
+          <div class="keywords-row">
+            <b>Keywords:</b> Direct air capture; negative emission technologies; meteorological impacts; dynamic simulation; techno-economic evaluation
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Key Methodology & Figure 2 -->
+      <section class="methodology-section">
+        <div class="section-title-wrap">
+          <span class="section-kicker">Core System Architecture · Methodological Figure</span>
+          <h2 class="section-heading">热泵供能的蒸汽辅助真空变温吸附（SA-TVSA）DAC流程</h2>
+        </div>
+
+        <div class="figure-card">
+          <div class="figure-image-wrap">
+            <img src="assets/paper1-method.png" alt="图2 热泵供能的DAC系统流程图 / Fig. 2 Flowchart of the heat pump-driven DAC system" width="1250" height="616">
+          </div>
+          <div class="figure-caption-bar">
+            <span class="figure-caption-title">图 2 热泵供能的DAC系统流程图 (Fig. 2 Flowchart of the heat pump-driven DAC system)</span>
+            <span>Commercial Lewatit VP OC 1065 Sorbent · TRNSYS-MATLAB Co-Simulation</span>
+          </div>
+        </div>
+
+        <!-- 5 Stages Process Explanation -->
+        <h3 style="font-family: var(--sc-font-text); font-size: 1.15rem; font-weight: 700; color: var(--sc-ink); margin-top: 2rem;">
+          SA-TVSA 循环五阶段动态吸附与解吸过程
+        </h3>
+        <div class="process-steps-grid">
+          <div class="step-card">
+            <div class="step-num">STAGE 01</div>
+            <div class="step-title">吸附 (Adsorption)</div>
+            <div class="step-desc">风机驱动环境空气流经接触器，使空气中 trace CO₂ 与水蒸气在胺基位点发生温湿度依赖的共吸附。</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STAGE 02</div>
+            <div class="step-title">抽真空 (Evacuation)</div>
+            <div class="step-desc">腔室完全密封，真空泵强力抽取排出床层内部间隙空气，降低系统残余压力至真空基准。</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STAGE 03</div>
+            <div class="step-title">加热解吸 (Heating)</div>
+            <div class="step-desc">电网驱动的热泵输入低品位清洁热能，在真空环境下加热吸附剂，大量释放吸附的 CO₂ 与 H₂O。</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STAGE 04</div>
+            <div class="step-title">蒸汽吹扫 (Steam Purge)</div>
+            <div class="step-desc">通入低压饱和蒸汽降低接触器内部 CO₂ 分压，显著拓宽树脂的工作容量并加速解吸脱附效率。</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">STAGE 05</div>
+            <div class="step-title">冷却再生 (Cooling)</div>
+            <div class="step-desc">冷却塔流体循环快速带走吸附床余热，使吸附树脂恢复初始冷态，就绪启动下一个完整工作循环。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Quantitative Case Study Findings -->
+      <section class="section-block" style="margin-bottom: 3.5rem;">
+        <div class="section-title-wrap">
+          <span class="section-kicker">Regional Sensitivity · Case Study Comparisons</span>
+          <h2 class="section-heading">四类典型气候与电网条件下的技术经济表现</h2>
+          <p style="font-size: 0.95rem; color: var(--sc-ink-soft); margin-top: 0.4rem;">
+            定量揭示环境温湿度与电网排放因子协同对动态碳捕集效率（CCE）与平准化捕集成本（LCOD）的决定性影响：
+          </p>
+        </div>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>地理案例</th>
+                <th>年均温度</th>
+                <th>年均相对湿度</th>
+                <th>电网排放因子</th>
+                <th>CO₂ 产率</th>
+                <th>碳捕集效率 (CCE)</th>
+                <th>平准化成本 (LCOD)</th>
+                <th>投资回报率 (ROI)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>青海 · 西宁</b> (干冷+清洁电网)</td>
+                <td>6.4 ℃</td>
+                <td>50%</td>
+                <td>0.1796 kg/kWh</td>
+                <td>2.51 ~ 2.76 kg/m³·h</td>
+                <td class="highlight-cell">+70.61%</td>
+                <td class="highlight-cell">1,042.6 $/t CO₂</td>
+                <td style="color:#047857; font-weight:700;">+1.89% (方案二)</td>
+              </tr>
+              <tr>
+                <td><b>四川 · 成都</b> (湿热+清洁电网)</td>
+                <td>17.7 ℃</td>
+                <td>73%</td>
+                <td>0.1564 kg/kWh</td>
+                <td>2.35 ~ 2.60 kg/m³·h</td>
+                <td>+53.70%</td>
+                <td>2,237.7 $/t CO₂</td>
+                <td style="color:#B91C1C;">-2.65%</td>
+              </tr>
+              <tr>
+                <td><b>甘肃 · 兰州</b> (干冷+高碳电网)</td>
+                <td>9.9 ℃</td>
+                <td>54%</td>
+                <td>0.4471 kg/kWh</td>
+                <td>2.50 ~ 2.75 kg/m³·h</td>
+                <td style="color:#B91C1C; font-weight:700;">-68.38% (负排放失效)</td>
+                <td>1,991.7 $/t CO₂</td>
+                <td style="color:#B91C1C;">-1.88%</td>
+              </tr>
+              <tr>
+                <td><b>贵州 · 贵阳</b> (高湿+高碳电网)</td>
+                <td>14.8 ℃</td>
+                <td>76%</td>
+                <td>0.5683 kg/kWh</td>
+                <td>2.42 ~ 2.58 kg/m³·h</td>
+                <td style="color:#B91C1C; font-weight:700;">-68.65% (负排放失效)</td>
+                <td>2,395.0 $/t CO₂</td>
+                <td style="color:#B91C1C;">-4.14%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- BibTeX Citation -->
+      <section class="citation-section">
+        <div class="citation-title">Citation / 引用格式 (BibTeX)</div>
+        <div class="citation-box">@article{liu2026dynamic_dac,
+  title={时变气候数据驱动下直接空气碳捕集系统动态建模及技术经济性分析},
+  author={刘心宇 and 王珺瑶 and 邓帅 and 李双俊 and 何松 and 郑雅文 and 陈颖 and 田志鹏 and 雷励斌},
+  journal={洁净煤技术 (Clean Coal Technology)},
+  year={2026},
+  pages={1--16},
+  note={First Author: LIU Xinyu}
+}</div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main-row">
+        <div class="footer-brand-side">
+          <a href="index.html" class="brand-signature-mark" title="Jerome Lau Homepage">
+            <span class="sig-script">Jerome</span>
+            <span class="sig-sans">LAU</span>
+          </a>
+          <p class="footer-bio">
+            Power engineering student researching Direct Air Capture (DAC) & Life Cycle Assessment (LCA). High sensitivity meets unwavering discipline.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg></a>
+            <a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></a>
+            <a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg></a>
+            <a href="https://www.youtube.com/@Losbean-824" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg></a>
+            <a href="https://www.reddit.com/user/No_Plum_8594/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Reddit"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+            <a href="mailto:jerome.lau824@outlook.com" class="footer-social-btn" title="Direct Email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-nav-three-cols">
+          <div>
+            <h4 class="footer-col-heading">Explore</h4>
+            <ul class="footer-col-links">
+              <li><a href="about.html" class="footer-text-link">About Jerome Lau</a></li>
+              <li><a href="projects.html" class="footer-text-link">Projects & Papers</a></li>
+              <li><a href="topics.html" class="footer-text-link">Themes & Topics</a></li>
+              <li><a href="contact.html" class="footer-text-link">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-heading">Writing & Notes</h4>
+            <ul class="footer-col-links">
+              <li><a href="https://notionnext-website.vercel.app/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Live Notion Blog ↗</a></li>
+              <li><a href="blog.html" class="footer-text-link">Featured Essays</a></li>
+              <li><a href="index.html#the-creed" class="footer-text-link">The Mamba Creed</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-heading">Connect</h4>
+            <ul class="footer-col-links">
+              <li><a href="https://github.com/Jerome824" target="_blank" rel="noopener noreferrer" class="footer-text-link">GitHub ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/xinyu-liu-300329334/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" class="footer-text-link">LinkedIn ↗</a></li>
+              <li><a href="https://instagram.com/jerome.2077/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Instagram ↗</a></li>
+              <li><a href="https://www.reddit.com/user/No_Plum_8594/" target="_blank" rel="noopener noreferrer" class="footer-text-link">Reddit ↗</a></li>
+              <li><a href="mailto:jerome.lau824@outlook.com" class="footer-text-link">jerome.lau824@outlook.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-strip">
+        <div>© 2026 Jerome Lau. All rights reserved.</div>
+        <div class="footer-legal-menu">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
